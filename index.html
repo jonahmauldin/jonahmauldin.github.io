@@ -8,9 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* ═══════════════════════════════════════════════════════
-       RESET & BASE
-    ═══════════════════════════════════════════════════════ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -19,7 +16,6 @@
       --cyan:   #00e5ff;
       --red:    #ff3355;
       --bg:     #020c06;
-      --bg2:    #040f08;
       --dim:    #0d2a17;
       --dimmer: #071408;
     }
@@ -37,6 +33,13 @@
       position: relative;
     }
 
+    /* hex grid background */
+    body {
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0,255,136,0.06) 0%, transparent 60%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V16L28 0l28 16v34L28 66zM28 100L0 84V50l28-16 28 16v34L28 100z' fill='none' stroke='rgba(0,255,136,0.028)' stroke-width='1'/%3E%3C/svg%3E");
+    }
+
     /* scanlines */
     body::before {
       content: '';
@@ -46,67 +49,138 @@
         0deg,
         transparent,
         transparent 2px,
-        rgba(0,255,136,0.012) 2px,
-        rgba(0,255,136,0.012) 4px
+        rgba(0,255,136,0.011) 2px,
+        rgba(0,255,136,0.011) 4px
       );
       pointer-events: none;
-      z-index: 1000;
+      z-index: 900;
     }
 
-    /* noise */
+    /* vignette */
     body::after {
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.65) 100%);
       pointer-events: none;
-      z-index: 999;
-      opacity: 0.35;
+      z-index: 901;
     }
 
-    /* ═══════════════════════════════════════════════════════
-       ANIMATIONS
-    ═══════════════════════════════════════════════════════ */
-    @keyframes glitch-1 {
-      0%,100%{ clip-path:inset(0 0 96% 0); transform:translate(-2px,0); }
-      20%    { clip-path:inset(28% 0 55% 0); transform:translate(2px,0); }
-      40%    { clip-path:inset(70% 0 12% 0); transform:translate(-1px,0); }
-      60%    { clip-path:inset(12% 0 78% 0); transform:translate(1px,0); }
-      80%    { clip-path:inset(48% 0 32% 0); transform:translate(-2px,0); }
+    /* ── BOOT OVERLAY ── */
+    #boot-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      transition: opacity 0.6s ease;
     }
-    @keyframes glitch-2 {
-      0%,100%{ clip-path:inset(82% 0 4% 0); transform:translate(2px,0); }
-      20%    { clip-path:inset(8% 0 72% 0);  transform:translate(-2px,0); }
-      40%    { clip-path:inset(52% 0 22% 0); transform:translate(1px,0); }
-      60%    { clip-path:inset(4% 0 88% 0);  transform:translate(-1px,0); }
-      80%    { clip-path:inset(62% 0 16% 0); transform:translate(2px,0); }
-    }
-    @keyframes pulse-dot {
-      0%,100%{ opacity:1; transform:scale(1); }
-      50%    { opacity:0.25; transform:scale(0.75); }
-    }
-    @keyframes blink-eyes {
-      0%,44%,56%,100%{ opacity:1; }
-      50%             { opacity:0; }
-    }
-    @keyframes zzz-float {
-      0%  { opacity:0; transform:translateY(0) scale(0.8); }
-      15% { opacity:1; }
-      85% { opacity:0.6; }
-      100%{ opacity:0; transform:translateY(-44px) scale(1.1); }
-    }
-    @keyframes glow-sweep {
-      0%  { background-position:-200% 0; }
-      100%{ background-position:200% 0; }
-    }
-    @keyframes fade-in {
-      from{ opacity:0; }
-      to  { opacity:1; }
+    #boot-overlay.fade-out { opacity: 0; pointer-events: none; }
+
+    .boot-title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(0.7rem, 2vw, 1rem);
+      letter-spacing: 0.5em;
+      color: var(--green);
+      opacity: 0.9;
     }
 
-    /* ═══════════════════════════════════════════════════════
-       LAYOUT
-    ═══════════════════════════════════════════════════════ */
+    .boot-bar-track {
+      width: min(320px, 70vw);
+      height: 2px;
+      background: var(--dim);
+      position: relative;
+      overflow: hidden;
+    }
+    .boot-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .boot-lines {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      color: var(--green);
+      opacity: 0.4;
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    /* ── SCAN LINE ── */
+    #scan-line {
+      position: fixed;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(0,255,136,0.4), transparent);
+      box-shadow: 0 0 12px rgba(0,255,136,0.3);
+      z-index: 950;
+      pointer-events: none;
+      animation: scan-sweep 8s linear infinite;
+      top: -2px;
+    }
+
+    @keyframes scan-sweep {
+      0%   { top: -2px; opacity: 0; }
+      5%   { opacity: 1; }
+      95%  { opacity: 1; }
+      100% { top: 100vh; opacity: 0; }
+    }
+
+    /* ── FIXED NAV ── */
+    #hud-nav {
+      position: fixed;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 800;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    @media(max-width:768px){ #hud-nav{ display:none; } }
+
+    .nav-pip {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      opacity: 0.25;
+      transition: opacity 0.3s;
+      flex-direction: row-reverse;
+    }
+    .nav-pip:hover, .nav-pip.active { opacity: 1; }
+    .nav-pip-dot {
+      width: 5px;
+      height: 5px;
+      border: 1px solid var(--green);
+      border-radius: 50%;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .nav-pip.active .nav-pip-dot {
+      background: var(--green);
+      box-shadow: 0 0 6px var(--green);
+    }
+    .nav-pip-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      color: var(--green);
+      opacity: 0;
+      transition: opacity 0.3s;
+      white-space: nowrap;
+    }
+    .nav-pip:hover .nav-pip-label { opacity: 1; }
+
+    /* ── LAYOUT ── */
     .container {
       max-width: 1160px;
       margin: 0 auto;
@@ -114,75 +188,160 @@
     }
 
     section {
-      padding: 4rem 0;
+      padding: 4.5rem 0;
       border-bottom: 1px solid var(--dim);
     }
 
     .section-num {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
+      font-size: 0.62rem;
+      letter-spacing: 0.35em;
       color: var(--green);
-      opacity: 0.35;
+      opacity: 0.3;
       margin-bottom: 0.4rem;
     }
 
     .section-title {
       font-family: 'Orbitron', monospace;
-      font-size: clamp(1.1rem, 2.8vw, 1.6rem);
+      font-size: clamp(1rem, 2.8vw, 1.55rem);
       font-weight: 700;
       color: var(--green);
       margin-bottom: 2.5rem;
       display: flex;
       align-items: center;
       gap: 1rem;
+      text-shadow: 0 0 20px rgba(0,255,136,0.25);
     }
-
     .section-title::after {
-      content:'';
-      flex:1;
-      height:1px;
-      background: linear-gradient(90deg, var(--dim), transparent);
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(0,255,136,0.35), transparent);
     }
 
-    /* ═══════════════════════════════════════════════════════
-       CORNER BRACKETS
-    ═══════════════════════════════════════════════════════ */
-    .bracketed { position:relative; }
-    .bracketed::before,
-    .bracketed::after {
-      content:'';
-      position:absolute;
-      width:14px;
-      height:14px;
-      border-color:var(--green);
-      border-style:solid;
-      opacity:0.4;
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── CORNER BRACKETS ── */
+    .bracketed { position: relative; }
+    .bracketed::before, .bracketed::after {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-color: var(--green);
+      border-style: solid;
+      opacity: 0.4;
+      transition: width 0.3s, height 0.3s, opacity 0.3s;
     }
     .bracketed::before { top:-5px; left:-5px; border-width:1px 0 0 1px; }
     .bracketed::after  { bottom:-5px; right:-5px; border-width:0 1px 1px 0; }
+    .bracketed:hover::before, .bracketed:hover::after {
+      width: 20px; height: 20px; opacity: 0.9;
+    }
 
-    /* ═══════════════════════════════════════════════════════
-       HEADER
-    ═══════════════════════════════════════════════════════ */
+    /* ── ANIMATIONS ── */
+    @keyframes glitch-1 {
+      0%,89%,100%{ clip-path:inset(0 0 100% 0); transform:translate(0); }
+      90%{ clip-path:inset(25% 0 58% 0); transform:translate(-3px,0); color:var(--cyan); }
+      92%{ clip-path:inset(68% 0 14% 0); transform:translate(3px,0); }
+      94%{ clip-path:inset(10% 0 76% 0); transform:translate(-2px,0); }
+      96%{ clip-path:inset(52% 0 30% 0); transform:translate(2px,0); }
+      98%{ clip-path:inset(36% 0 46% 0); transform:translate(-1px,0); }
+    }
+    @keyframes glitch-2 {
+      0%,89%,100%{ clip-path:inset(0 0 100% 0); transform:translate(0); }
+      90%{ clip-path:inset(78% 0 6% 0);  transform:translate(3px,0); color:var(--red); }
+      92%{ clip-path:inset(6% 0 70% 0);  transform:translate(-3px,0); }
+      94%{ clip-path:inset(48% 0 24% 0); transform:translate(1px,0); }
+      96%{ clip-path:inset(2% 0 86% 0);  transform:translate(-1px,0); }
+      98%{ clip-path:inset(60% 0 18% 0); transform:translate(2px,0); }
+    }
+
+    @keyframes pulse-dot {
+      0%,100%{ opacity:1; transform:scale(1); box-shadow:0 0 0 0 rgba(0,255,136,0.4); }
+      50%{ opacity:0.4; transform:scale(0.8); box-shadow:0 0 0 4px rgba(0,255,136,0); }
+    }
+
+    @keyframes blink-eyes {
+      0%,44%,56%,100%{ opacity:1; }
+      50%{ opacity:0.05; }
+    }
+
+    @keyframes zzz-float {
+      0%  { opacity:0; transform:translateY(0) scale(0.8); }
+      15% { opacity:1; }
+      85% { opacity:0.5; }
+      100%{ opacity:0; transform:translateY(-50px) scale(1.1); }
+    }
+
+    @keyframes glow-sweep {
+      0%  { background-position:-300% 0; }
+      100%{ background-position:300% 0; }
+    }
+
+    @keyframes border-glow {
+      0%,100%{ box-shadow: inset 0 0 0 1px rgba(0,255,136,0.1), 0 0 0 0 rgba(0,255,136,0); }
+      50%{ box-shadow: inset 0 0 0 1px rgba(0,255,136,0.3), 0 0 20px 2px rgba(0,255,136,0.08); }
+    }
+
+    @keyframes hud-line-h {
+      0%  { transform: scaleX(0); transform-origin: left; }
+      100%{ transform: scaleX(1); transform-origin: left; }
+    }
+
+    @keyframes count-tick {
+      from { opacity:0; transform:translateY(4px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ── HEADER ── */
     #header {
-      padding: 5rem 0 4rem;
+      padding: 5.5rem 0 4rem;
       border-bottom: 1px solid var(--dim);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* corner HUD decorations */
+    #header::before {
+      content: '';
+      position: absolute;
+      top: 1.5rem; left: 1.5rem;
+      width: 60px; height: 60px;
+      border-top: 1px solid rgba(0,255,136,0.25);
+      border-left: 1px solid rgba(0,255,136,0.25);
+    }
+
+    .header-coords {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      color: var(--green);
+      opacity: 0.25;
+      margin-bottom: 1.8rem;
     }
 
     .glitch-name {
       font-family: 'Orbitron', monospace;
-      font-size: clamp(2.4rem, 8vw, 5.5rem);
+      font-size: clamp(2.2rem, 8vw, 5.5rem);
       font-weight: 900;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       color: var(--green);
       position: relative;
       display: inline-block;
       line-height: 1;
-      margin-bottom: 0.3rem;
+      text-shadow: 0 0 30px rgba(0,255,136,0.3);
     }
-    .glitch-name::before,
-    .glitch-name::after {
+    .glitch-name::before, .glitch-name::after {
       content: attr(data-text);
       position: absolute;
       inset: 0;
@@ -190,37 +349,53 @@
     .glitch-name::before {
       color: var(--cyan);
       mix-blend-mode: screen;
-      opacity: 0.75;
-      animation: glitch-1 5s infinite;
+      opacity: 0.8;
+      animation: glitch-1 6s infinite;
     }
     .glitch-name::after {
       color: var(--red);
       mix-blend-mode: screen;
-      opacity: 0.55;
-      animation: glitch-2 5s infinite 0.15s;
+      opacity: 0.6;
+      animation: glitch-2 6s infinite 0.05s;
     }
 
     .subtitle {
       font-family: 'Share Tech Mono', monospace;
-      font-size: clamp(0.6rem, 1.8vw, 0.85rem);
+      font-size: clamp(0.58rem, 1.6vw, 0.82rem);
       letter-spacing: 0.3em;
       color: var(--green);
-      opacity: 0.55;
-      margin-top: 0.6rem;
-      margin-bottom: 1.6rem;
+      opacity: 0.5;
+      margin-top: 0.8rem;
+      margin-bottom: 1.8rem;
+      min-height: 1.2em;
+    }
+
+    .cursor-blink::after {
+      content: '█';
+      animation: blink-eyes 1s step-end infinite;
+      opacity: 0.7;
+      margin-left: 2px;
     }
 
     .status-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.65rem;
+      gap: 0.7rem;
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       letter-spacing: 0.2em;
       padding: 0.4rem 0.9rem;
-      border: 1px solid rgba(0,255,136,0.35);
+      border: 1px solid rgba(0,255,136,0.3);
       color: var(--green);
       margin-bottom: 2.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .status-badge::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,255,136,0.04);
     }
 
     .pulse-dot {
@@ -229,24 +404,36 @@
       border-radius: 50%;
       background: var(--green);
       flex-shrink: 0;
-      animation: pulse-dot 1.6s ease-in-out infinite;
+      animation: pulse-dot 1.8s ease-in-out infinite;
+      box-shadow: 0 0 8px var(--green);
     }
 
     .bio {
-      max-width: 660px;
+      max-width: 640px;
       font-family: 'Rajdhani', sans-serif;
       font-size: 1.05rem;
-      line-height: 1.8;
+      line-height: 1.85;
       color: var(--green);
-      opacity: 0.65;
+      opacity: 0.62;
     }
 
-    /* ═══════════════════════════════════════════════════════
-       SPECS GRID
-    ═══════════════════════════════════════════════════════ */
+    .header-readout {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      text-align: right;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      color: var(--green);
+      opacity: 0.2;
+      line-height: 1.9;
+    }
+
+    /* ── SPECS GRID ── */
     .specs-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
       gap: 1px;
       background: var(--dim);
       border: 1px solid var(--dim);
@@ -254,96 +441,127 @@
 
     .spec-block {
       background: var(--bg);
-      padding: 1.2rem 1.5rem;
-      transition: background 0.2s;
+      padding: 1.3rem 1.5rem;
+      transition: background 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .spec-block::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,255,136,0.2), transparent);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
     }
     .spec-block:hover { background: var(--dimmer); }
+    .spec-block:hover::after { transform: scaleX(1); }
 
     .spec-label {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       letter-spacing: 0.25em;
       color: var(--green);
-      opacity: 0.38;
-      margin-bottom: 0.3rem;
+      opacity: 0.32;
+      margin-bottom: 0.35rem;
       text-transform: uppercase;
     }
-
     .spec-value {
       font-family: 'Orbitron', monospace;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--green);
       font-weight: 700;
       line-height: 1.4;
+      text-shadow: 0 0 10px rgba(0,255,136,0.2);
     }
 
-    /* ═══════════════════════════════════════════════════════
-       CARDS
-    ═══════════════════════════════════════════════════════ */
+    /* ── CARDS ── */
     .card {
       border: 1px solid var(--dim);
       padding: 2rem;
       position: relative;
       overflow: hidden;
-      transition: border-color 0.3s;
+      transition: border-color 0.35s, box-shadow 0.35s;
     }
 
+    /* sweep shine */
     .card::before {
-      content:'';
-      position:absolute;
-      inset:0;
-      background: linear-gradient(105deg,
-        transparent 40%,
-        rgba(0,255,136,0.025) 50%,
-        transparent 60%
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg,
+        transparent 35%,
+        rgba(0,255,136,0.03) 50%,
+        transparent 65%
       );
-      background-size: 250% 100%;
-      opacity:0;
+      background-size: 300% 100%;
+      opacity: 0;
       transition: opacity 0.3s;
       pointer-events: none;
     }
     .card:hover::before {
-      opacity:1;
-      animation: glow-sweep 1.4s ease-in-out;
+      opacity: 1;
+      animation: glow-sweep 1.2s ease-in-out;
     }
 
-    .card.green-accent { border-left:3px solid var(--green); }
-    .card.amber-accent { border-left:3px solid var(--amber); }
-    .card.cyan-accent  { border-left:3px solid var(--cyan);  }
-    .card.red-accent   { border-left:3px solid var(--red);   }
+    /* animated border top on hover */
+    .card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%; right: 101%;
+      height: 1px;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+      transition: left 0.4s ease, right 0.4s ease;
+      opacity: 0.6;
+    }
+    .card:hover::after { left: 0; right: 0; }
 
-    .card:hover                { border-color:rgba(0,255,136,0.28); }
-    .card.amber-accent:hover   { border-color:rgba(255,184,0,0.35); border-left-color:var(--amber); }
-    .card.cyan-accent:hover    { border-color:rgba(0,229,255,0.35); border-left-color:var(--cyan);  }
-    .card.red-accent:hover     { border-color:rgba(255,51,85,0.35);  border-left-color:var(--red);   }
+    .card.green-accent { border-left: 3px solid var(--green); }
+    .card.amber-accent { border-left: 3px solid var(--amber); }
+    .card.cyan-accent  { border-left: 3px solid var(--cyan);  }
+    .card.red-accent   { border-left: 3px solid var(--red);   }
+
+    .card:hover                { border-color:rgba(0,255,136,0.35); box-shadow:0 0 30px rgba(0,255,136,0.05); }
+    .card.amber-accent:hover   { border-color:rgba(255,184,0,0.4);  box-shadow:0 0 30px rgba(255,184,0,0.05); border-left-color:var(--amber); }
+    .card.cyan-accent:hover    { border-color:rgba(0,229,255,0.4);  box-shadow:0 0 30px rgba(0,229,255,0.05); border-left-color:var(--cyan); }
+    .card.red-accent:hover     { border-color:rgba(255,51,85,0.4);  box-shadow:0 0 30px rgba(255,51,85,0.05);  border-left-color:var(--red); }
+
+    /* flagship pulsing glow */
+    .card.flagship {
+      animation: border-glow 4s ease-in-out infinite;
+    }
 
     .card-header {
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:1rem;
-      margin-bottom:0.8rem;
-      flex-wrap:wrap;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.8rem;
+      flex-wrap: wrap;
     }
 
     .card-title {
-      font-family:'Orbitron',monospace;
-      font-size:clamp(1rem,2.5vw,1.3rem);
-      font-weight:700;
-      color:var(--green);
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(0.95rem, 2.5vw, 1.3rem);
+      font-weight: 700;
+      color: var(--green);
+      text-shadow: 0 0 15px rgba(0,255,136,0.3);
     }
-    .card-title.amber { color:var(--amber); }
-    .card-title.cyan  { color:var(--cyan);  }
-    .card-title.red   { color:var(--red);   }
+    .card-title.amber { color:var(--amber); text-shadow:0 0 15px rgba(255,184,0,0.3); }
+    .card-title.cyan  { color:var(--cyan);  text-shadow:0 0 15px rgba(0,229,255,0.3); }
+    .card-title.red   { color:var(--red);   text-shadow:0 0 15px rgba(255,51,85,0.3); }
 
     .status-tag {
-      font-family:'Share Tech Mono',monospace;
-      font-size:0.62rem;
-      letter-spacing:0.2em;
-      padding:0.22rem 0.55rem;
-      border:1px solid currentColor;
-      white-space:nowrap;
-      flex-shrink:0;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      padding: 0.22rem 0.55rem;
+      border: 1px solid currentColor;
+      white-space: nowrap;
+      flex-shrink: 0;
+      position: relative;
     }
     .status-tag.active   { color:var(--green); }
     .status-tag.progress { color:var(--amber); }
@@ -351,462 +569,516 @@
     .status-tag.building { color:var(--amber); }
 
     .card-tagline {
-      font-family:'Share Tech Mono',monospace;
-      font-size:0.68rem;
-      color:var(--green);
-      opacity:0.38;
-      margin-bottom:0.9rem;
-      letter-spacing:0.1em;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.66rem;
+      color: var(--green);
+      opacity: 0.35;
+      margin-bottom: 0.9rem;
+      letter-spacing: 0.1em;
     }
 
     .card-desc {
-      font-family:'Rajdhani',sans-serif;
-      font-size:1rem;
-      line-height:1.75;
-      color:var(--green);
-      opacity:0.65;
-      margin-bottom:1.2rem;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      line-height: 1.78;
+      color: var(--green);
+      opacity: 0.62;
+      margin-bottom: 1.2rem;
     }
 
-    .tags {
-      display:flex;
-      flex-wrap:wrap;
-      gap:0.35rem;
-    }
+    .tags { display:flex; flex-wrap:wrap; gap:0.35rem; }
 
     .tag {
-      font-family:'Share Tech Mono',monospace;
-      font-size:0.62rem;
-      letter-spacing:0.08em;
-      padding:0.18rem 0.48rem;
-      background:var(--dimmer);
-      border:1px solid var(--dim);
-      color:var(--green);
-      opacity:0.7;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      padding: 0.18rem 0.48rem;
+      background: var(--dimmer);
+      border: 1px solid var(--dim);
+      color: var(--green);
+      opacity: 0.7;
+      transition: opacity 0.2s, border-color 0.2s;
     }
+    .tag:hover { opacity:1; border-color:rgba(0,255,136,0.4); }
     .tag.amber { color:var(--amber); border-color:rgba(255,184,0,0.18); background:rgba(255,184,0,0.04); }
     .tag.cyan  { color:var(--cyan);  border-color:rgba(0,229,255,0.18); background:rgba(0,229,255,0.04); }
-    .tag.red   { color:var(--red);   border-color:rgba(255,51,85,0.18);  background:rgba(255,51,85,0.04);  }
+    .tag.red   { color:var(--red);   border-color:rgba(255,51,85,0.18);  background:rgba(255,51,85,0.04); }
 
-    /* ═══════════════════════════════════════════════════════
-       MODULE GRID
-    ═══════════════════════════════════════════════════════ */
+    /* ── MODULE GRID ── */
     .module-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fill, minmax(210px,1fr));
-      gap:1px;
-      background:var(--dim);
-      border:1px solid var(--dim);
-      margin-top:1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(205px, 1fr));
+      gap: 1px;
+      background: var(--dim);
+      border: 1px solid var(--dim);
+      margin-top: 1rem;
     }
-
     .module-card {
-      background:var(--bg);
-      padding:0.9rem 1.1rem;
-      transition:background 0.2s;
+      background: var(--bg);
+      padding: 0.9rem 1.1rem;
+      transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
     }
-    .module-card:hover { background:var(--dimmer); }
+    .module-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--green);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.3s ease;
+      opacity: 0.6;
+    }
+    .module-card:hover { background: var(--dimmer); }
+    .module-card:hover::before { transform: scaleY(1); }
 
     .module-name {
-      font-family:'Share Tech Mono',monospace;
-      font-size:0.82rem;
-      color:var(--green);
-      margin-bottom:0.18rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--green);
+      margin-bottom: 0.18rem;
     }
     .module-desc {
-      font-family:'Rajdhani',sans-serif;
-      font-size:0.85rem;
-      color:var(--green);
-      opacity:0.42;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.85rem;
+      color: var(--green);
+      opacity: 0.38;
     }
 
-    /* ═══════════════════════════════════════════════════════
-       PHASE LIST
-    ═══════════════════════════════════════════════════════ */
+    /* ── PHASE LIST ── */
     .phase-list {
-      display:flex;
-      align-items:center;
-      flex-wrap:wrap;
-      gap:0.4rem;
-      margin:0.9rem 0 1.2rem;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.9rem 0 1.2rem;
     }
     .phase-item {
-      font-family:'Share Tech Mono',monospace;
-      font-size:0.68rem;
-      letter-spacing:0.1em;
-      color:var(--amber);
-      opacity:0.8;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--amber);
+      opacity: 0.85;
     }
-    .phase-arrow { color:var(--amber); opacity:0.25; font-size:0.7rem; }
+    .phase-arrow { color:var(--amber); opacity:0.22; font-size:0.7rem; }
 
-    /* ═══════════════════════════════════════════════════════
-       PHANTOM SUBMODULE GRID
-    ═══════════════════════════════════════════════════════ */
+    /* ── PHANTOM GRID ── */
     .phantom-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fill, minmax(150px,1fr));
-      gap:0.45rem;
-      margin-top:1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+      gap: 0.4rem;
+      margin-top: 1rem;
     }
     .phantom-module {
-      font-family:'Share Tech Mono',monospace;
-      font-size:0.72rem;
-      color:var(--amber);
-      padding:0.45rem 0.7rem;
-      border:1px solid rgba(255,184,0,0.14);
-      background:rgba(255,184,0,0.03);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--amber);
+      padding: 0.45rem 0.7rem;
+      border: 1px solid rgba(255,184,0,0.14);
+      background: rgba(255,184,0,0.03);
+      transition: border-color 0.2s, background 0.2s;
     }
+    .phantom-module:hover { border-color:rgba(255,184,0,0.4); background:rgba(255,184,0,0.07); }
 
-    /* ═══════════════════════════════════════════════════════
-       PROMETHEUS SPEC ROW
-    ═══════════════════════════════════════════════════════ */
+    /* ── SPEC ROW (Prometheus) ── */
     .spec-row {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
-      gap:1px;
-      background:var(--dim);
-      border:1px solid var(--dim);
-      margin-top:1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+      gap: 1px;
+      background: var(--dim);
+      border: 1px solid var(--dim);
+      margin-top: 1.5rem;
     }
     .spec-item {
-      background:var(--bg);
-      padding:0.9rem 1.1rem;
+      background: var(--bg);
+      padding: 0.9rem 1.1rem;
+      transition: background 0.2s;
     }
+    .spec-item:hover { background: var(--dimmer); }
     .spec-item-label {
-      font-family:'Share Tech Mono',monospace;
-      font-size:0.58rem;
-      letter-spacing:0.2em;
-      color:var(--cyan);
-      opacity:0.5;
-      margin-bottom:0.22rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.56rem;
+      letter-spacing: 0.2em;
+      color: var(--cyan);
+      opacity: 0.45;
+      margin-bottom: 0.25rem;
     }
     .spec-item-value {
-      font-family:'Share Tech Mono',monospace;
-      font-size:0.78rem;
-      color:var(--cyan);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--cyan);
     }
 
-    /* ═══════════════════════════════════════════════════════
-       SECTION 06 — TELEMETRY
-    ═══════════════════════════════════════════════════════ */
+    /* ── TELEMETRY ── */
     .telemetry-top {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      margin-bottom:1.5rem;
-      flex-wrap:wrap;
-      gap:0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
     }
-
     .live-badge {
-      display:inline-flex;
-      align-items:center;
-      gap:0.45rem;
-      font-family:'Share Tech Mono',monospace;
-      font-size:0.62rem;
-      letter-spacing:0.2em;
-      color:var(--green);
-      border:1px solid rgba(0,255,136,0.28);
-      padding:0.22rem 0.6rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--green);
+      border: 1px solid rgba(0,255,136,0.28);
+      padding: 0.22rem 0.6rem;
     }
 
-    /* STATE A bars */
     .metric-row {
-      display:grid;
-      grid-template-columns:130px 1fr 56px;
-      align-items:center;
-      gap:1rem;
-      margin-bottom:0.9rem;
+      display: grid;
+      grid-template-columns: 130px 1fr 56px;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.85rem;
     }
-    @media(max-width:500px){
-      .metric-row{ grid-template-columns:90px 1fr 48px; gap:0.5rem; }
-    }
+    @media(max-width:480px){ .metric-row{ grid-template-columns:80px 1fr 44px; gap:0.5rem; } }
+
     .metric-label {
-      font-family:'Share Tech Mono',monospace;
-      font-size:0.65rem;
-      letter-spacing:0.15em;
-      color:var(--green);
-      opacity:0.5;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.63rem;
+      letter-spacing: 0.15em;
+      color: var(--green);
+      opacity: 0.45;
     }
     .metric-bar-track {
-      height:5px;
-      background:var(--dimmer);
-      border:1px solid var(--dim);
-      overflow:hidden;
+      height: 4px;
+      background: var(--dimmer);
+      border: 1px solid var(--dim);
+      overflow: hidden;
+      position: relative;
+    }
+    .metric-bar-track::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 8px,
+        rgba(0,0,0,0.3) 8px,
+        rgba(0,0,0,0.3) 9px
+      );
     }
     .metric-bar-fill {
-      height:100%;
-      width:0%;
-      background:var(--green);
-      transition:width 0.9s ease, background 0.3s;
+      height: 100%;
+      width: 0%;
+      background: var(--green);
+      box-shadow: 2px 0 8px rgba(0,255,136,0.5);
+      transition: width 1s ease, background 0.3s;
     }
-    .metric-bar-fill.amber{ background:var(--amber); }
-    .metric-bar-fill.red  { background:var(--red); }
+    .metric-bar-fill.amber { background:var(--amber); box-shadow:2px 0 8px rgba(255,184,0,0.5); }
+    .metric-bar-fill.red   { background:var(--red);   box-shadow:2px 0 8px rgba(255,51,85,0.5);  }
 
     .metric-value {
-      font-family:'Share Tech Mono',monospace;
-      font-size:0.78rem;
-      color:var(--green);
-      text-align:right;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--green);
+      text-align: right;
     }
 
     .stat-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-      gap:1px;
-      background:var(--dim);
-      border:1px solid var(--dim);
-      margin-top:1.4rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+      gap: 1px;
+      background: var(--dim);
+      border: 1px solid var(--dim);
+      margin-top: 1.4rem;
     }
     .stat-block {
-      background:var(--bg);
-      padding:0.9rem 1.1rem;
+      background: var(--bg);
+      padding: 0.9rem 1.1rem;
+      transition: background 0.2s;
     }
+    .stat-block:hover { background: var(--dimmer); }
     .stat-label {
-      font-family:'Share Tech Mono',monospace;
-      font-size:0.58rem;
-      letter-spacing:0.2em;
-      color:var(--green);
-      opacity:0.35;
-      margin-bottom:0.25rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.56rem;
+      letter-spacing: 0.2em;
+      color: var(--green);
+      opacity: 0.32;
+      margin-bottom: 0.25rem;
     }
     .stat-value {
-      font-family:'Share Tech Mono',monospace;
-      font-size:0.95rem;
-      color:var(--green);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.95rem;
+      color: var(--green);
+      text-shadow: 0 0 10px rgba(0,255,136,0.3);
     }
 
-    /* STATE B — OFFLINE */
-    #state-offline {
-      display:none;
-    }
-
+    /* STATE B */
+    #state-offline { display:none; }
     .ascii-wrap {
-      text-align:center;
-      padding:2.5rem 1rem;
-      position:relative;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      position: relative;
     }
-
     .ascii-art {
-      font-family:'Share Tech Mono',monospace;
-      font-size:clamp(0.7rem,1.5vw,0.85rem);
-      line-height:1.5;
-      color:var(--green);
-      opacity:0.55;
-      display:inline-block;
-      text-align:left;
-      position:relative;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: clamp(0.68rem, 1.4vw, 0.82rem);
+      line-height: 1.5;
+      color: var(--green);
+      opacity: 0.5;
+      display: inline-block;
+      text-align: left;
     }
-
     .ascii-eyes { animation: blink-eyes 5s ease-in-out infinite; }
-
-    .zzz-layer {
-      position:absolute;
-      top:0; left:0; right:0; bottom:0;
-      pointer-events:none;
-    }
-
-    .zzz {
-      position:absolute;
-      font-family:'Share Tech Mono',monospace;
-      color:var(--green);
-      opacity:0;
-    }
-    .zzz.z1 { font-size:0.75rem; top:38%; right:15%; animation:zzz-float 3.5s ease-out infinite; }
-    .zzz.z2 { font-size:0.9rem;  top:28%; right:8%;  animation:zzz-float 3.5s ease-out 0.8s infinite; }
-    .zzz.z3 { font-size:1.1rem;  top:18%; right:2%;  animation:zzz-float 3.5s ease-out 1.6s infinite; }
-
-    .offline-labels {
-      margin-top:1.2rem;
-    }
+    .zzz-layer { position:absolute; top:0; left:0; right:0; bottom:0; pointer-events:none; }
+    .zzz { position:absolute; font-family:'Share Tech Mono',monospace; color:var(--green); opacity:0; }
+    .zzz.z1{ font-size:0.72rem; top:36%; right:14%; animation:zzz-float 3.5s ease-out infinite; }
+    .zzz.z2{ font-size:0.9rem;  top:25%; right:7%;  animation:zzz-float 3.5s ease-out 0.9s infinite; }
+    .zzz.z3{ font-size:1.1rem;  top:15%; right:1%;  animation:zzz-float 3.5s ease-out 1.8s infinite; }
+    .offline-labels { margin-top:1.2rem; }
     .offline-status {
       font-family:'Share Tech Mono',monospace;
-      font-size:0.7rem;
+      font-size:0.68rem;
       letter-spacing:0.15em;
       color:var(--green);
-      opacity:0.4;
+      opacity:0.38;
       margin-bottom:0.3rem;
     }
     .offline-retry {
       font-family:'Share Tech Mono',monospace;
-      font-size:0.65rem;
-      color:var(--green);
-      opacity:0.25;
-    }
-
-    /* STATE C — NOT CONFIGURED */
-    #state-unconfigured {
-      display:none;
-      border:1px dashed rgba(0,255,136,0.15);
-      padding:3.5rem 2rem;
-      text-align:center;
-    }
-    .await-title {
-      font-family:'Orbitron',monospace;
-      font-size:1.3rem;
+      font-size:0.62rem;
       color:var(--green);
       opacity:0.22;
-      letter-spacing:0.35em;
-      margin-bottom:0.6rem;
+    }
+
+    /* STATE C */
+    #state-unconfigured { display:none; }
+    .await-wrap {
+      border: 1px dashed rgba(0,255,136,0.12);
+      padding: 3.5rem 2rem;
+      text-align: center;
+    }
+    .await-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.3rem;
+      color: var(--green);
+      opacity: 0.2;
+      letter-spacing: 0.35em;
+      margin-bottom: 0.6rem;
     }
     .await-sub {
-      font-family:'Share Tech Mono',monospace;
-      font-size:0.65rem;
-      color:var(--green);
-      opacity:0.15;
-      letter-spacing:0.15em;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--green);
+      opacity: 0.12;
+      letter-spacing: 0.15em;
     }
 
-    /* fade transitions */
-    .tele-state {
-      transition: opacity 0.5s ease;
-    }
+    .tele-state { transition: opacity 0.5s ease; }
 
-    /* ═══════════════════════════════════════════════════════
-       ROADMAP
-    ═══════════════════════════════════════════════════════ */
+    /* ── ROADMAP ── */
     .roadmap-grid {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
     }
-    @media(max-width:600px){ .roadmap-grid{ grid-template-columns:1fr; } }
+    @media(max-width:580px){ .roadmap-grid{ grid-template-columns:1fr; } }
 
     .roadmap-col-title {
-      font-family:'Share Tech Mono',monospace;
-      font-size:0.65rem;
-      letter-spacing:0.25em;
-      color:var(--green);
-      opacity:0.38;
-      margin-bottom:1rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      color: var(--green);
+      opacity: 0.35;
+      margin-bottom: 1rem;
     }
     .roadmap-item {
-      display:flex;
-      align-items:flex-start;
-      gap:0.7rem;
-      padding:0.45rem 0;
-      border-bottom:1px solid rgba(0,255,136,0.04);
-      font-family:'Rajdhani',sans-serif;
-      font-size:0.95rem;
-      color:var(--green);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      padding: 0.48rem 0;
+      border-bottom: 1px solid rgba(0,255,136,0.04);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.95rem;
+      color: var(--green);
+      transition: background 0.2s;
     }
+    .roadmap-item:hover { background: rgba(0,255,136,0.02); }
     .rdot {
-      width:8px; height:8px;
-      border-radius:50%;
-      border:1px solid;
-      flex-shrink:0;
-      margin-top:0.38rem;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      border: 1px solid;
+      flex-shrink: 0;
+      margin-top: 0.42rem;
     }
-    .rdot.done   { background:var(--green); border-color:var(--green); }
+    .rdot.done   { background:var(--green); border-color:var(--green); box-shadow:0 0 5px var(--green); }
     .rdot.active { background:var(--amber); border-color:var(--amber); animation:pulse-dot 1.5s infinite; }
-    .rdot.plan   { background:transparent; border-color:rgba(0,255,136,0.22); }
+    .rdot.plan   { background:transparent; border-color:rgba(0,255,136,0.2); }
+    .roadmap-item.done-item { text-decoration:line-through; opacity:0.25; }
 
-    .roadmap-item.done-item { text-decoration:line-through; opacity:0.28; }
-    .roadmap-item .amber-text { color:var(--amber); }
-    .roadmap-item .dim-text   { opacity:0.45; }
-
-    /* ═══════════════════════════════════════════════════════
-       CERT PIPELINE
-    ═══════════════════════════════════════════════════════ */
+    /* ── CERT PIPELINE ── */
     .cert-pipeline {
-      display:flex;
-      align-items:stretch;
-      overflow-x:auto;
-      padding-bottom:0.5rem;
+      display: flex;
+      align-items: stretch;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
     }
     .cert-block {
-      flex-shrink:0;
-      padding:1.6rem 2rem;
-      border:1px solid var(--dim);
-      text-align:center;
-      min-width:175px;
+      flex-shrink: 0;
+      padding: 1.7rem 2rem;
+      border: 1px solid var(--dim);
+      text-align: center;
+      min-width: 175px;
+      transition: border-color 0.3s, box-shadow 0.3s;
     }
     .cert-block.active-cert {
-      border-color:var(--green);
-      background:rgba(0,255,136,0.03);
+      border-color: rgba(0,255,136,0.4);
+      background: rgba(0,255,136,0.03);
+      box-shadow: 0 0 25px rgba(0,255,136,0.06);
     }
-    .cert-block.future-cert { opacity:0.28; }
+    .cert-block.future-cert { opacity: 0.25; }
 
     .cert-name {
-      font-family:'Orbitron',monospace;
-      font-size:0.9rem;
-      font-weight:700;
-      color:var(--green);
-      margin-bottom:0.3rem;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 0.3rem;
     }
     .cert-sub {
-      font-family:'Share Tech Mono',monospace;
-      font-size:0.58rem;
-      letter-spacing:0.12em;
-      color:var(--green);
-      opacity:0.42;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.56rem;
+      letter-spacing: 0.12em;
+      color: var(--green);
+      opacity: 0.38;
     }
     .cert-status-text {
-      font-family:'Share Tech Mono',monospace;
-      font-size:0.58rem;
-      letter-spacing:0.12em;
-      color:var(--amber);
-      margin-top:0.5rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.56rem;
+      letter-spacing: 0.12em;
+      color: var(--amber);
+      margin-top: 0.5rem;
     }
     .cert-arrow {
-      font-family:'Share Tech Mono',monospace;
-      color:var(--dim);
-      font-size:1.3rem;
-      display:flex;
-      align-items:center;
-      padding:0 0.2rem;
-      flex-shrink:0;
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--dim);
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      padding: 0 0.2rem;
+      flex-shrink: 0;
     }
 
-    /* ═══════════════════════════════════════════════════════
-       FOOTER
-    ═══════════════════════════════════════════════════════ */
-    footer {
-      padding:2rem 0;
-    }
+    /* ── FOOTER ── */
+    footer { padding: 2.2rem 0; }
     .footer-inner {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      flex-wrap:wrap;
-      gap:0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
     }
     .footer-l, .footer-r {
-      font-family:'Share Tech Mono',monospace;
-      font-size:0.65rem;
-      letter-spacing:0.14em;
-      color:var(--green);
-      opacity:0.28;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      color: var(--green);
+      opacity: 0.22;
     }
   </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════════
-     HEADER
-═══════════════════════════════════════════════════════ -->
+<!-- BOOT OVERLAY -->
+<div id="boot-overlay">
+  <div class="boot-title">INITIALIZING SYSTEMS</div>
+  <div class="boot-bar-track"><div class="boot-bar-fill" id="boot-bar"></div></div>
+  <div class="boot-lines" id="boot-lines">
+    LOADING ARGUS INTERFACE...<br>
+    ESTABLISHING SECURE CHANNEL...<br>
+    ALL EYES. ALL THE TIME.
+  </div>
+</div>
+
+<!-- SCAN LINE -->
+<div id="scan-line"></div>
+
+<!-- FIXED HUD NAV -->
+<nav id="hud-nav">
+  <div class="nav-pip" data-target="header">
+    <div class="nav-pip-dot"></div>
+    <div class="nav-pip-label">HEADER</div>
+  </div>
+  <div class="nav-pip" data-target="s01">
+    <div class="nav-pip-dot"></div>
+    <div class="nav-pip-label">01 SPECS</div>
+  </div>
+  <div class="nav-pip" data-target="s02">
+    <div class="nav-pip-dot"></div>
+    <div class="nav-pip-label">02 ARGUS</div>
+  </div>
+  <div class="nav-pip" data-target="s03">
+    <div class="nav-pip-dot"></div>
+    <div class="nav-pip-label">03 MODULES</div>
+  </div>
+  <div class="nav-pip" data-target="s04">
+    <div class="nav-pip-dot"></div>
+    <div class="nav-pip-label">04 PHANTOM</div>
+  </div>
+  <div class="nav-pip" data-target="s05">
+    <div class="nav-pip-dot"></div>
+    <div class="nav-pip-label">05 PROMETHEUS</div>
+  </div>
+  <div class="nav-pip" data-target="s06">
+    <div class="nav-pip-dot"></div>
+    <div class="nav-pip-label">06 TELEMETRY</div>
+  </div>
+  <div class="nav-pip" data-target="s07">
+    <div class="nav-pip-dot"></div>
+    <div class="nav-pip-label">07 SPECTRE</div>
+  </div>
+  <div class="nav-pip" data-target="s08">
+    <div class="nav-pip-dot"></div>
+    <div class="nav-pip-label">08 DEV</div>
+  </div>
+  <div class="nav-pip" data-target="s09">
+    <div class="nav-pip-dot"></div>
+    <div class="nav-pip-label">09 ROADMAP</div>
+  </div>
+  <div class="nav-pip" data-target="s10">
+    <div class="nav-pip-dot"></div>
+    <div class="nav-pip-label">10 CERTS</div>
+  </div>
+</nav>
+
+<!-- ═══════ HEADER ═══════ -->
 <section id="header">
+  <div class="header-readout" id="hud-readout">
+    SYS // ONLINE<br>
+    NODE // PROMETHEUS<br>
+    IP // 10.0.0.182<br>
+    <span id="live-clock">--:--:--</span>
+  </div>
   <div class="container">
+    <div class="header-coords">33.749°N 84.388°W // ATL, GA // OPERATOR TERMINAL</div>
     <div class="glitch-name" data-text="JONAH MAULDIN">JONAH MAULDIN</div>
-    <div class="subtitle">BUILDER // SYSTEMS ARCHITECT // OPERATOR</div>
+    <div class="subtitle cursor-blink" id="subtitle-text"></div>
     <div class="status-badge bracketed">
       <span class="pulse-dot"></span>
       SYSTEMS ONLINE
     </div>
-    <p class="bio">
+    <p class="bio reveal">
       Non-technical founder who built a functioning cybersecurity toolkit, a headless home lab server, and a suite of custom automation tools from scratch — no computer science degree, no bootcamp, no shortcuts. ARGUS runs on a USB drive. Prometheus runs 24/7. Everything here was built in the actual dark, with actual effort.
     </p>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════
-     01 — OPERATOR SPECS
-═══════════════════════════════════════════════════════ -->
-<section>
+<!-- ═══════ 01 — OPERATOR SPECS ═══════ -->
+<section id="s01">
   <div class="container">
-    <div class="section-num">// 01</div>
-    <div class="section-title">OPERATOR SPECS</div>
-    <div class="specs-grid">
+    <div class="section-num reveal">// 01</div>
+    <div class="section-title reveal">OPERATOR SPECS</div>
+    <div class="specs-grid reveal">
       <div class="spec-block">
         <div class="spec-label">Primary OS</div>
         <div class="spec-value">Windows + Ubuntu Server 24.04</div>
@@ -817,11 +1089,11 @@
       </div>
       <div class="spec-block">
         <div class="spec-label">Projects Active</div>
-        <div class="spec-value">3</div>
+        <div class="spec-value" data-count="3">3</div>
       </div>
       <div class="spec-block">
         <div class="spec-label">Modules Built</div>
-        <div class="spec-value">11</div>
+        <div class="spec-value" data-count="11">11</div>
       </div>
       <div class="spec-block">
         <div class="spec-label">Tools</div>
@@ -835,18 +1107,16 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════
-     02 — FLAGSHIP: A.R.G.U.S
-═══════════════════════════════════════════════════════ -->
-<section>
+<!-- ═══════ 02 — FLAGSHIP ═══════ -->
+<section id="s02">
   <div class="container">
-    <div class="section-num">// 02</div>
-    <div class="section-title">FLAGSHIP</div>
-    <div class="card green-accent bracketed">
+    <div class="section-num reveal">// 02</div>
+    <div class="section-title reveal">FLAGSHIP</div>
+    <div class="card green-accent flagship bracketed reveal">
       <div class="card-header">
         <div>
           <div class="card-title">A.R.G.U.S</div>
-          <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;opacity:0.32;letter-spacing:0.18em;margin-top:0.25rem;">
+          <div style="font-family:'Share Tech Mono',monospace;font-size:0.58rem;opacity:0.28;letter-spacing:0.18em;margin-top:0.25rem;">
             AUTONOMOUS // RECON // GENERAL // UTILITY // SYSTEM
           </div>
         </div>
@@ -869,70 +1139,33 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════
-     03 — ARGUS MODULE STACK
-═══════════════════════════════════════════════════════ -->
-<section>
+<!-- ═══════ 03 — MODULE STACK ═══════ -->
+<section id="s03">
   <div class="container">
-    <div class="section-num">// 03</div>
-    <div class="section-title">ARGUS MODULE STACK</div>
-    <div class="module-grid">
-      <div class="module-card">
-        <div class="module-name">argus.py</div>
-        <div class="module-desc">Main menu engine &amp; module loader</div>
-      </div>
-      <div class="module-card">
-        <div class="module-name">display.py</div>
-        <div class="module-desc">Boot sequence, glitch logo, visual engine</div>
-      </div>
-      <div class="module-card">
-        <div class="module-name">network.py</div>
-        <div class="module-desc">Network sweep, port scan, ARP, traceroute, MAC lookup</div>
-      </div>
-      <div class="module-card">
-        <div class="module-name">scanner.py</div>
-        <div class="module-desc">Port vuln lookup, fingerprinting, CVE scan</div>
-      </div>
-      <div class="module-card">
-        <div class="module-name">forensics.py</div>
-        <div class="module-desc">System info, USB history, browser artifacts</div>
-      </div>
-      <div class="module-card">
-        <div class="module-name">osint.py</div>
-        <div class="module-desc">DNS, IP intel, whois, email header analysis</div>
-      </div>
-      <div class="module-card">
-        <div class="module-name">crypto.py</div>
-        <div class="module-desc">Hashing, password gen, base64, caesar cipher</div>
-      </div>
-      <div class="module-card">
-        <div class="module-name">capture.py</div>
-        <div class="module-desc">Packet capture, live connections, bandwidth monitor</div>
-      </div>
-      <div class="module-card">
-        <div class="module-name">wordlist.py</div>
-        <div class="module-desc">Keyword mutation, pattern gen, custom lists</div>
-      </div>
-      <div class="module-card">
-        <div class="module-name">prometheus.py</div>
-        <div class="module-desc">SSH connect, remote commands, SCP transfer</div>
-      </div>
-      <div class="module-card">
-        <div class="module-name">notes.py</div>
-        <div class="module-desc">Encrypted note storage, PBKDF2 + XOR</div>
-      </div>
+    <div class="section-num reveal">// 03</div>
+    <div class="section-title reveal">ARGUS MODULE STACK</div>
+    <div class="module-grid reveal">
+      <div class="module-card"><div class="module-name">argus.py</div><div class="module-desc">Main menu engine &amp; module loader</div></div>
+      <div class="module-card"><div class="module-name">display.py</div><div class="module-desc">Boot sequence, glitch logo, visual engine</div></div>
+      <div class="module-card"><div class="module-name">network.py</div><div class="module-desc">Network sweep, port scan, ARP, traceroute, MAC lookup</div></div>
+      <div class="module-card"><div class="module-name">scanner.py</div><div class="module-desc">Port vuln lookup, fingerprinting, CVE scan</div></div>
+      <div class="module-card"><div class="module-name">forensics.py</div><div class="module-desc">System info, USB history, browser artifacts</div></div>
+      <div class="module-card"><div class="module-name">osint.py</div><div class="module-desc">DNS, IP intel, whois, email header analysis</div></div>
+      <div class="module-card"><div class="module-name">crypto.py</div><div class="module-desc">Hashing, password gen, base64, caesar cipher</div></div>
+      <div class="module-card"><div class="module-name">capture.py</div><div class="module-desc">Packet capture, live connections, bandwidth monitor</div></div>
+      <div class="module-card"><div class="module-name">wordlist.py</div><div class="module-desc">Keyword mutation, pattern gen, custom lists</div></div>
+      <div class="module-card"><div class="module-name">prometheus.py</div><div class="module-desc">SSH connect, remote commands, SCP transfer</div></div>
+      <div class="module-card"><div class="module-name">notes.py</div><div class="module-desc">Encrypted note storage, PBKDF2 + XOR</div></div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════
-     04 — PHANTOM PEN TEST PLATFORM
-═══════════════════════════════════════════════════════ -->
-<section>
+<!-- ═══════ 04 — PHANTOM ═══════ -->
+<section id="s04">
   <div class="container">
-    <div class="section-num">// 04</div>
-    <div class="section-title">PHANTOM PEN TEST PLATFORM</div>
-    <div class="card amber-accent">
+    <div class="section-num reveal">// 04</div>
+    <div class="section-title reveal">PHANTOM PEN TEST PLATFORM</div>
+    <div class="card amber-accent reveal">
       <div class="card-header">
         <div class="card-title amber">PHANTOM</div>
         <span class="status-tag progress">IN PROGRESS</span>
@@ -941,14 +1174,10 @@
         Guided 5-phase penetration test campaign platform built into ARGUS. Campaigns are defined in JSON and executed through a structured pipeline. Auto-generates HTML reports with severity ratings — Critical, High, Medium, Low, Info — plus executive summaries ready for delivery.
       </p>
       <div class="phase-list">
-        <span class="phase-item">PASSIVE RECON</span>
-        <span class="phase-arrow">&#8594;</span>
-        <span class="phase-item">SCANNING</span>
-        <span class="phase-arrow">&#8594;</span>
-        <span class="phase-item">ACCESS</span>
-        <span class="phase-arrow">&#8594;</span>
-        <span class="phase-item">POST-EXPLOITATION</span>
-        <span class="phase-arrow">&#8594;</span>
+        <span class="phase-item">PASSIVE RECON</span><span class="phase-arrow">&#8594;</span>
+        <span class="phase-item">SCANNING</span><span class="phase-arrow">&#8594;</span>
+        <span class="phase-item">ACCESS</span><span class="phase-arrow">&#8594;</span>
+        <span class="phase-item">POST-EXPLOITATION</span><span class="phase-arrow">&#8594;</span>
         <span class="phase-item">CLEANUP</span>
       </div>
       <div class="phantom-grid">
@@ -972,14 +1201,12 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════
-     05 — PROMETHEUS HOME LAB
-═══════════════════════════════════════════════════════ -->
-<section>
+<!-- ═══════ 05 — PROMETHEUS ═══════ -->
+<section id="s05">
   <div class="container">
-    <div class="section-num">// 05</div>
-    <div class="section-title">PROMETHEUS HOME LAB</div>
-    <div class="card cyan-accent">
+    <div class="section-num reveal">// 05</div>
+    <div class="section-title reveal">PROMETHEUS HOME LAB</div>
+    <div class="card cyan-accent reveal">
       <div class="card-header">
         <div class="card-title cyan">PROMETHEUS</div>
         <span class="status-tag online">ONLINE</span>
@@ -989,8 +1216,8 @@
       </p>
       <div class="spec-row">
         <div class="spec-item">
-          <div class="spec-item-label">Open Ports</div>
-          <div class="spec-item-value">22 · 19999 · 51820</div>
+          <div class="spec-item-label">Active Services</div>
+          <div class="spec-item-value">SSH &middot; Monitoring &middot; VPN</div>
         </div>
         <div class="spec-item">
           <div class="spec-item-label">DNS Endpoint</div>
@@ -1009,45 +1236,33 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════
-     06 — PROMETHEUS LIVE TELEMETRY
-═══════════════════════════════════════════════════════ -->
-<section>
+<!-- ═══════ 06 — LIVE TELEMETRY ═══════ -->
+<section id="s06">
   <div class="container">
-    <div class="section-num">// 06</div>
-    <div class="section-title">PROMETHEUS // LIVE TELEMETRY</div>
+    <div class="section-num reveal">// 06</div>
+    <div class="section-title reveal">PROMETHEUS // LIVE TELEMETRY</div>
 
     <!--
     ┌─────────────────────────────────────────────────────────┐
     │  NETDATA CONFIGURATION — READ THIS TO ENABLE LIVE DATA  │
     ├─────────────────────────────────────────────────────────┤
-    │                                                         │
     │  Your node is already wired in:                         │
     │    Space:   mauldin-jonah1-space                        │
     │    Node ID: 35a66d51-fb60-49b9-9c6b-2ecd53d7f903       │
     │                                                         │
-    │  To turn on live stats:                                 │
+    │  To enable live stats:                                  │
     │  1. Go to app.netdata.cloud                             │
-    │  2. Click your profile icon → API Tokens               │
-    │  3. Create a token with "Viewer" access                 │
-    │  4. In the <script> below, replace null with            │
-    │     "your-token-string" for NETDATA_API_TOKEN           │
-    │                                                         │
-    │  The page will then show STATE A (live bars).           │
-    │  Without a token it shows STATE C (AWAITING SIGNAL).    │
-    │  If the API is unreachable it shows STATE B (sleeping). │
-    │                                                         │
+    │  2. Click profile icon → API Tokens                     │
+    │  3. Create a Viewer token                               │
+    │  4. Replace null below with "your-token-string"         │
     └─────────────────────────────────────────────────────────┘
     -->
 
-    <!-- STATE A — ONLINE -->
-    <div id="state-online" class="tele-state" style="display:none;opacity:0;">
+    <!-- STATE A: Online -->
+    <div id="state-online" class="tele-state reveal" style="display:none;opacity:0;">
       <div class="telemetry-top">
-        <div style="font-family:'Share Tech Mono',monospace;font-size:0.65rem;opacity:0.4;letter-spacing:0.15em;">LIVE NODE DATA // AUTO-REFRESH 30s</div>
-        <div class="live-badge">
-          <span class="pulse-dot" style="width:6px;height:6px;"></span>
-          LIVE
-        </div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:0.62rem;opacity:0.35;letter-spacing:0.15em;">LIVE NODE DATA // AUTO-REFRESH 30s</div>
+        <div class="live-badge"><span class="pulse-dot" style="width:6px;height:6px;"></span>LIVE</div>
       </div>
       <div class="metric-row">
         <div class="metric-label">CPU USAGE</div>
@@ -1065,23 +1280,14 @@
         <div class="metric-value" id="val-disk">--%</div>
       </div>
       <div class="stat-grid">
-        <div class="stat-block">
-          <div class="stat-label">UPTIME</div>
-          <div class="stat-value" id="val-uptime">--</div>
-        </div>
-        <div class="stat-block">
-          <div class="stat-label">LOAD AVG (1M)</div>
-          <div class="stat-value" id="val-load">--</div>
-        </div>
-        <div class="stat-block">
-          <div class="stat-label">LAST UPDATED</div>
-          <div class="stat-value" id="val-updated">--</div>
-        </div>
+        <div class="stat-block"><div class="stat-label">UPTIME</div><div class="stat-value" id="val-uptime">--</div></div>
+        <div class="stat-block"><div class="stat-label">LOAD AVG (1M)</div><div class="stat-value" id="val-load">--</div></div>
+        <div class="stat-block"><div class="stat-label">LAST UPDATED</div><div class="stat-value" id="val-updated">--</div></div>
       </div>
     </div>
 
-    <!-- STATE B — OFFLINE / UNREACHABLE -->
-    <div id="state-offline" class="tele-state" style="display:none;opacity:0;">
+    <!-- STATE B: Offline -->
+    <div id="state-offline" class="tele-state reveal" style="display:none;opacity:0;">
       <div class="ascii-wrap">
         <pre class="ascii-art">  &#9556;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9559;
   &#9553;   P R O M E T H E U S   &#9553;
@@ -1105,27 +1311,27 @@
       </div>
     </div>
 
-    <!-- STATE C — NOT YET CONFIGURED -->
-    <div id="state-unconfigured" class="tele-state" style="display:none;opacity:0;">
-      <div class="await-title">AWAITING SIGNAL</div>
-      <div class="await-sub">// NETDATA_API_TOKEN NOT SET — SEE SOURCE COMMENT ABOVE //</div>
+    <!-- STATE C: Not configured -->
+    <div id="state-unconfigured" class="tele-state reveal" style="display:none;opacity:0;">
+      <div class="await-wrap">
+        <div class="await-title">AWAITING SIGNAL</div>
+        <div class="await-sub">// NETDATA_API_TOKEN NOT SET — SEE SOURCE COMMENT //</div>
+      </div>
     </div>
 
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════
-     07 — SPECTRE TOOLKIT
-═══════════════════════════════════════════════════════ -->
-<section>
+<!-- ═══════ 07 — SPECTRE ═══════ -->
+<section id="s07">
   <div class="container">
-    <div class="section-num">// 07</div>
-    <div class="section-title">SPECTRE TOOLKIT</div>
-    <div class="card red-accent">
+    <div class="section-num reveal">// 07</div>
+    <div class="section-title reveal">SPECTRE TOOLKIT</div>
+    <div class="card red-accent reveal">
       <div class="card-header">
         <div>
           <div class="card-title red">SPECTRE</div>
-          <div style="font-family:'Share Tech Mono',monospace;font-size:0.58rem;opacity:0.3;letter-spacing:0.15em;margin-top:0.25rem;">
+          <div style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;opacity:0.25;letter-spacing:0.14em;margin-top:0.25rem;">
             SECURITY &middot; PENETRATION &middot; ENUMERATION &middot; COLLECTION &middot; TERMINAL &middot; RECON &middot; ENVIRONMENT
           </div>
         </div>
@@ -1134,7 +1340,7 @@
       <p class="card-desc">
         Bash toolkit running on the main Windows PC. Auto-launches on every Git Bash startup. Single hotkey interface for network operations, cryptographic utilities, and a direct bridge to Prometheus. All scans timestamped and logged.
       </p>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:0.65rem;opacity:0.25;margin-bottom:1rem;">~/spectre/spectre.sh</div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:0.62rem;opacity:0.22;margin-bottom:1rem;">~/spectre/spectre.sh</div>
       <div class="tags">
         <span class="tag red">Bash</span>
         <span class="tag red">Auto-Launch</span>
@@ -1147,14 +1353,12 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════
-     08 — ACTIVE DEVELOPMENT
-═══════════════════════════════════════════════════════ -->
-<section>
+<!-- ═══════ 08 — ACTIVE DEVELOPMENT ═══════ -->
+<section id="s08">
   <div class="container">
-    <div class="section-num">// 08</div>
-    <div class="section-title">ACTIVE DEVELOPMENT</div>
-    <div class="card amber-accent">
+    <div class="section-num reveal">// 08</div>
+    <div class="section-title reveal">ACTIVE DEVELOPMENT</div>
+    <div class="card amber-accent reveal">
       <div class="card-header">
         <div class="card-title amber">SMARTSHEET REPLACEMENT</div>
         <span class="status-tag building">BUILDING</span>
@@ -1166,99 +1370,44 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════
-     09 — ROADMAP
-═══════════════════════════════════════════════════════ -->
-<section>
+<!-- ═══════ 09 — ROADMAP ═══════ -->
+<section id="s09">
   <div class="container">
-    <div class="section-num">// 09</div>
-    <div class="section-title">ROADMAP</div>
-    <div class="roadmap-grid">
-
+    <div class="section-num reveal">// 09</div>
+    <div class="section-title reveal">ROADMAP</div>
+    <div class="roadmap-grid reveal">
       <div>
         <div class="roadmap-col-title">// ARGUS NEXT</div>
-        <div class="roadmap-item">
-          <div class="rdot active"></div>
-          <span class="amber-text">PHANTOM campaign.py — next session</span>
-        </div>
-        <div class="roadmap-item">
-          <div class="rdot plan"></div>
-          <span class="dim-text">Google Dorking Engine</span>
-        </div>
-        <div class="roadmap-item">
-          <div class="rdot plan"></div>
-          <span class="dim-text">CVE Scanner NVD API</span>
-        </div>
-        <div class="roadmap-item">
-          <div class="rdot plan"></div>
-          <span class="dim-text">Web Vulnerability Scanner</span>
-        </div>
-        <div class="roadmap-item">
-          <div class="rdot plan"></div>
-          <span class="dim-text">Hash Cracker</span>
-        </div>
-        <div class="roadmap-item">
-          <div class="rdot plan"></div>
-          <span class="dim-text">Saved WiFi Password Extractor</span>
-        </div>
-        <div class="roadmap-item">
-          <div class="rdot plan"></div>
-          <span class="dim-text">SSL/TLS Analyzer</span>
-        </div>
-        <div class="roadmap-item">
-          <div class="rdot plan"></div>
-          <span class="dim-text">Secure File Wiper</span>
-        </div>
+        <div class="roadmap-item"><div class="rdot active"></div><span style="color:var(--amber);">PHANTOM campaign.py — next session</span></div>
+        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Google Dorking Engine</span></div>
+        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">CVE Scanner NVD API</span></div>
+        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Web Vulnerability Scanner</span></div>
+        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Hash Cracker</span></div>
+        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Saved WiFi Password Extractor</span></div>
+        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">SSL/TLS Analyzer</span></div>
+        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Secure File Wiper</span></div>
       </div>
-
       <div>
         <div class="roadmap-col-title">// PROMETHEUS NEXT</div>
-        <div class="roadmap-item done-item">
-          <div class="rdot done"></div>
-          <span>Ubuntu Server 24.04 deployed</span>
-        </div>
-        <div class="roadmap-item done-item">
-          <div class="rdot done"></div>
-          <span>WireGuard VPN configured</span>
-        </div>
-        <div class="roadmap-item done-item">
-          <div class="rdot done"></div>
-          <span>DuckDNS + Netdata online</span>
-        </div>
-        <div class="roadmap-item">
-          <div class="rdot plan"></div>
-          <span class="dim-text">Docker installation</span>
-        </div>
-        <div class="roadmap-item">
-          <div class="rdot plan"></div>
-          <span class="dim-text">Jellyfin media server</span>
-        </div>
-        <div class="roadmap-item">
-          <div class="rdot plan"></div>
-          <span class="dim-text">Proxmox hypervisor</span>
-        </div>
-        <div class="roadmap-item">
-          <div class="rdot plan"></div>
-          <span class="dim-text">Kali Linux VM</span>
-        </div>
-        <div class="roadmap-item">
-          <div class="rdot plan"></div>
-          <span class="dim-text">Virtual security lab network</span>
-        </div>
+        <div class="roadmap-item done-item"><div class="rdot done"></div><span>Ubuntu Server 24.04 deployed</span></div>
+        <div class="roadmap-item done-item"><div class="rdot done"></div><span>WireGuard VPN configured</span></div>
+        <div class="roadmap-item done-item"><div class="rdot done"></div><span>DuckDNS + Netdata online</span></div>
+        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Docker installation</span></div>
+        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Jellyfin media server</span></div>
+        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Proxmox hypervisor</span></div>
+        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Kali Linux VM</span></div>
+        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Virtual security lab network</span></div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════
-     10 — CERTIFICATION TRACK
-═══════════════════════════════════════════════════════ -->
-<section>
+<!-- ═══════ 10 — CERT TRACK ═══════ -->
+<section id="s10">
   <div class="container">
-    <div class="section-num">// 10</div>
-    <div class="section-title">CERTIFICATION TRACK</div>
-    <div class="cert-pipeline">
+    <div class="section-num reveal">// 10</div>
+    <div class="section-title reveal">CERTIFICATION TRACK</div>
+    <div class="cert-pipeline reveal">
       <div class="cert-block active-cert bracketed">
         <div class="cert-name">CompTIA Security+</div>
         <div class="cert-sub">ENTRY CERTIFICATION</div>
@@ -1278,9 +1427,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════════════════════ -->
+<!-- ═══════ FOOTER ═══════ -->
 <footer>
   <div class="container">
     <div class="footer-inner">
@@ -1291,31 +1438,89 @@
 </footer>
 
 <script>
-  // ═══════════════════════════════════════════════════════
-  // NETDATA LIVE TELEMETRY
-  // ═══════════════════════════════════════════════════════
+  // ── BOOT SEQUENCE
+  const bootBar     = document.getElementById('boot-bar');
+  const bootOverlay = document.getElementById('boot-overlay');
+
+  window.addEventListener('load', () => {
+    requestAnimationFrame(() => {
+      bootBar.style.width = '100%';
+      setTimeout(() => {
+        bootOverlay.classList.add('fade-out');
+        setTimeout(() => bootOverlay.remove(), 650);
+      }, 1400);
+    });
+  });
+
+  // ── LIVE CLOCK
+  function updateClock() {
+    const el = document.getElementById('live-clock');
+    if (el) el.textContent = new Date().toLocaleTimeString('en-US', { hour12: false });
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  // ── TYPEWRITER (subtitle)
+  const subtitleEl = document.getElementById('subtitle-text');
+  const subtitleText = 'BUILDER // SYSTEMS ARCHITECT // OPERATOR';
+  let charIdx = 0;
+  function typeWriter() {
+    if (charIdx <= subtitleText.length) {
+      subtitleEl.textContent = subtitleText.slice(0, charIdx);
+      charIdx++;
+      setTimeout(typeWriter, charIdx === 1 ? 900 : 45);
+    } else {
+      subtitleEl.classList.remove('cursor-blink');
+    }
+  }
+  setTimeout(typeWriter, 1600);
+
+  // ── SCROLL REVEAL
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  revealEls.forEach(el => revealObs.observe(el));
+
+  // ── HUD NAV active tracking
+  const sections = document.querySelectorAll('section[id], #header');
+  const pips     = document.querySelectorAll('.nav-pip');
+
+  pips.forEach(pip => {
+    pip.addEventListener('click', () => {
+      const t = document.getElementById(pip.dataset.target);
+      if (t) t.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  const navObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        pips.forEach(p => p.classList.remove('active'));
+        const active = document.querySelector(`.nav-pip[data-target="${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => navObs.observe(s));
+
+  // ── NETDATA TELEMETRY
   //
   // HOW TO ENABLE LIVE STATS:
-  //   1. Open app.netdata.cloud in your browser
-  //   2. Click your profile icon (top-right) → "API Tokens"
-  //   3. Click "Create token" — name it anything, Viewer access is fine
-  //   4. Copy the token string
-  //   5. Replace null below with "your-token-string" (keep the quotes)
-  //   6. Save the file and push to GitHub Pages
+  //   1. Go to app.netdata.cloud → profile icon → API Tokens
+  //   2. Create a token with Viewer access
+  //   3. Replace null below with "your-token-string"
   //
-  // Your node info is already configured — no other changes needed.
-  //
-  const NETDATA_API_TOKEN = null; // <-- PASTE TOKEN HERE: "eyJhbGci..."
+  const NETDATA_API_TOKEN = null; // <-- PASTE TOKEN HERE
 
-  const NETDATA_SPACE   = 'mauldin-jonah1-space';
   const NETDATA_NODE_ID = '35a66d51-fb60-49b9-9c6b-2ecd53d7f903';
   const NETDATA_BASE    = 'https://app.netdata.cloud/api/v2';
 
-  // ── State elements
-  const elOnline        = document.getElementById('state-online');
-  const elOffline       = document.getElementById('state-offline');
-  const elUnconfigured  = document.getElementById('state-unconfigured');
-
+  const elOnline       = document.getElementById('state-online');
+  const elOffline      = document.getElementById('state-offline');
+  const elUnconfigured = document.getElementById('state-unconfigured');
   let refreshTimer = null;
   let countdownInt = null;
   let activeState  = null;
@@ -1330,7 +1535,6 @@
     requestAnimationFrame(() => requestAnimationFrame(() => { el.style.opacity = '1'; }));
   }
 
-  // ── Bar helper
   function setBar(barId, valId, pct) {
     const bar = document.getElementById(barId);
     const val = document.getElementById(valId);
@@ -1349,47 +1553,38 @@
     return (d ? d + 'd ' : '') + h + 'h ' + m + 'm';
   }
 
-  // ── Extract a value from Netdata API v2 response
-  function extractVal(data, nameHint) {
+  function extractVal(data, hint) {
     try {
       const labels = data?.result?.labels || data?.labels || [];
       const rows   = data?.result?.data   || data?.data   || [];
       if (!rows.length) return null;
-      const row = rows[rows.length - 1]; // most recent point
-      const idx = labels.findIndex(l => l && l.toLowerCase().includes(nameHint));
+      const row = rows[rows.length - 1];
+      const idx = labels.findIndex(l => l && l.toLowerCase().includes(hint));
       return idx >= 0 && row[idx] != null ? row[idx] : null;
     } catch { return null; }
   }
 
-  // ── Main fetch
   async function fetchMetrics() {
     if (!NETDATA_API_TOKEN) { showState('unconfigured'); return; }
-
     const headers = { 'Authorization': 'Bearer ' + NETDATA_API_TOKEN };
-    const base    = `${NETDATA_BASE}/data?scope_nodes=${NETDATA_NODE_ID}&after=-120&before=0&points=2&time_group=average`;
-
+    const base = `${NETDATA_BASE}/data?scope_nodes=${NETDATA_NODE_ID}&after=-120&before=0&points=2&time_group=average`;
     try {
       const [rCpu, rRam, rDisk, rUp, rLoad] = await Promise.all([
-        fetch(base + '&contexts=system.cpu',                      { headers }),
-        fetch(base + '&contexts=system.ram',                      { headers }),
-        fetch(base + '&contexts=disk.space&scope_contexts=disk.space', { headers }),
-        fetch(base + '&contexts=system.uptime',                   { headers }),
-        fetch(base + '&contexts=system.load',                     { headers })
+        fetch(base + '&contexts=system.cpu',    { headers }),
+        fetch(base + '&contexts=system.ram',    { headers }),
+        fetch(base + '&contexts=disk.space',    { headers }),
+        fetch(base + '&contexts=system.uptime', { headers }),
+        fetch(base + '&contexts=system.load',   { headers })
       ]);
-
       if (!rCpu.ok) throw new Error('HTTP ' + rCpu.status);
-
       const [dCpu, dRam, dDisk, dUp, dLoad] = await Promise.all([
         rCpu.json(), rRam.json(), rDisk.json(), rUp.json(), rLoad.json()
       ]);
 
-      // CPU: 100 - idle
       const cpuIdle = extractVal(dCpu, 'idle');
       const cpuPct  = cpuIdle != null ? 100 - cpuIdle : null;
 
-      // RAM: used / (used + free + cached + buffers)
-      const ramUsed  = extractVal(dRam, 'used');
-      const ramFree  = extractVal(dRam, 'free');
+      const ramUsed = extractVal(dRam, 'used');
       const ramTotal = (() => {
         try {
           const labels = dRam?.result?.labels || dRam?.labels || [];
@@ -1397,26 +1592,19 @@
           const row    = rows[rows.length - 1];
           if (!row) return null;
           let sum = 0;
-          labels.forEach((l, i) => { if (l !== 'time' && row[i] != null) sum += row[i]; });
+          labels.forEach((l, i) => { if (l !== 'time' && row[i] != null) sum += Math.abs(row[i]); });
           return sum > 0 ? sum : null;
         } catch { return null; }
       })();
       const ramPct = (ramUsed != null && ramTotal) ? (ramUsed / ramTotal) * 100 : null;
 
-      // Disk
       const diskUsed  = extractVal(dDisk, 'used');
       const diskAvail = extractVal(dDisk, 'avail');
-      const diskPct   = (diskUsed != null && diskAvail != null)
-        ? (diskUsed / (diskUsed + diskAvail)) * 100
-        : null;
+      const diskPct   = (diskUsed != null && diskAvail != null) ? (diskUsed / (diskUsed + diskAvail)) * 100 : null;
 
-      // Uptime
-      const uptimeSecs = extractVal(dUp, 'uptime') ?? extractVal(dUp, 'seconds');
+      const uptimeSecs = extractVal(dUp, 'uptime') ?? extractVal(dUp, 'second');
+      const load1      = extractVal(dLoad, 'load1') ?? extractVal(dLoad, '1');
 
-      // Load 1m
-      const load1 = extractVal(dLoad, 'load1') ?? extractVal(dLoad, '1');
-
-      // Render
       showState('online');
       if (cpuPct    != null) setBar('bar-cpu',  'val-cpu',  cpuPct);
       if (ramPct    != null) setBar('bar-ram',  'val-ram',  ramPct);
@@ -1426,9 +1614,8 @@
       document.getElementById('val-updated').textContent = new Date().toLocaleTimeString();
 
       schedule(30000);
-
     } catch (err) {
-      console.warn('[telemetry] fetch failed:', err.message);
+      console.warn('[telemetry]', err.message);
       goOffline();
     }
   }
@@ -1440,11 +1627,7 @@
     let secs = 30;
     const el = document.getElementById('retry-countdown');
     el.textContent = secs;
-    countdownInt = setInterval(() => {
-      secs--;
-      el.textContent = secs;
-      if (secs <= 0) clearInterval(countdownInt);
-    }, 1000);
+    countdownInt = setInterval(() => { el.textContent = --secs; if (secs <= 0) clearInterval(countdownInt); }, 1000);
     schedule(30000);
   }
 
@@ -1453,9 +1636,7 @@
     refreshTimer = setTimeout(fetchMetrics, ms);
   }
 
-  // Boot
   fetchMetrics();
 </script>
-
 </body>
 </html>
