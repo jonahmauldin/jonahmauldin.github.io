@@ -1352,12 +1352,12 @@
         <span class="status-tag online">ONLINE</span>
       </div>
       <p class="card-desc">
-        Former gaming PC repurposed as a headless Ubuntu server. SSH-only access. Live system monitoring via Netdata. Login alerts delivered to email via ssmtp. DuckDNS handles dynamic DNS so the endpoint never goes stale. WireGuard VPN configured and ready for remote activation. Zero unplanned downtime since deployment.
+        Former gaming PC repurposed as a headless Ubuntu server. SSH-only access. Docker deployed with a full containerized monitoring stack — Prometheus scraping Node Exporter every 15 seconds, Grafana dashboards rendering live CPU, RAM, disk, and network telemetry. DuckDNS handles dynamic DNS. WireGuard VPN configured for remote access. Zero unplanned downtime since deployment.
       </p>
       <div class="spec-row">
         <div class="spec-item">
           <div class="spec-item-label">Active Services</div>
-          <div class="spec-item-value">SSH &middot; Monitoring &middot; VPN</div>
+          <div class="spec-item-value">SSH &middot; Docker &middot; Monitoring &middot; VPN</div>
         </div>
         <div class="spec-item">
           <div class="spec-item-label">DNS Endpoint</div>
@@ -1368,8 +1368,8 @@
           <div class="spec-item-value">10.8.0.0/24</div>
         </div>
         <div class="spec-item">
-          <div class="spec-item-label">Monitoring</div>
-          <div class="spec-item-value">Netdata Cloud</div>
+          <div class="spec-item-label">Monitoring Stack</div>
+          <div class="spec-item-value">Prometheus &middot; Grafana &middot; Node Exporter</div>
         </div>
       </div>
     </div>
@@ -1741,14 +1741,15 @@
             <div class="evo-status-badge plan">BUILDING</div>
           </div>
           <div class="evo-phase-desc">
-            Dockerize services on PROMETHEUS. Add a Proxmox hypervisor layer, deploy a Kali Linux VM, and build a virtual network for isolated security experiments. Move from single-machine thinking to multi-node environments.
+            Docker deployed on PROMETHEUS. Containerized monitoring stack live — Prometheus, Grafana, and Node Exporter running via Docker Compose with persistent volumes and isolated bridge networking. Next: KVM virtualization layer, isolated VM guests, and simulated multi-node network environments for security lab work.
           </div>
           <div class="evo-artifacts">
-            <span class="evo-tag">Docker</span>
-            <span class="evo-tag">Proxmox</span>
-            <span class="evo-tag">Kali Linux VM</span>
+            <span class="evo-tag">Docker ✓</span>
+            <span class="evo-tag">Prometheus ✓</span>
+            <span class="evo-tag">Grafana ✓</span>
+            <span class="evo-tag">KVM / VMs</span>
             <span class="evo-tag">virtual lab network</span>
-            <span class="evo-tag">Jellyfin</span>
+            <span class="evo-tag">Kali Linux VM</span>
           </div>
         </div>
       </div>
