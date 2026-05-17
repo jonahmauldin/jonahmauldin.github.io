@@ -1907,8 +1907,10 @@
   //
   const NETDATA_API_TOKEN = "ndc.ZtSWlPZFL397WHRZrXCONqOXqNdPNTC0DG9GooQoqjcLymHrRh10JDgNnZWzpVB1a0zjRk2o9lfdGULz9IppLk4LKGuAiZ0GuUJRY9YANHH11OPPrt69N2NlYWCEszbi";
 
-  const NETDATA_NODE_ID = '35a66d51-fb60-49b9-9c6b-2ecd53d7f903';
-  const NETDATA_BASE    = 'https://app.netdata.cloud/api/v2';
+  const NETDATA_NODE_ID  = '35a66d51-fb60-49b9-9c6b-2ecd53d7f903';
+  const NETDATA_SPACE_ID = '1bcc83c6-1304-4035-80d9-fed6e33f7e46';
+  const NETDATA_ROOM_ID  = '4ed3b398-8650-4d9e-b333-0e2eedcc8288';
+  const NETDATA_BASE     = 'https://app.netdata.cloud/api/v3';
 
   const elOnline       = document.getElementById('state-online');
   const elOffline      = document.getElementById('state-offline');
@@ -1956,17 +1958,30 @@
     } catch { return null; }
   }
 
+  function makeBody(context) {
+    return JSON.stringify({
+      format: 'json2',
+      scope: { nodes: [NETDATA_NODE_ID], contexts: [context] },
+      selectors: { nodes: ['*'], contexts: ['*'], dimensions: ['*'], instances: ['*'], labels: ['*'] },
+      window: { after: -120, before: 0, points: 2 },
+      aggregations: { time: { time_group: 'average' } }
+    });
+  }
+
   async function fetchMetrics() {
     if (!NETDATA_API_TOKEN) { showState('unconfigured'); return; }
-    const headers = { 'Authorization': 'Bearer ' + NETDATA_API_TOKEN };
-    const base = `${NETDATA_BASE}/data?scope_nodes=${NETDATA_NODE_ID}&after=-120&before=0&points=2&time_group=average`;
+    const headers = {
+      'Authorization': 'Bearer ' + NETDATA_API_TOKEN,
+      'Content-Type': 'application/json'
+    };
+    const url = `${NETDATA_BASE}/spaces/${NETDATA_SPACE_ID}/rooms/${NETDATA_ROOM_ID}/data`;
     try {
       const [rCpu, rRam, rDisk, rUp, rLoad] = await Promise.all([
-        fetch(base + '&contexts=system.cpu',    { headers }),
-        fetch(base + '&contexts=system.ram',    { headers }),
-        fetch(base + '&contexts=disk.space',    { headers }),
-        fetch(base + '&contexts=system.uptime', { headers }),
-        fetch(base + '&contexts=system.load',   { headers })
+        fetch(url, { method: 'POST', headers, body: makeBody('system.cpu') }),
+        fetch(url, { method: 'POST', headers, body: makeBody('system.ram') }),
+        fetch(url, { method: 'POST', headers, body: makeBody('disk.space') }),
+        fetch(url, { method: 'POST', headers, body: makeBody('system.uptime') }),
+        fetch(url, { method: 'POST', headers, body: makeBody('system.load') })
       ]);
       if (!rCpu.ok) throw new Error('HTTP ' + rCpu.status);
       const [dCpu, dRam, dDisk, dUp, dLoad] = await Promise.all([
