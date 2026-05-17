@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JONAH MAULDIN // OPERATOR</title>
-  <meta name="description" content="Jonah Mauldin — cybersecurity toolkit builder, homelab operator, systems tinkerer. Built ARGUS (23-module portable Python toolkit), PHANTOM pen test platform, and a live Ubuntu home server from scratch. No CS degree. Just built it.">
+  <meta name="description" content="Jonah Mauldin — systems builder, homelab operator, security experimenter. Self-hosted infrastructure, live telemetry, AI-assisted workflows, and a 23-module Python toolkit. No CS degree. Just built it.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://jonahmauldin.github.io/">
 
@@ -12,13 +12,13 @@
   <meta property="og:type"        content="website">
   <meta property="og:url"         content="https://jonahmauldin.github.io/">
   <meta property="og:title"       content="JONAH MAULDIN // OPERATOR">
-  <meta property="og:description" content="Portable cybersecurity toolkit. Headless home lab. 23 modules. Built from scratch.">
+  <meta property="og:description" content="Self-hosted infrastructure. Live telemetry. Security tooling. AI-assisted engineering. Built from scratch, no CS degree.">
   <meta property="og:image"       content="https://jonahmauldin.github.io/og-card.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary_large_image">
   <meta name="twitter:title"       content="JONAH MAULDIN // OPERATOR">
-  <meta name="twitter:description" content="ARGUS — 23-module portable cybersecurity toolkit. Built on pure Python stdlib, runs from USB, zero installation.">
+  <meta name="twitter:description" content="Systems builder. Self-hosted Ubuntu lab. Live Netdata telemetry. 23-module Python security toolkit. AI-assisted workflows. No CS degree.">
 
   <!-- Favicon (inline SVG) -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23020c06'/%3E%3Ctext x='4' y='24' font-family='monospace' font-size='22' fill='%2300ff88'%3E%E2%96%A0%3C/text%3E%3C/svg%3E">
@@ -897,97 +897,196 @@
 
     .tele-state { transition: opacity 0.5s ease; }
 
-    /* ── ROADMAP ── */
-    .roadmap-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
+    /* ── EVOLUTION TIMELINE ── */
+    .evolution-wrap {
+      position: relative;
+      padding-left: 3.8rem;
+      margin-top: 0.5rem;
     }
-    @media(max-width:580px){ .roadmap-grid{ grid-template-columns:1fr; } }
-
-    .roadmap-col-title {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.25em;
-      color: var(--green);
-      opacity: 0.35;
-      margin-bottom: 1rem;
+    .evolution-wrap::before {
+      content: '';
+      position: absolute;
+      left: 1.1rem;
+      top: 0.55rem;
+      bottom: 1rem;
+      width: 1px;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,255,136,0.45) 0%,
+        rgba(0,255,136,0.12) 65%,
+        transparent 100%
+      );
     }
-    .roadmap-item {
+    .evo-phase {
+      position: relative;
+      margin-bottom: 1.6rem;
+    }
+    .evo-phase-node {
+      position: absolute;
+      left: -3.8rem;
+      top: 0.3rem;
+      width: 2.2rem;
       display: flex;
-      align-items: flex-start;
-      gap: 0.7rem;
-      padding: 0.48rem 0;
-      border-bottom: 1px solid rgba(0,255,136,0.04);
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 0.95rem;
-      color: var(--green);
-      transition: background 0.2s;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.18rem;
     }
-    .roadmap-item:hover { background: rgba(0,255,136,0.02); }
-    .rdot {
-      width: 7px; height: 7px;
+    .evo-node-dot {
+      width: 11px; height: 11px;
       border-radius: 50%;
       border: 1px solid;
       flex-shrink: 0;
-      margin-top: 0.42rem;
     }
-    .rdot.done   { background:var(--green); border-color:var(--green); box-shadow:0 0 5px var(--green); }
-    .rdot.active { background:var(--amber); border-color:var(--amber); animation:pulse-dot 1.5s infinite; }
-    .rdot.plan   { background:transparent; border-color:rgba(0,255,136,0.2); }
-    .roadmap-item.done-item { text-decoration:line-through; opacity:0.25; }
+    .evo-node-dot.done  { background: var(--green); border-color: var(--green); box-shadow: 0 0 8px rgba(0,255,136,0.55); }
+    .evo-node-dot.active{ background: var(--amber); border-color: var(--amber); animation: pulse-dot 1.5s infinite; }
+    .evo-node-dot.plan  { background: transparent; border-color: rgba(0,255,136,0.22); }
+    .evo-node-num {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.4rem;
+      color: var(--green);
+      opacity: 0.28;
+      letter-spacing: 0.08em;
+    }
+    .evo-phase-card {
+      border: 1px solid rgba(0,255,136,0.07);
+      padding: 1rem 1.25rem;
+      background: rgba(0,255,136,0.008);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .evo-phase-card:hover { border-color: rgba(0,255,136,0.16); background: rgba(0,255,136,0.022); }
+    .evo-phase.active-phase .evo-phase-card {
+      border-color: rgba(255,184,0,0.22);
+      background: rgba(255,184,0,0.018);
+    }
+    .evo-phase.active-phase .evo-phase-card:hover { border-color: rgba(255,184,0,0.38); }
+    .evo-phase.planned-phase { opacity: 0.46; }
+    .evo-phase.horizon-phase { opacity: 0.22; }
+    .evo-phase-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.42rem;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .evo-phase-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      color: var(--green);
+    }
+    .evo-phase.active-phase .evo-phase-title { color: var(--amber); }
+    .evo-status-badge {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.48rem;
+      letter-spacing: 0.18em;
+      padding: 0.1rem 0.42rem;
+      border: 1px solid;
+    }
+    .evo-status-badge.done   { color: var(--green); border-color: rgba(0,255,136,0.28); }
+    .evo-status-badge.active { color: var(--amber); border-color: rgba(255,184,0,0.38); }
+    .evo-status-badge.plan   { color: var(--green); border-color: rgba(0,255,136,0.14); opacity: 0.6; }
+    .evo-status-badge.horizon{ color: var(--green); border-color: rgba(0,255,136,0.1);  opacity: 0.45; }
+    .evo-phase-desc {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.9rem;
+      color: var(--green);
+      opacity: 0.62;
+      line-height: 1.5;
+      margin-bottom: 0.7rem;
+    }
+    .evo-artifacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.28rem;
+    }
+    .evo-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.48rem;
+      letter-spacing: 0.1em;
+      padding: 0.14rem 0.38rem;
+      background: rgba(0,255,136,0.04);
+      border: 1px solid rgba(0,255,136,0.1);
+      color: var(--green);
+      opacity: 0.72;
+    }
+    .evo-tag.amber {
+      background: rgba(255,184,0,0.05);
+      border-color: rgba(255,184,0,0.18);
+      color: var(--amber);
+    }
+    @media(max-width:520px){
+      .evolution-wrap { padding-left: 2.6rem; }
+      .evo-phase-node { left: -2.6rem; width: 1.6rem; }
+      .evolution-wrap::before { left: 0.65rem; }
+    }
 
-    /* ── CERT PIPELINE ── */
-    .cert-pipeline {
+    /* ── LEARNING TRACK ── */
+    .learn-track {
+      margin-top: 2.8rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid rgba(0,255,136,0.07);
+    }
+    .learn-track-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.56rem;
+      letter-spacing: 0.25em;
+      color: var(--green);
+      opacity: 0.28;
+      margin-bottom: 1rem;
+    }
+    .learn-pipeline {
       display: flex;
       align-items: stretch;
+      flex-wrap: wrap;
+      gap: 0;
       overflow-x: auto;
       padding-bottom: 0.5rem;
     }
-    .cert-block {
+    .learn-block {
       flex-shrink: 0;
-      padding: 1.7rem 2rem;
+      padding: 1.1rem 1.6rem;
       border: 1px solid var(--dim);
       text-align: center;
-      min-width: 175px;
-      transition: border-color 0.3s, box-shadow 0.3s;
+      min-width: 148px;
+      transition: border-color 0.25s;
     }
-    .cert-block.active-cert {
-      border-color: rgba(0,255,136,0.4);
-      background: rgba(0,255,136,0.03);
-      box-shadow: 0 0 25px rgba(0,255,136,0.06);
+    .learn-block.active-learn {
+      border-color: rgba(0,255,136,0.38);
+      background: rgba(0,255,136,0.025);
+      box-shadow: 0 0 20px rgba(0,255,136,0.05);
     }
-    .cert-block.future-cert { opacity: 0.25; }
-
-    .cert-name {
+    .learn-block.future-learn { opacity: 0.24; }
+    .learn-arrow {
+      display: flex;
+      align-items: center;
+      padding: 0 0.35rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--green);
+      opacity: 0.18;
+    }
+    .learn-name {
       font-family: 'Orbitron', monospace;
-      font-size: 0.88rem;
+      font-size: 0.74rem;
       font-weight: 700;
       color: var(--green);
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.2rem;
     }
-    .cert-sub {
+    .learn-sub {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.56rem;
-      letter-spacing: 0.12em;
+      font-size: 0.46rem;
+      letter-spacing: 0.14em;
       color: var(--green);
       opacity: 0.38;
     }
-    .cert-status-text {
+    .learn-status {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.56rem;
+      font-size: 0.46rem;
       letter-spacing: 0.12em;
       color: var(--amber);
-      margin-top: 0.5rem;
-    }
-    .cert-arrow {
-      font-family: 'Share Tech Mono', monospace;
-      color: var(--dim);
-      font-size: 1.3rem;
-      display: flex;
-      align-items: center;
-      padding: 0 0.2rem;
-      flex-shrink: 0;
+      margin-top: 0.32rem;
     }
 
     /* ── FOOTER ── */
@@ -1064,11 +1163,7 @@
   </div>
   <div class="nav-pip" data-target="s09">
     <div class="nav-pip-dot"></div>
-    <div class="nav-pip-label">09 ROADMAP</div>
-  </div>
-  <div class="nav-pip" data-target="s10">
-    <div class="nav-pip-dot"></div>
-    <div class="nav-pip-label">10 CERTS</div>
+    <div class="nav-pip-label">09 EVOLUTION</div>
   </div>
 </nav>
 
@@ -1427,7 +1522,7 @@
           <div class="card-title cyan">ARGUS v1.4.0</div>
           <span class="status-tag online">LIVE</span>
         </div>
-        <div class="card-tagline">4 NEW MODULES SHIPPED THIS SESSION</div>
+        <div class="card-tagline">23 MODULES // PORTABLE PYTHON TOOLKIT</div>
         <p class="card-desc">
           Tonight: web app recon [B], Windows privilege escalation checker [K], Active Directory enumeration [A], and PE file analyzer with Shannon entropy [F]. ARGUS is now at 23 operational modules.
         </p>
@@ -1458,70 +1553,254 @@
         </div>
       </div>
 
+      <div class="card green-accent reveal">
+        <div class="card-header">
+          <div>
+            <div class="card-title" style="color:var(--green);text-shadow:0 0 15px rgba(0,255,136,0.3);">VIGIL</div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;opacity:0.25;letter-spacing:0.14em;margin-top:0.25rem;">ARGUS SUCCESSOR &middot; MOBILE</div>
+          </div>
+          <span class="status-tag building">BUILDING</span>
+        </div>
+        <div class="card-tagline">OPEN CYBER OBSERVABILITY // MOBILE APP</div>
+        <p class="card-desc">
+          Mobile cybersecurity platform for everyday users. Network device mapping, breach detection, public exposure profiling, and a live security score — all running local-first. Successor to ARGUS in philosophy, not codebase.
+        </p>
+        <div class="tags">
+          <span class="tag" style="color:var(--green);border-color:rgba(0,255,136,0.25);">React Native</span>
+          <span class="tag" style="color:var(--green);border-color:rgba(0,255,136,0.25);">Expo</span>
+          <span class="tag" style="color:var(--green);border-color:rgba(0,255,136,0.25);">Self-Hostable</span>
+          <span class="tag" style="color:var(--green);border-color:rgba(0,255,136,0.25);">Open Source</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- ═══════ 09 — ROADMAP ═══════ -->
+<!-- ═══════ 09 — EVOLUTION ═══════ -->
 <section id="s09">
   <div class="container">
     <div class="section-num reveal">// 09</div>
-    <div class="section-title reveal">ROADMAP</div>
-    <div class="roadmap-grid reveal">
-      <div>
-        <div class="roadmap-col-title">// ARGUS MODULE TRACK</div>
-        <div class="roadmap-item done-item"><div class="rdot done"></div><span>PHANTOM — full 5-phase campaign engine</span></div>
-        <div class="roadmap-item done-item"><div class="rdot done"></div><span>Hash Cracker [C] — dictionary + brute force</span></div>
-        <div class="roadmap-item done-item"><div class="rdot done"></div><span>WiFi Password Extractor [S]</span></div>
-        <div class="roadmap-item done-item"><div class="rdot done"></div><span>Secure File Wiper [E]</span></div>
-        <div class="roadmap-item done-item"><div class="rdot done"></div><span>Web App Recon [B] — dir brute, header fingerprint</span></div>
-        <div class="roadmap-item done-item"><div class="rdot done"></div><span>PrivEsc Checker [K] — token privs, unquoted paths</span></div>
-        <div class="roadmap-item done-item"><div class="rdot done"></div><span>AD Enumeration [A] — SPNs, trusts, GPOs</span></div>
-        <div class="roadmap-item done-item"><div class="rdot done"></div><span>File Analyzer [F] — PE header, entropy, IOC</span></div>
-        <div class="roadmap-item"><div class="rdot active"></div><span style="color:var(--amber);">Google Dorking Engine — planned</span></div>
-        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">CVE Lookup via NVD API</span></div>
-        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">SSL/TLS Certificate Analyzer</span></div>
-        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Bluetooth Scanner</span></div>
-      </div>
-      <div>
-        <div class="roadmap-col-title">// PROMETHEUS TRACK</div>
-        <div class="roadmap-item done-item"><div class="rdot done"></div><span>Ubuntu Server 24.04 deployed</span></div>
-        <div class="roadmap-item done-item"><div class="rdot done"></div><span>WireGuard VPN configured</span></div>
-        <div class="roadmap-item done-item"><div class="rdot done"></div><span>DuckDNS + Netdata Cloud online</span></div>
-        <div class="roadmap-item done-item"><div class="rdot done"></div><span>Login alerts via ssmtp</span></div>
-        <div class="roadmap-item done-item"><div class="rdot done"></div><span>Live telemetry on portfolio</span></div>
-        <div class="roadmap-item"><div class="rdot active"></div><span style="color:var(--amber);">Docker installation</span></div>
-        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Jellyfin media server</span></div>
-        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Proxmox hypervisor</span></div>
-        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Kali Linux VM</span></div>
-        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Virtual security lab network</span></div>
-      </div>
-    </div>
-  </div>
-</section>
+    <div class="section-title reveal">EVOLUTION</div>
 
-<!-- ═══════ 10 — CERT TRACK ═══════ -->
-<section id="s10">
-  <div class="container">
-    <div class="section-num reveal">// 10</div>
-    <div class="section-title reveal">CERTIFICATION TRACK</div>
-    <div class="cert-pipeline reveal">
-      <div class="cert-block active-cert bracketed">
-        <div class="cert-name">CompTIA Security+</div>
-        <div class="cert-sub">ENTRY CERTIFICATION</div>
-        <div class="cert-status-text">// ACTIVE TARGET</div>
+    <div class="evolution-wrap reveal">
+
+      <!-- PHASE 01 -->
+      <div class="evo-phase">
+        <div class="evo-phase-node">
+          <div class="evo-node-dot done"></div>
+          <div class="evo-node-num">01</div>
+        </div>
+        <div class="evo-phase-card">
+          <div class="evo-phase-header">
+            <div class="evo-phase-title">CURIOSITY &amp; FIRST BUILDS</div>
+            <div class="evo-status-badge done">COMPLETE</div>
+          </div>
+          <div class="evo-phase-desc">
+            Started tinkering with Python scripts and CLI tools. No formal training — just breaking things, reading docs, and building to understand. First contact with automation and the idea that computers should do what you tell them.
+          </div>
+          <div class="evo-artifacts">
+            <span class="evo-tag">Python stdlib</span>
+            <span class="evo-tag">CLI scripting</span>
+            <span class="evo-tag">self-directed learning</span>
+            <span class="evo-tag">no CS degree</span>
+          </div>
+        </div>
       </div>
-      <div class="cert-arrow">&#8594;</div>
-      <div class="cert-block future-cert">
-        <div class="cert-name">CEH</div>
-        <div class="cert-sub">CERTIFIED ETHICAL HACKER</div>
+
+      <!-- PHASE 02 -->
+      <div class="evo-phase">
+        <div class="evo-phase-node">
+          <div class="evo-node-dot done"></div>
+          <div class="evo-node-num">02</div>
+        </div>
+        <div class="evo-phase-card">
+          <div class="evo-phase-header">
+            <div class="evo-phase-title">CYBERSECURITY FOUNDATIONS</div>
+            <div class="evo-status-badge done">COMPLETE</div>
+          </div>
+          <div class="evo-phase-desc">
+            Shifted focus toward security tooling and recon. Built early ARGUS modules — hash cracking, file analysis, WiFi extraction. Learned what an attack surface looks like from the inside, not a course.
+          </div>
+          <div class="evo-artifacts">
+            <span class="evo-tag">ARGUS v1.0</span>
+            <span class="evo-tag">reconnaissance</span>
+            <span class="evo-tag">hash analysis</span>
+            <span class="evo-tag">Shannon entropy</span>
+            <span class="evo-tag">privilege escalation</span>
+          </div>
+        </div>
       </div>
-      <div class="cert-arrow">&#8594;</div>
-      <div class="cert-block future-cert">
-        <div class="cert-name">OSCP</div>
-        <div class="cert-sub">OFFENSIVE SECURITY</div>
+
+      <!-- PHASE 03 -->
+      <div class="evo-phase">
+        <div class="evo-phase-node">
+          <div class="evo-node-dot done"></div>
+          <div class="evo-node-num">03</div>
+        </div>
+        <div class="evo-phase-card">
+          <div class="evo-phase-header">
+            <div class="evo-phase-title">TOOL ECOSYSTEMS &amp; AUTOMATION</div>
+            <div class="evo-status-badge done">COMPLETE</div>
+          </div>
+          <div class="evo-phase-desc">
+            Stopped building isolated scripts. Started building toolkits with shared runtimes, module selectors, and field cheat sheets. Replaced a $900/yr SaaS subscription at work with a custom-built internal tool. Built anyway.
+          </div>
+          <div class="evo-artifacts">
+            <span class="evo-tag">ARGUS v1.4.0 — 23 modules</span>
+            <span class="evo-tag">PHANTOM 5-phase engine</span>
+            <span class="evo-tag">NEXUS parallel toolkit</span>
+            <span class="evo-tag">internal tooling</span>
+            <span class="evo-tag">zero-dependency Python</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 04 -->
+      <div class="evo-phase">
+        <div class="evo-phase-node">
+          <div class="evo-node-dot done"></div>
+          <div class="evo-node-num">04</div>
+        </div>
+        <div class="evo-phase-card">
+          <div class="evo-phase-header">
+            <div class="evo-phase-title">LINUX / SERVER / SELF-HOSTED</div>
+            <div class="evo-status-badge done">COMPLETE</div>
+          </div>
+          <div class="evo-phase-desc">
+            Deployed a headless Ubuntu server from scratch. Configured WireGuard VPN, DuckDNS dynamic DNS, login alerting, and remote access over the open internet. Running your own infrastructure is the fastest way to understand it.
+          </div>
+          <div class="evo-artifacts">
+            <span class="evo-tag">PROMETHEUS server</span>
+            <span class="evo-tag">Ubuntu 24.04 headless</span>
+            <span class="evo-tag">WireGuard VPN</span>
+            <span class="evo-tag">DuckDNS</span>
+            <span class="evo-tag">ssmtp login alerts</span>
+            <span class="evo-tag">remote access</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 05 -->
+      <div class="evo-phase">
+        <div class="evo-phase-node">
+          <div class="evo-node-dot done"></div>
+          <div class="evo-node-num">05</div>
+        </div>
+        <div class="evo-phase-card">
+          <div class="evo-phase-header">
+            <div class="evo-phase-title">OBSERVABILITY &amp; LIVE TELEMETRY</div>
+            <div class="evo-status-badge done">COMPLETE</div>
+          </div>
+          <div class="evo-phase-desc">
+            Wired Netdata Cloud into the home server and surfaced live metrics on this portfolio. Real CPU, RAM, and disk data — not mocked. Started thinking of systems as things you observe continuously, not just things you build and leave.
+          </div>
+          <div class="evo-artifacts">
+            <span class="evo-tag">Netdata Cloud</span>
+            <span class="evo-tag">live telemetry widget</span>
+            <span class="evo-tag">bearer token auth</span>
+            <span class="evo-tag">metric polling</span>
+            <span class="evo-tag">observable infra</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 06 — ACTIVE -->
+      <div class="evo-phase active-phase">
+        <div class="evo-phase-node">
+          <div class="evo-node-dot active"></div>
+          <div class="evo-node-num">06</div>
+        </div>
+        <div class="evo-phase-card">
+          <div class="evo-phase-header">
+            <div class="evo-phase-title">AI-ASSISTED ENGINEERING</div>
+            <div class="evo-status-badge active">ACTIVE</div>
+          </div>
+          <div class="evo-phase-desc">
+            Using AI as a collaborator, not a crutch. Accelerating development, exploring architecture decisions, shipping faster without losing understanding. Building workflows where AI augments engineering judgment — not replaces it.
+          </div>
+          <div class="evo-artifacts">
+            <span class="evo-tag amber">Claude-assisted dev</span>
+            <span class="evo-tag amber">AI workflow integration</span>
+            <span class="evo-tag amber">ARGUS v1.4.0</span>
+            <span class="evo-tag amber">VIGIL — mobile successor</span>
+            <span class="evo-tag amber">portfolio as living lab</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 07 — PLANNED -->
+      <div class="evo-phase planned-phase">
+        <div class="evo-phase-node">
+          <div class="evo-node-dot plan"></div>
+          <div class="evo-node-num">07</div>
+        </div>
+        <div class="evo-phase-card">
+          <div class="evo-phase-header">
+            <div class="evo-phase-title">CONTAINERIZED LAB &amp; SIMULATION</div>
+            <div class="evo-status-badge plan">BUILDING</div>
+          </div>
+          <div class="evo-phase-desc">
+            Dockerize services on PROMETHEUS. Add a Proxmox hypervisor layer, deploy a Kali Linux VM, and build a virtual network for isolated security experiments. Move from single-machine thinking to multi-node environments.
+          </div>
+          <div class="evo-artifacts">
+            <span class="evo-tag">Docker</span>
+            <span class="evo-tag">Proxmox</span>
+            <span class="evo-tag">Kali Linux VM</span>
+            <span class="evo-tag">virtual lab network</span>
+            <span class="evo-tag">Jellyfin</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 08 — HORIZON -->
+      <div class="evo-phase horizon-phase">
+        <div class="evo-phase-node">
+          <div class="evo-node-dot plan"></div>
+          <div class="evo-node-num">08</div>
+        </div>
+        <div class="evo-phase-card">
+          <div class="evo-phase-header">
+            <div class="evo-phase-title">INTELLIGENT &amp; REACTIVE SYSTEMS</div>
+            <div class="evo-status-badge horizon">HORIZON</div>
+          </div>
+          <div class="evo-phase-desc">
+            Systems that observe, learn, and respond — built for everyone, not just operators. VIGIL brings network visibility, breach detection, and live security scoring to mobile. Open source, self-hostable, no subscriptions. The lab in your pocket.
+          </div>
+          <div class="evo-artifacts">
+            <span class="evo-tag">VIGIL mobile app</span>
+            <span class="evo-tag">React Native + Expo</span>
+            <span class="evo-tag">local-first observability</span>
+            <span class="evo-tag">open ecosystem</span>
+            <span class="evo-tag">self-hostable backend</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /evolution-wrap -->
+
+    <!-- LEARNING TRACK -->
+    <div class="learn-track reveal">
+      <div class="learn-track-label">// CERTIFICATION TRACK — formal learning path</div>
+      <div class="learn-pipeline">
+        <div class="learn-block active-learn bracketed">
+          <div class="learn-name">Security+</div>
+          <div class="learn-sub">COMPTIA</div>
+          <div class="learn-status">// ACTIVE TARGET</div>
+        </div>
+        <div class="learn-arrow">&#8594;</div>
+        <div class="learn-block future-learn">
+          <div class="learn-name">CEH</div>
+          <div class="learn-sub">CERTIFIED ETHICAL HACKER</div>
+        </div>
+        <div class="learn-arrow">&#8594;</div>
+        <div class="learn-block future-learn">
+          <div class="learn-name">OSCP</div>
+          <div class="learn-sub">OFFENSIVE SECURITY</div>
+        </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -1536,7 +1815,7 @@
            onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.4'">
           // GITHUB
         </a>
-        <div class="footer-r">ARGUS v1.4.0 // ALL EYES. ALL THE TIME.</div>
+        <div class="footer-r">BUILD // OBSERVE // ITERATE</div>
       </div>
     </div>
   </div>
