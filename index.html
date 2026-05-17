@@ -4,6 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JONAH MAULDIN // OPERATOR</title>
+  <meta name="description" content="Jonah Mauldin — cybersecurity toolkit builder, homelab operator, systems tinkerer. Built ARGUS (23-module portable Python toolkit), PHANTOM pen test platform, and a live Ubuntu home server from scratch. No CS degree. Just built it.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://jonahmauldin.github.io/">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://jonahmauldin.github.io/">
+  <meta property="og:title"       content="JONAH MAULDIN // OPERATOR">
+  <meta property="og:description" content="Portable cybersecurity toolkit. Headless home lab. 23 modules. Built from scratch.">
+  <meta property="og:image"       content="https://jonahmauldin.github.io/og-card.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="JONAH MAULDIN // OPERATOR">
+  <meta name="twitter:description" content="ARGUS — 23-module portable cybersecurity toolkit. Built on pure Python stdlib, runs from USB, zero installation.">
+
+  <!-- Favicon (inline SVG) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23020c06'/%3E%3Ctext x='4' y='24' font-family='monospace' font-size='22' fill='%2300ff88'%3E%E2%96%A0%3C/text%3E%3C/svg%3E">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -125,14 +144,15 @@
       z-index: 950;
       pointer-events: none;
       animation: scan-sweep 8s linear infinite;
-      top: -2px;
+      top: 0;
+      will-change: transform;
     }
 
     @keyframes scan-sweep {
-      0%   { top: -2px; opacity: 0; }
+      0%   { transform: translateY(-2px); opacity: 0; }
       5%   { opacity: 1; }
       95%  { opacity: 1; }
-      100% { top: 100vh; opacity: 0; }
+      100% { transform: translateY(100vh); opacity: 0; }
     }
 
     /* ── FIXED NAV ── */
@@ -158,6 +178,7 @@
       flex-direction: row-reverse;
     }
     .nav-pip:hover, .nav-pip.active { opacity: 1; }
+    .nav-pip:focus-visible { opacity: 1; outline: 1px solid rgba(0,255,136,0.6); outline-offset: 4px; }
     .nav-pip-dot {
       width: 5px;
       height: 5px;
@@ -1004,7 +1025,7 @@
 <div id="scan-line"></div>
 
 <!-- FIXED HUD NAV -->
-<nav id="hud-nav">
+<nav id="hud-nav" aria-label="Section navigation">
   <div class="nav-pip" data-target="header">
     <div class="nav-pip-dot"></div>
     <div class="nav-pip-label">HEADER</div>
@@ -1063,12 +1084,20 @@
     <div class="header-coords">33.749°N 84.388°W // ATL, GA // OPERATOR TERMINAL</div>
     <div class="glitch-name" data-text="JONAH MAULDIN">JONAH MAULDIN</div>
     <div class="subtitle cursor-blink" id="subtitle-text"></div>
-    <div class="status-badge bracketed">
-      <span class="pulse-dot"></span>
-      SYSTEMS ONLINE
+    <div style="display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin-bottom:2.2rem;">
+      <div class="status-badge bracketed" style="margin-bottom:0;">
+        <span class="pulse-dot"></span>
+        SYSTEMS ONLINE
+      </div>
+      <a href="https://github.com/jonahmauldin" target="_blank" rel="noopener"
+         style="font-family:'Share Tech Mono',monospace;font-size:0.68rem;letter-spacing:0.2em;color:var(--green);opacity:0.45;text-decoration:none;border:1px solid rgba(0,255,136,0.2);padding:0.4rem 0.9rem;transition:opacity 0.2s,border-color 0.2s;"
+         onmouseover="this.style.opacity='0.9';this.style.borderColor='rgba(0,255,136,0.5)'"
+         onmouseout="this.style.opacity='0.45';this.style.borderColor='rgba(0,255,136,0.2)'">
+        &#47;&#47; GITHUB
+      </a>
     </div>
     <p class="bio reveal">
-      Non-technical founder who built a functioning cybersecurity toolkit, a headless home lab server, and a suite of custom automation tools from scratch — no computer science degree, no bootcamp, no shortcuts. ARGUS runs on a USB drive. Prometheus runs 24/7. Everything here was built in the actual dark, with actual effort.
+      Non-technical founder who built a 23-module cybersecurity toolkit, a headless home lab server, and a full pen test campaign platform from scratch — no CS degree, no bootcamp, no shortcuts. ARGUS covers recon, exploitation, forensics, Active Directory, web app analysis, privilege escalation, and more. Prometheus runs 24/7. PHANTOM generates professional HTML reports. Everything here was built in the actual dark, with actual effort.
     </p>
   </div>
 </section>
@@ -1089,15 +1118,15 @@
       </div>
       <div class="spec-block">
         <div class="spec-label">Projects Active</div>
-        <div class="spec-value" data-count="3">3</div>
+        <div class="spec-value" data-count="4">4</div>
       </div>
       <div class="spec-block">
         <div class="spec-label">Modules Built</div>
-        <div class="spec-value" data-count="11">11</div>
+        <div class="spec-value" data-count="23">23</div>
       </div>
       <div class="spec-block">
         <div class="spec-label">Tools</div>
-        <div class="spec-value">Git Bash · Nmap · WireGuard · Netdata</div>
+        <div class="spec-value">Git Bash · Nmap · WireGuard · Netdata · Claude</div>
       </div>
       <div class="spec-block">
         <div class="spec-label">Domain</div>
@@ -1122,18 +1151,19 @@
         </div>
         <span class="status-tag active">ACTIVE</span>
       </div>
-      <div class="card-tagline">ALL EYES. ALL THE TIME. // v1.0.0</div>
+      <div class="card-tagline">ALL EYES. ALL THE TIME. // v1.4.0</div>
       <p class="card-desc">
-        Portable cybersecurity toolkit running from a 64GB USB drive. Zero installation required — bundled Python 3.11 and Nmap run fully standalone. Black terminal aesthetic, Matrix/DedSec inspired interface, right-click run as admin. Carries 9 core operational modules and the PHANTOM pen test engine. Plug in, run, execute.
+        Portable cybersecurity toolkit running from a USB drive. Zero installation required — bundled Python 3.11 and Nmap run fully standalone. Black terminal aesthetic, DedSec-inspired interface, right-click run as admin. 23 operational modules covering recon, exploitation, forensics, OSINT, privilege escalation, Active Directory enumeration, web app recon, file analysis, and the full PHANTOM pen test campaign engine. Plug in, run, execute.
       </p>
       <div class="tags">
         <span class="tag">Python 3.11</span>
-        <span class="tag">Portable</span>
+        <span class="tag">Portable / USB</span>
         <span class="tag">Nmap Bundled</span>
-        <span class="tag">9 Core Modules</span>
+        <span class="tag">23 Modules</span>
         <span class="tag">PHANTOM Engine</span>
-        <span class="tag">USB Flash Drive</span>
-        <span class="tag">No Pip Required</span>
+        <span class="tag">Zero Dependencies</span>
+        <span class="tag">stdlib Only</span>
+        <span class="tag">Windows Native</span>
       </div>
     </div>
   </div>
@@ -1145,18 +1175,33 @@
     <div class="section-num reveal">// 03</div>
     <div class="section-title reveal">ARGUS MODULE STACK</div>
     <div class="module-grid reveal">
-      <div class="module-card"><div class="module-name">argus.py</div><div class="module-desc">Main menu engine &amp; module loader</div></div>
-      <div class="module-card"><div class="module-name">display.py</div><div class="module-desc">Boot sequence, glitch logo, visual engine</div></div>
-      <div class="module-card"><div class="module-name">network.py</div><div class="module-desc">Network sweep, port scan, ARP, traceroute, MAC lookup</div></div>
-      <div class="module-card"><div class="module-name">scanner.py</div><div class="module-desc">Port vuln lookup, fingerprinting, CVE scan</div></div>
-      <div class="module-card"><div class="module-name">forensics.py</div><div class="module-desc">System info, USB history, browser artifacts</div></div>
-      <div class="module-card"><div class="module-name">osint.py</div><div class="module-desc">DNS, IP intel, whois, email header analysis</div></div>
-      <div class="module-card"><div class="module-name">crypto.py</div><div class="module-desc">Hashing, password gen, base64, caesar cipher</div></div>
-      <div class="module-card"><div class="module-name">capture.py</div><div class="module-desc">Packet capture, live connections, bandwidth monitor</div></div>
-      <div class="module-card"><div class="module-name">wordlist.py</div><div class="module-desc">Keyword mutation, pattern gen, custom lists</div></div>
-      <div class="module-card"><div class="module-name">prometheus.py</div><div class="module-desc">SSH connect, remote commands, SCP transfer</div></div>
-      <div class="module-card"><div class="module-name">notes.py</div><div class="module-desc">Encrypted note storage, PBKDF2 + XOR</div></div>
+      <div class="module-card"><div class="module-name" style="color:var(--amber);">argus.py</div><div class="module-desc">Main menu engine &amp; importlib module loader</div></div>
+      <div class="module-card"><div class="module-name" style="color:var(--amber);">display.py</div><div class="module-desc">Shared UI layer — boot sequence, colors, prompts</div></div>
+      <div class="module-card"><div class="module-name">[1] network.py</div><div class="module-desc">Network sweep, ARP detection, traceroute, MAC lookup</div></div>
+      <div class="module-card"><div class="module-name">[2] scanner.py</div><div class="module-desc">Port scan, device fingerprint, vuln lookup, CVE scan</div></div>
+      <div class="module-card"><div class="module-name">[3] forensics.py</div><div class="module-desc">USB history, browser artifacts, keylogger detection</div></div>
+      <div class="module-card"><div class="module-name">[4] osint.py</div><div class="module-desc">DNS, IP intel, whois, email header routing analysis</div></div>
+      <div class="module-card"><div class="module-name">[5] crypto.py</div><div class="module-desc">Hashing, password gen, base64, caesar cipher, file verify</div></div>
+      <div class="module-card"><div class="module-name">[6] capture.py</div><div class="module-desc">Packet capture (netsh), live connections, bandwidth</div></div>
+      <div class="module-card"><div class="module-name">[7] wordlist.py</div><div class="module-desc">Keyword mutation, pattern gen, list builder</div></div>
+      <div class="module-card"><div class="module-name">[8] prometheus.py</div><div class="module-desc">Home server SSH management &amp; remote tools</div></div>
+      <div class="module-card"><div class="module-name">[9] notes.py</div><div class="module-desc">PBKDF2+HMAC-SHA256 encrypted note storage</div></div>
+      <div class="module-card"><div class="module-name">[C] crack.py</div><div class="module-desc">Hash cracking — dictionary, brute force, batch, identifier</div></div>
+      <div class="module-card"><div class="module-name">[S] winsecrets.py</div><div class="module-desc">Credential Manager, WiFi passwords, auto-logon harvest</div></div>
+      <div class="module-card"><div class="module-name">[W] wifi.py</div><div class="module-desc">Deep wireless scan, evil twin detection, security audit</div></div>
+      <div class="module-card"><div class="module-name">[E] evade.py</div><div class="module-desc">IP exposure, DNS leak, EXIF scrub, secure wipe, browser wipe</div></div>
+      <div class="module-card"><div class="module-name">[H] loghunter.py</div><div class="module-desc">Windows Event Log threat hunting — 4625, 7045, 1102, 4688</div></div>
+      <div class="module-card"><div class="module-name">[M] monitor.py</div><div class="module-desc">System baseline, drift detection, live process watch</div></div>
+      <div class="module-card"><div class="module-name">[N] enumeration.py</div><div class="module-desc">SMB, NetBIOS, null session, subdomain, DNS enum + AXFR</div></div>
+      <div class="module-card"><div class="module-name">[V] pivot.py</div><div class="module-desc">SSH -L/-R/-D, netsh portproxy, double-hop command builder</div></div>
+      <div class="module-card"><div class="module-name">[G] payload.py</div><div class="module-desc">Reverse/bind shell generator, TCP listener, encoder</div></div>
+      <div class="module-card"><div class="module-name">[I] intel.py</div><div class="module-desc">DNSBL reputation checks, IP/domain intel, IOC list manager</div></div>
+      <div class="module-card" style="border-left:2px solid rgba(0,229,255,0.3);"><div class="module-name" style="color:var(--cyan);">[B] web.py</div><div class="module-desc">Header fingerprint, robots harvest, dir brute force, HTTP methods</div></div>
+      <div class="module-card" style="border-left:2px solid rgba(0,229,255,0.3);"><div class="module-name" style="color:var(--cyan);">[K] privesc.py</div><div class="module-desc">Windows privesc — token privs, AlwaysInstallElevated, unquoted paths</div></div>
+      <div class="module-card" style="border-left:2px solid rgba(0,229,255,0.3);"><div class="module-name" style="color:var(--cyan);">[A] addomain.py</div><div class="module-desc">AD enum — users, groups, SPNs, trust relationships, GPOs</div></div>
+      <div class="module-card" style="border-left:2px solid rgba(0,229,255,0.3);"><div class="module-name" style="color:var(--cyan);">[F] fileanalyze.py</div><div class="module-desc">PE header parse, Shannon entropy, string extract, IOC hash check</div></div>
     </div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:0.58rem;color:var(--cyan);opacity:0.4;margin-top:0.6rem;letter-spacing:0.15em;">// CYAN = BUILT THIS SESSION</div>
   </div>
 </section>
 
@@ -1168,7 +1213,7 @@
     <div class="card amber-accent reveal">
       <div class="card-header">
         <div class="card-title amber">PHANTOM</div>
-        <span class="status-tag progress">IN PROGRESS</span>
+        <span class="status-tag active">COMPLETE</span>
       </div>
       <p class="card-desc">
         Guided 5-phase penetration test campaign platform built into ARGUS. Campaigns are defined in JSON and executed through a structured pipeline. Auto-generates HTML reports with severity ratings — Critical, High, Medium, Low, Info — plus executive summaries ready for delivery.
@@ -1187,7 +1232,7 @@
         <div class="phantom-module">ph_scan.py</div>
         <div class="phantom-module">ph_access.py</div>
         <div class="phantom-module">ph_postex.py</div>
-        <div class="phantom-module">ph_cleanup.py</div>
+        <div class="phantom-module">ph_tracks.py</div>
         <div class="phantom-module">ph_report.py</div>
       </div>
       <div class="tags" style="margin-top:1.2rem;">
@@ -1358,14 +1403,61 @@
   <div class="container">
     <div class="section-num reveal">// 08</div>
     <div class="section-title reveal">ACTIVE DEVELOPMENT</div>
-    <div class="card amber-accent reveal">
-      <div class="card-header">
-        <div class="card-title amber">SMARTSHEET REPLACEMENT</div>
-        <span class="status-tag building">BUILDING</span>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.2rem;">
+
+      <div class="card amber-accent reveal">
+        <div class="card-header">
+          <div class="card-title amber">SMARTSHEET REPLACEMENT</div>
+          <span class="status-tag building">BUILDING</span>
+        </div>
+        <div class="card-tagline">INTERNAL TOOLING // WORK PROJECT</div>
+        <p class="card-desc">
+          Custom internal project management tool built from scratch to replace a $900/yr Smartsheet subscription at work. No formal development background. Built anyway.
+        </p>
+        <div class="tags">
+          <span class="tag amber">Python</span>
+          <span class="tag amber">Internal Tool</span>
+          <span class="tag amber">Data Management</span>
+        </div>
       </div>
-      <p class="card-desc">
-        Custom internal project management tool built from scratch to replace Smartsheet at work. No formal development background. Built anyway.
-      </p>
+
+      <div class="card cyan-accent reveal">
+        <div class="card-header">
+          <div class="card-title cyan">ARGUS v1.4.0</div>
+          <span class="status-tag online">LIVE</span>
+        </div>
+        <div class="card-tagline">4 NEW MODULES SHIPPED THIS SESSION</div>
+        <p class="card-desc">
+          Tonight: web app recon [B], Windows privilege escalation checker [K], Active Directory enumeration [A], and PE file analyzer with Shannon entropy [F]. ARGUS is now at 23 operational modules.
+        </p>
+        <div class="tags">
+          <span class="tag cyan">web.py</span>
+          <span class="tag cyan">privesc.py</span>
+          <span class="tag cyan">addomain.py</span>
+          <span class="tag cyan">fileanalyze.py</span>
+        </div>
+      </div>
+
+      <div class="card red-accent reveal">
+        <div class="card-header">
+          <div>
+            <div class="card-title red">NEXUS</div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;opacity:0.25;letter-spacing:0.14em;margin-top:0.25rem;">WRAITH &middot; SPECTER-X</div>
+          </div>
+          <span class="status-tag building">BUILDING</span>
+        </div>
+        <div class="card-tagline">SECONDARY TOOLKIT PROJECT</div>
+        <p class="card-desc">
+          Separate toolkit project running parallel to ARGUS. WRAITH and SPECTER-X are companion tools with their own operational focus. Field cheat sheets generated.
+        </p>
+        <div class="tags">
+          <span class="tag red">WRAITH</span>
+          <span class="tag red">SPECTER-X</span>
+          <span class="tag red">Field Cheat Sheets</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1377,22 +1469,28 @@
     <div class="section-title reveal">ROADMAP</div>
     <div class="roadmap-grid reveal">
       <div>
-        <div class="roadmap-col-title">// ARGUS NEXT</div>
-        <div class="roadmap-item"><div class="rdot active"></div><span style="color:var(--amber);">PHANTOM campaign.py — next session</span></div>
-        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Google Dorking Engine</span></div>
-        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">CVE Scanner NVD API</span></div>
-        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Web Vulnerability Scanner</span></div>
-        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Hash Cracker</span></div>
-        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Saved WiFi Password Extractor</span></div>
-        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">SSL/TLS Analyzer</span></div>
-        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Secure File Wiper</span></div>
+        <div class="roadmap-col-title">// ARGUS MODULE TRACK</div>
+        <div class="roadmap-item done-item"><div class="rdot done"></div><span>PHANTOM — full 5-phase campaign engine</span></div>
+        <div class="roadmap-item done-item"><div class="rdot done"></div><span>Hash Cracker [C] — dictionary + brute force</span></div>
+        <div class="roadmap-item done-item"><div class="rdot done"></div><span>WiFi Password Extractor [S]</span></div>
+        <div class="roadmap-item done-item"><div class="rdot done"></div><span>Secure File Wiper [E]</span></div>
+        <div class="roadmap-item done-item"><div class="rdot done"></div><span>Web App Recon [B] — dir brute, header fingerprint</span></div>
+        <div class="roadmap-item done-item"><div class="rdot done"></div><span>PrivEsc Checker [K] — token privs, unquoted paths</span></div>
+        <div class="roadmap-item done-item"><div class="rdot done"></div><span>AD Enumeration [A] — SPNs, trusts, GPOs</span></div>
+        <div class="roadmap-item done-item"><div class="rdot done"></div><span>File Analyzer [F] — PE header, entropy, IOC</span></div>
+        <div class="roadmap-item"><div class="rdot active"></div><span style="color:var(--amber);">Google Dorking Engine — planned</span></div>
+        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">CVE Lookup via NVD API</span></div>
+        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">SSL/TLS Certificate Analyzer</span></div>
+        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Bluetooth Scanner</span></div>
       </div>
       <div>
-        <div class="roadmap-col-title">// PROMETHEUS NEXT</div>
+        <div class="roadmap-col-title">// PROMETHEUS TRACK</div>
         <div class="roadmap-item done-item"><div class="rdot done"></div><span>Ubuntu Server 24.04 deployed</span></div>
         <div class="roadmap-item done-item"><div class="rdot done"></div><span>WireGuard VPN configured</span></div>
-        <div class="roadmap-item done-item"><div class="rdot done"></div><span>DuckDNS + Netdata online</span></div>
-        <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Docker installation</span></div>
+        <div class="roadmap-item done-item"><div class="rdot done"></div><span>DuckDNS + Netdata Cloud online</span></div>
+        <div class="roadmap-item done-item"><div class="rdot done"></div><span>Login alerts via ssmtp</span></div>
+        <div class="roadmap-item done-item"><div class="rdot done"></div><span>Live telemetry on portfolio</span></div>
+        <div class="roadmap-item"><div class="rdot active"></div><span style="color:var(--amber);">Docker installation</span></div>
         <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Jellyfin media server</span></div>
         <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Proxmox hypervisor</span></div>
         <div class="roadmap-item"><div class="rdot plan"></div><span style="opacity:0.42;">Kali Linux VM</span></div>
@@ -1432,7 +1530,14 @@
   <div class="container">
     <div class="footer-inner">
       <div class="footer-l">JONAH MAULDIN // OPERATOR // ATL, GA</div>
-      <div class="footer-r">ARGUS v1.0.0 // ALL EYES. ALL THE TIME.</div>
+      <div style="display:flex;align-items:center;gap:1.5rem;">
+        <a href="https://github.com/jonahmauldin" target="_blank" rel="noopener"
+           style="font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:0.14em;color:var(--green);opacity:0.4;text-decoration:none;transition:opacity 0.2s;"
+           onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.4'">
+          // GITHUB
+        </a>
+        <div class="footer-r">ARGUS v1.4.0 // ALL EYES. ALL THE TIME.</div>
+      </div>
     </div>
   </div>
 </footer>
@@ -1489,9 +1594,17 @@
   const pips     = document.querySelectorAll('.nav-pip');
 
   pips.forEach(pip => {
-    pip.addEventListener('click', () => {
+    pip.setAttribute('tabindex', '0');
+    pip.setAttribute('role', 'button');
+    const label = pip.querySelector('.nav-pip-label');
+    pip.setAttribute('aria-label', 'Navigate to ' + (label ? label.textContent : pip.dataset.target));
+    const scrollTo = () => {
       const t = document.getElementById(pip.dataset.target);
       if (t) t.scrollIntoView({ behavior: 'smooth' });
+    };
+    pip.addEventListener('click', scrollTo);
+    pip.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scrollTo(); }
     });
   });
 
@@ -1637,6 +1750,35 @@
   }
 
   fetchMetrics();
+
+  // ── COUNTER ANIMATION for data-count spec blocks
+  document.querySelectorAll('.spec-value[data-count]').forEach(el => {
+    const target = parseInt(el.dataset.count, 10);
+    if (isNaN(target)) return;
+    const obs = new IntersectionObserver(entries => {
+      if (!entries[0].isIntersecting) return;
+      obs.disconnect();
+      let current = 0;
+      const duration = 900;
+      const start = performance.now();
+      const tick = (now) => {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        // ease-out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        current = Math.round(eased * target);
+        el.textContent = current;
+        if (progress < 1) requestAnimationFrame(tick);
+        else el.textContent = target;
+      };
+      requestAnimationFrame(tick);
+    }, { threshold: 0.5 });
+    obs.observe(el);
+  });
+
+  // ── ARIA: mark purely decorative elements as hidden from screen readers
+  document.getElementById('scan-line').setAttribute('aria-hidden', 'true');
+  document.getElementById('boot-overlay').setAttribute('aria-hidden', 'true');
 </script>
 </body>
 </html>
