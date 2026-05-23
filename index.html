@@ -794,6 +794,42 @@
       opacity: 0.45;
       margin-top: 0.15rem;
     }
+    .nexus-module.live { color:var(--green); border-color:rgba(0,255,136,0.22); background:rgba(0,255,136,0.04); }
+    .nexus-module.live:hover { border-color:rgba(0,255,136,0.48); background:rgba(0,255,136,0.09); }
+    .nexus-module.live .nexus-module-desc { color:var(--green); opacity:0.48; }
+    .nexus-module.dev { color:var(--amber); border-color:rgba(255,184,0,0.16); background:rgba(255,184,0,0.025); }
+    .nexus-module.dev:hover { border-color:rgba(255,184,0,0.38); background:rgba(255,184,0,0.07); }
+    .nexus-module.dev .nexus-module-desc { color:var(--amber); opacity:0.45; }
+    .nexus-module-status {
+      display: inline-block;
+      font-size: 0.43rem;
+      letter-spacing: 0.14em;
+      padding: 0.05rem 0.22rem;
+      border: 1px solid currentColor;
+      margin-left: 0.35rem;
+      vertical-align: middle;
+      position: relative;
+      top: -1px;
+      opacity: 0.62;
+    }
+    .nexus-progress-row {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin: 0.3rem 0 0.6rem;
+    }
+    .nexus-progress-track {
+      flex: 1;
+      height: 2px;
+      background: rgba(255,51,85,0.1);
+      overflow: hidden;
+    }
+    .nexus-progress-fill {
+      height: 100%;
+      width: 55.6%;
+      background: var(--green);
+      box-shadow: 0 0 8px rgba(0,255,136,0.5);
+    }
 
     /* ── FEATURE HIGHLIGHT GRID ── */
     .feature-grid {
@@ -905,7 +941,7 @@
       </div>
       <div class="spec-block">
         <div class="spec-label">Modules Built</div>
-        <div class="spec-value" data-count="23">23</div>
+        <div class="spec-value" data-count="28">28</div>
       </div>
       <div class="spec-block">
         <div class="spec-label">Tools</div>
@@ -1387,27 +1423,32 @@
             NEXT GENERATION OPERATOR PLATFORM
           </div>
         </div>
-        <span class="status-tag building">BUILDING</span>
+        <span class="status-tag building">5 / 9 LIVE</span>
       </div>
       <div class="card-tagline">WHERE ALL PATHS CONVERGE // v1.0.0</div>
       <p class="card-desc">
         The next-generation operator drive &mdash; a portable USB toolkit that inherits everything ARGUS built and expands into new territory. NEXUS carries forward all 23 ARGUS modules and the PHANTOM campaign engine, then adds nine new specialized platforms for offensive operations, digital forensics, threat intelligence, OPSEC, cryptography, and more. Same plug-and-run philosophy, broader capability.
       </p>
       <p class="card-desc" style="opacity:0.52;">
-        If ARGUS is a cybersecurity toolkit, NEXUS is the full operator workstation. It inherits the same portable Python architecture, zero-dependency design, and terminal aesthetic, but extends it with platforms designed for more advanced and specialized security work. Core foundations and all module stubs are built &mdash; each new platform has its menu structure and planned features ready for implementation.
+        If ARGUS is a cybersecurity toolkit, NEXUS is the full operator workstation. It inherits the same portable Python architecture, zero-dependency design, and terminal aesthetic &mdash; but goes further with platforms built for advanced, specialized security work. Five of nine new platforms are fully implemented production modules: WRAITH, SPECTER-X, GHOST, ATLAS, and CIPHER. The remaining four are actively in development.
       </p>
 
-      <div style="font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;color:var(--red);opacity:0.45;margin:1.2rem 0 0.55rem;">// 9 NEW PLATFORMS</div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;color:var(--red);opacity:0.45;margin:1.2rem 0 0.2rem;">// 9 NEW PLATFORMS</div>
+      <div class="nexus-progress-row">
+        <span style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--green);letter-spacing:0.1em;white-space:nowrap;"><span style="font-size:0.9rem;font-weight:700;">5</span>&nbsp;/&nbsp;9&nbsp;LIVE</span>
+        <span style="font-family:'Share Tech Mono',monospace;font-size:0.58rem;color:var(--amber);opacity:0.65;letter-spacing:0.1em;white-space:nowrap;">4&nbsp;IN&nbsp;DEV</span>
+        <div class="nexus-progress-track"><div class="nexus-progress-fill"></div></div>
+      </div>
       <div class="nexus-grid reveal">
-        <div class="nexus-module">WRAITH<div class="nexus-module-desc">Offensive operations &amp; exploit platform</div></div>
-        <div class="nexus-module">SPECTER-X<div class="nexus-module-desc">Digital forensics &amp; incident response</div></div>
-        <div class="nexus-module">SENTINEL<div class="nexus-module-desc">Server dashboard connector</div></div>
-        <div class="nexus-module">ORACLE<div class="nexus-module-desc">AI-powered analysis engine</div></div>
-        <div class="nexus-module">PHANTOM NERVE<div class="nexus-module-desc">Honeypot &amp; intrusion detection</div></div>
-        <div class="nexus-module">CIPHER<div class="nexus-module-desc">Crypto &amp; steganography workbench</div></div>
-        <div class="nexus-module">GHOST<div class="nexus-module-desc">OPSEC &amp; anonymity toolkit</div></div>
-        <div class="nexus-module">ATLAS<div class="nexus-module-desc">Network mapping &amp; visualization</div></div>
-        <div class="nexus-module">NEXUS INTEL<div class="nexus-module-desc">Threat intelligence aggregator</div></div>
+        <div class="nexus-module live">WRAITH<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Offensive operations &amp; exploit platform</div></div>
+        <div class="nexus-module live">SPECTER-X<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Digital forensics &amp; incident response</div></div>
+        <div class="nexus-module live">GHOST<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">OPSEC &amp; anonymity toolkit</div></div>
+        <div class="nexus-module live">ATLAS<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Network mapping &amp; visualization</div></div>
+        <div class="nexus-module live">CIPHER<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Crypto &amp; steganography workbench</div></div>
+        <div class="nexus-module dev">NEXUS INTEL<span class="nexus-module-status">IN DEV</span><div class="nexus-module-desc">Threat intelligence aggregator</div></div>
+        <div class="nexus-module dev">PHANTOM NERVE<span class="nexus-module-status">IN DEV</span><div class="nexus-module-desc">Honeypot &amp; intrusion detection</div></div>
+        <div class="nexus-module dev">SENTINEL<span class="nexus-module-status">IN DEV</span><div class="nexus-module-desc">Server dashboard connector</div></div>
+        <div class="nexus-module dev">ORACLE<span class="nexus-module-status">IN DEV</span><div class="nexus-module-desc">AI-powered analysis engine</div></div>
       </div>
 
       <div class="tags" style="margin-top:1.2rem;">
