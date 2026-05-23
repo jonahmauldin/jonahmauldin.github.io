@@ -6,6 +6,9 @@
   <title>JONAH MAULDIN // OPERATOR</title>
   <meta name="description" content="Jonah Mauldin — systems builder, homelab operator, security experimenter. VIGIL mobile cyber app, ARGUS 23-module toolkit, NEXUS next-gen operator drive, self-hosted infrastructure, and live telemetry. No CS degree. Just built it.">
   <meta name="robots" content="index, follow">
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <meta name="theme-color" content="#020c06">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src https://app.netdata.cloud; img-src 'self' data:; object-src 'none'; base-uri 'self';">
   <link rel="canonical" href="https://jonahmauldin.github.io/">
 
   <!-- Open Graph -->
@@ -1108,15 +1111,15 @@
               </svg>
               <div class="ps-reveal-card">
                 <div class="ps-reveal-label">PUBLIC IP</div>
-                <div class="ps-reveal-value">73.&bull;&bull;&bull;.&bull;&bull;&bull;.142</div>
+                <div class="ps-reveal-value">98.&bull;&bull;&bull;.&bull;&bull;&bull;.211</div>
               </div>
               <div class="ps-reveal-card">
                 <div class="ps-reveal-label">ISP</div>
-                <div class="ps-reveal-value">AT&amp;T Services</div>
+                <div class="ps-reveal-value">Comcast</div>
               </div>
               <div class="ps-reveal-card">
                 <div class="ps-reveal-label">LOCATION</div>
-                <div class="ps-reveal-value">Atlanta, GA, US</div>
+                <div class="ps-reveal-value">Chicago, IL, US</div>
               </div>
               <div class="ps-reveal-card">
                 <div class="ps-reveal-label">VPN / PROXY</div>
@@ -1585,8 +1588,8 @@
         <div class="dl-card-desc">
           Install the VIGIL mobile app on any Android device. Requires enabling &ldquo;Install from unknown sources&rdquo; in your phone's settings since this isn't distributed through the Play Store. The app connects to a self-hosted backend over your local WiFi for live data.
         </div>
-        <a class="dl-btn" id="dl-vigil" href="#" onclick="return false;">&#8595;&nbsp; DOWNLOAD APK</a>
-        <div class="dl-note">// LINK PENDING &mdash; APK WILL BE HOSTED ON GITHUB RELEASES</div>
+        <span class="dl-btn" id="dl-vigil" style="opacity:0.35;cursor:not-allowed;">&#8595;&nbsp; COMING SOON</span>
+        <div class="dl-note">// APK RELEASE PENDING &mdash; WILL BE HOSTED ON GITHUB RELEASES</div>
       </div>
 
       <div class="dl-card">
@@ -1873,8 +1876,8 @@
   // ── NETDATA TELEMETRY
   const NETDATA_API_TOKEN = ""; // token redacted in public build
   const NETDATA_NODE_ID  = ''; // node ID redacted in public build
-  const NETDATA_SPACE_ID = '1bcc83c6-1304-4035-80d9-fed6e33f7e46';
-  const NETDATA_ROOM_ID  = '4ed3b398-8650-4d9e-b333-0e2eedcc8288';
+  const NETDATA_SPACE_ID = ''; // redacted in public build
+  const NETDATA_ROOM_ID  = ''; // redacted in public build
   const NETDATA_BASE     = 'https://app.netdata.cloud/api/v3';
 
   const elOnline       = document.getElementById('state-online');
