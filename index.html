@@ -826,7 +826,7 @@
     }
     .nexus-progress-fill {
       height: 100%;
-      width: 55.6%;
+      width: 100%;
       background: var(--green);
       box-shadow: 0 0 8px rgba(0,255,136,0.5);
     }
@@ -896,7 +896,7 @@
   <div class="header-readout" id="hud-readout">
     SYS // ONLINE<br>
     NODE // PROMETHEUS<br>
-    IP // 10.0.0.182<br>
+    IP // [LAN]<br>
     <span id="live-clock">--:--:--</span>
   </div>
   <div class="container">
@@ -933,7 +933,7 @@
       </div>
       <div class="spec-block">
         <div class="spec-label">Home Server</div>
-        <div class="spec-value">Prometheus // 10.0.0.182</div>
+        <div class="spec-value">Prometheus // [LAN]</div>
       </div>
       <div class="spec-block">
         <div class="spec-label">Projects Active</div>
@@ -949,7 +949,7 @@
       </div>
       <div class="spec-block">
         <div class="spec-label">Domain</div>
-        <div class="spec-value">prometheus-lab.duckdns.org</div>
+        <div class="spec-value">[redacted].duckdns.org</div>
       </div>
     </div>
   </div>
@@ -1423,20 +1423,20 @@
             NEXT GENERATION OPERATOR PLATFORM
           </div>
         </div>
-        <span class="status-tag building">5 / 9 LIVE</span>
+        <span class="status-tag active">COMPLETE</span>
       </div>
       <div class="card-tagline">WHERE ALL PATHS CONVERGE // v1.0.0</div>
       <p class="card-desc">
         The next-generation operator drive &mdash; a portable USB toolkit that inherits everything ARGUS built and expands into new territory. NEXUS carries forward all 23 ARGUS modules and the PHANTOM campaign engine, then adds nine new specialized platforms for offensive operations, digital forensics, threat intelligence, OPSEC, cryptography, and more. Same plug-and-run philosophy, broader capability.
       </p>
       <p class="card-desc" style="opacity:0.52;">
-        If ARGUS is a cybersecurity toolkit, NEXUS is the full operator workstation. It inherits the same portable Python architecture, zero-dependency design, and terminal aesthetic &mdash; but goes further with platforms built for advanced, specialized security work. Five of nine new platforms are fully implemented production modules: WRAITH, SPECTER-X, GHOST, ATLAS, and CIPHER. The remaining four are actively in development.
+        If ARGUS is a cybersecurity toolkit, NEXUS is the full operator workstation. It inherits the same portable Python architecture, zero-dependency design, and terminal aesthetic &mdash; but goes further with platforms built for advanced, specialized security work. All eight new platforms are fully implemented: WRAITH, SPECTER-X, GHOST, ATLAS, CIPHER, DAEMON, NEXUS INTEL, and PHANTOM NERVE. Feature-complete.
       </p>
 
-      <div style="font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;color:var(--red);opacity:0.45;margin:1.2rem 0 0.2rem;">// 9 NEW PLATFORMS</div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;color:var(--red);opacity:0.45;margin:1.2rem 0 0.2rem;">// 8 NEW PLATFORMS</div>
       <div class="nexus-progress-row">
-        <span style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--green);letter-spacing:0.1em;white-space:nowrap;"><span style="font-size:0.9rem;font-weight:700;">5</span>&nbsp;/&nbsp;9&nbsp;LIVE</span>
-        <span style="font-family:'Share Tech Mono',monospace;font-size:0.58rem;color:var(--amber);opacity:0.65;letter-spacing:0.1em;white-space:nowrap;">4&nbsp;IN&nbsp;DEV</span>
+        <span style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--green);letter-spacing:0.1em;white-space:nowrap;"><span style="font-size:0.9rem;font-weight:700;">8</span>&nbsp;/&nbsp;8&nbsp;LIVE</span>
+        <span style="font-family:'Share Tech Mono',monospace;font-size:0.58rem;color:var(--green);opacity:0.65;letter-spacing:0.1em;white-space:nowrap;">FEATURE&nbsp;COMPLETE</span>
         <div class="nexus-progress-track"><div class="nexus-progress-fill"></div></div>
       </div>
       <div class="nexus-grid reveal">
@@ -1445,16 +1445,15 @@
         <div class="nexus-module live">GHOST<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">OPSEC &amp; anonymity toolkit</div></div>
         <div class="nexus-module live">ATLAS<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Network mapping &amp; visualization</div></div>
         <div class="nexus-module live">CIPHER<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Crypto &amp; steganography workbench</div></div>
-        <div class="nexus-module dev">NEXUS INTEL<span class="nexus-module-status">IN DEV</span><div class="nexus-module-desc">Threat intelligence aggregator</div></div>
-        <div class="nexus-module dev">PHANTOM NERVE<span class="nexus-module-status">IN DEV</span><div class="nexus-module-desc">Honeypot &amp; intrusion detection</div></div>
-        <div class="nexus-module dev">SENTINEL<span class="nexus-module-status">IN DEV</span><div class="nexus-module-desc">Server dashboard connector</div></div>
-        <div class="nexus-module dev">ORACLE<span class="nexus-module-status">IN DEV</span><div class="nexus-module-desc">AI-powered analysis engine</div></div>
+        <div class="nexus-module live">DAEMON<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Persistence &amp; backdoor framework</div></div>
+        <div class="nexus-module live">NEXUS INTEL<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Threat intelligence aggregator</div></div>
+        <div class="nexus-module live">PHANTOM NERVE<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Honeypot &amp; intrusion detection</div></div>
       </div>
 
       <div class="tags" style="margin-top:1.2rem;">
         <span class="tag red">Inherits 23 ARGUS Modules</span>
         <span class="tag red">PHANTOM Engine</span>
-        <span class="tag red">9 New Platforms</span>
+        <span class="tag red">8 New Platforms</span>
         <span class="tag red">Portable USB</span>
         <span class="tag red">Zero Dependencies</span>
         <span class="tag red">Field Cheat Sheets</span>
@@ -1483,11 +1482,11 @@
         </div>
         <div class="spec-item">
           <div class="spec-item-label">DNS Endpoint</div>
-          <div class="spec-item-value">prometheus-lab.duckdns.org</div>
+          <div class="spec-item-value">[redacted].duckdns.org</div>
         </div>
         <div class="spec-item">
           <div class="spec-item-label">VPN Subnet</div>
-          <div class="spec-item-value">10.8.0.0/24</div>
+          <div class="spec-item-value">[VPN subnet]</div>
         </div>
         <div class="spec-item">
           <div class="spec-item-label">Monitoring Stack</div>
@@ -1597,7 +1596,7 @@
           Download the full ARGUS portable toolkit. Unzip to a USB drive or folder, right-click ARGUS.bat to run as administrator. Includes bundled Python 3.11 runtime and Nmap &mdash; nothing else to install. Windows only.
         </div>
         <a class="dl-btn" id="dl-argus" href="https://github.com/jonahmauldin/ARGUS/releases/download/v1.4.0/ARGUS-v1.4.0.zip">&#8595;&nbsp; DOWNLOAD ZIP</a>
-        <div class="dl-note">// LINK PENDING &mdash; SANITIZED BUILD WILL BE HOSTED ON GITHUB RELEASES</div>
+        <div class="dl-note">// ARGUS v1.4.0 &mdash; SANITIZED BUILD &mdash; GITHUB RELEASES</div>
       </div>
 
     </div>
@@ -1726,7 +1725,7 @@
           <div class="evo-artifacts">
             <span class="evo-tag amber">Claude-assisted dev</span>
             <span class="evo-tag amber">AI workflow integration</span>
-            <span class="evo-tag amber">NEXUS development</span>
+            <span class="evo-tag amber">NEXUS complete</span>
             <span class="evo-tag amber">portfolio as living lab</span>
           </div>
         </div>
@@ -1872,8 +1871,8 @@
   sections.forEach(s => navObs.observe(s));
 
   // ── NETDATA TELEMETRY
-  const NETDATA_API_TOKEN = "ndc.k9BfmcbSB9lE6xUa2zojlfABn3n7fouXIaEFFhtdaJN4KkTK5ToiQ7xQ2sjVLmqvz2qbbg72jezI0V2Yi0HIhkwhZo25ygNEeWpVxSljcfNnsRBGaXtyorSXjlEVnOG6";
-  const NETDATA_NODE_ID  = '35a66d51-fb60-49b9-9c6b-2ecd53d7f903';
+  const NETDATA_API_TOKEN = ""; // token redacted in public build
+  const NETDATA_NODE_ID  = ''; // node ID redacted in public build
   const NETDATA_SPACE_ID = '1bcc83c6-1304-4035-80d9-fed6e33f7e46';
   const NETDATA_ROOM_ID  = '4ed3b398-8650-4d9e-b333-0e2eedcc8288';
   const NETDATA_BASE     = 'https://app.netdata.cloud/api/v3';
@@ -2080,7 +2079,7 @@
       { k:'5', n:'CRYPTO',     d:'Hashing, password gen, base64, file verification', f:[{t:'[CRYP]', m:'SHA-256 generated for payload.bin', l:'info'},{t:'[CRYP]', m:'password gen — 20 char, high entropy', l:'info'},{t:'[CRYP]', m:'file verify — hash match confirmed', l:'info'}]},
       { k:'6', n:'CAPTURE',    d:'Packet capture and traffic analysis', f:[{t:'[CAP]', m:'netsh trace started — capture.etl', l:'info'},{t:'[CAP]', m:'live connections — 38 active sockets', l:'info'},{t:'[CAP]', m:'bandwidth — 1.2 MB/s sustained', l:'info'}]},
       { k:'7', n:'WORDLIST',   d:'Custom wordlist generation', f:[{t:'[WL]', m:'keyword mutation — 4,210 candidates', l:'info'},{t:'[WL]', m:'pattern gen — streaming to disk', l:'info'},{t:'[WL]', m:'lists merged — 12,884 unique entries', l:'info'}]},
-      { k:'8', n:'PROMETHEUS', d:'Connect to home server', f:[{t:'[PROM]', m:'ssh 10.0.0.182 — connected', l:'info'},{t:'[PROM]', m:'netdata :19999 — online', l:'info'},{t:'[PROM]', m:'uptime 41d — load avg 0.18', l:'info'}]},
+      { k:'8', n:'PROMETHEUS', d:'Connect to home server', f:[{t:'[PROM]', m:'ssh [LAN] — connected', l:'info'},{t:'[PROM]', m:'netdata :19999 — online', l:'info'},{t:'[PROM]', m:'uptime 41d — load avg 0.18', l:'info'}]},
       { k:'9', n:'NOTES',      d:'Encrypted note storage', f:[{t:'[NOTE]', m:'vault unlocked — PBKDF2 100k iters', l:'info'},{t:'[NOTE]', m:'entry encrypted — HMAC-SHA256', l:'info'},{t:'[NOTE]', m:'3 encrypted notes on disk', l:'info'}]},
       { k:'C', n:'CRACK',      d:'Hash cracking — dictionary, brute force, batch', f:[{t:'[CRACK]', m:'dictionary run — 1.4M hashes/s', l:'info'},{t:'[CRACK]', m:'hash identified — NTLM', l:'info'},{t:'[CRACK]', m:'match found — 2 of 5 cracked', l:'warn'}]},
       { k:'S', n:'SECRETS',    d:'Credential Manager, WiFi passwords, auto-logon', f:[{t:'[SEC]', m:'credential manager — 11 entries', l:'warn'},{t:'[SEC]', m:'wifi passwords — 6 recovered', l:'warn'},{t:'[SEC]', m:'auto-logon — registry exposed', l:'warn'}]},
