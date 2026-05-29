@@ -6,9 +6,6 @@
   <title>JONAH MAULDIN // OPERATOR</title>
   <meta name="description" content="Jonah Mauldin — systems builder, homelab operator, security experimenter. VIGIL mobile cyber app, ARGUS 23-module toolkit, NEXUS next-gen operator drive, self-hosted infrastructure, and live telemetry. No CS degree. Just built it.">
   <meta name="robots" content="index, follow">
-  <meta name="referrer" content="no-referrer-when-downgrade">
-  <meta name="theme-color" content="#020c06">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src https://app.netdata.cloud; img-src 'self' data:; object-src 'none'; base-uri 'self';">
   <link rel="canonical" href="https://jonahmauldin.github.io/">
 
   <!-- Open Graph -->
@@ -888,10 +885,11 @@
   <div class="nav-pip" data-target="s04"><div class="nav-pip-dot"></div><div class="nav-pip-label">04 PHANTOM</div></div>
   <div class="nav-pip" data-target="s05"><div class="nav-pip-dot"></div><div class="nav-pip-label">05 SPECTRE</div></div>
   <div class="nav-pip" data-target="s06"><div class="nav-pip-dot"></div><div class="nav-pip-label">06 NEXUS</div></div>
-  <div class="nav-pip" data-target="s07"><div class="nav-pip-dot"></div><div class="nav-pip-label">07 PROMETHEUS</div></div>
-  <div class="nav-pip" data-target="s08"><div class="nav-pip-dot"></div><div class="nav-pip-label">08 TELEMETRY</div></div>
-  <div class="nav-pip" data-target="s09"><div class="nav-pip-dot"></div><div class="nav-pip-label">09 DOWNLOADS</div></div>
-  <div class="nav-pip" data-target="s10"><div class="nav-pip-dot"></div><div class="nav-pip-label">10 EVOLUTION</div></div>
+  <div class="nav-pip" data-target="s07"><div class="nav-pip-dot"></div><div class="nav-pip-label">07 ARAWN</div></div>
+  <div class="nav-pip" data-target="s08"><div class="nav-pip-dot"></div><div class="nav-pip-label">08 PROMETHEUS</div></div>
+  <div class="nav-pip" data-target="s09"><div class="nav-pip-dot"></div><div class="nav-pip-label">09 TELEMETRY</div></div>
+  <div class="nav-pip" data-target="s10"><div class="nav-pip-dot"></div><div class="nav-pip-label">10 DOWNLOADS</div></div>
+  <div class="nav-pip" data-target="s11"><div class="nav-pip-dot"></div><div class="nav-pip-label">11 EVOLUTION</div></div>
 </nav>
 
 <!-- ═══════ HEADER ═══════ -->
@@ -899,7 +897,7 @@
   <div class="header-readout" id="hud-readout">
     SYS // ONLINE<br>
     NODE // PROMETHEUS<br>
-    IP // [LAN]<br>
+    IP // 10.0.0.182<br>
     <span id="live-clock">--:--:--</span>
   </div>
   <div class="container">
@@ -919,7 +917,7 @@
       </a>
     </div>
     <p class="bio reveal">
-      Non-technical founder who built a mobile cybersecurity app, a 23-module portable security toolkit, a next-generation operator drive, a headless home lab server, and a full pen test campaign platform from scratch &mdash; no CS degree, no bootcamp, no shortcuts. VIGIL puts network visibility on your phone. ARGUS runs from a USB drive. NEXUS takes it further. Prometheus runs 24/7. Everything here was built in the actual dark, with actual effort.
+      Non-technical founder who built a mobile cybersecurity app, a 23-module portable security toolkit, a next-generation operator drive, a headless home lab server, and a full pen test campaign platform from scratch &mdash; no CS degree, no bootcamp, no shortcuts. VIGIL puts network visibility on your phone. ARGUS runs from a USB drive. NEXUS takes it further. ARAWN turns a stock phone into a passive wireless intelligence sensor. Prometheus runs 24/7. Everything here was built in the actual dark, with actual effort.
     </p>
   </div>
 </section>
@@ -936,7 +934,7 @@
       </div>
       <div class="spec-block">
         <div class="spec-label">Home Server</div>
-        <div class="spec-value">Prometheus // [LAN]</div>
+        <div class="spec-value">Prometheus // 10.0.0.182</div>
       </div>
       <div class="spec-block">
         <div class="spec-label">Projects Active</div>
@@ -952,7 +950,7 @@
       </div>
       <div class="spec-block">
         <div class="spec-label">Domain</div>
-        <div class="spec-value">[redacted].duckdns.org</div>
+        <div class="spec-value">prometheus-lab.duckdns.org</div>
       </div>
     </div>
   </div>
@@ -1111,15 +1109,15 @@
               </svg>
               <div class="ps-reveal-card">
                 <div class="ps-reveal-label">PUBLIC IP</div>
-                <div class="ps-reveal-value">98.&bull;&bull;&bull;.&bull;&bull;&bull;.211</div>
+                <div class="ps-reveal-value">73.&bull;&bull;&bull;.&bull;&bull;&bull;.142</div>
               </div>
               <div class="ps-reveal-card">
                 <div class="ps-reveal-label">ISP</div>
-                <div class="ps-reveal-value">Comcast</div>
+                <div class="ps-reveal-value">AT&amp;T Services</div>
               </div>
               <div class="ps-reveal-card">
                 <div class="ps-reveal-label">LOCATION</div>
-                <div class="ps-reveal-value">Chicago, IL, US</div>
+                <div class="ps-reveal-value">Atlanta, GA, US</div>
               </div>
               <div class="ps-reveal-card">
                 <div class="ps-reveal-label">VPN / PROXY</div>
@@ -1465,10 +1463,48 @@
   </div>
 </section>
 
-<!-- ═══════ 07 — PROMETHEUS ═══════ -->
+<!-- ═══════ 07 — ARAWN ═══════ -->
 <section id="s07">
   <div class="container">
     <div class="section-num reveal">// 07</div>
+    <div class="section-title reveal">ARAWN</div>
+    <div class="card amber-accent reveal">
+      <div class="card-header">
+        <div>
+          <div class="card-title amber">ARAWN</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;opacity:0.25;letter-spacing:0.14em;margin-top:0.25rem;">
+            WIRELESS INTEL &middot; SIGNAL INTELLIGENCE &middot; WARDRIVING &middot; BLE TRIANGULATION &middot; SPECTRUM ANALYSIS &middot; PASSIVE RECON
+          </div>
+        </div>
+        <span class="status-tag building">IN PROGRESS</span>
+      </div>
+      <p class="card-desc">
+        A local-first wireless intelligence and environmental awareness app for a non-rooted Samsung Galaxy S23 Ultra &mdash; built entirely within stock Android APIs, no root, no sandbox bypass. ARAWN passively listens to open airspace: Wi-Fi scan results, BLE advertisements, and cell tower descriptors, logging every signal it sees alongside rolling GPS windows. It never injects, captures payloads, or attempts handshakes &mdash; a pure passive receiver, 100% compliant with the Federal Wiretap Act.
+      </p>
+      <p class="card-desc" style="opacity:0.52;">
+        Written in Kotlin with Jetpack Compose and a Room/SQLite store, it runs a persistent foreground service to defeat Android's background freezes and detects Wi-Fi scan throttling so the operator can deep-link to Developer Options for 1&ndash;2 second continuous logging. Core engine: BLE spatial triangulation via centroid math over RSSI/GPS windows, OUI fingerprinting against an embedded IEEE registry, a 2.4 / 5 / 6 GHz spectrum analyzer plotting channel crowding, an automated WiGLE CSV / KML export pipeline, and gamified capture achievements. All logs stay on-device unless manually exported.
+      </p>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:0.62rem;opacity:0.22;margin-bottom:1rem;">com.arawn.scanner &middot; Kotlin / Jetpack Compose / Room</div>
+      <div class="tags">
+        <span class="tag amber">Kotlin</span>
+        <span class="tag amber">Jetpack Compose</span>
+        <span class="tag amber">Room / SQLite</span>
+        <span class="tag amber">Foreground Service</span>
+        <span class="tag amber">BLE Triangulation</span>
+        <span class="tag amber">OUI Fingerprinting</span>
+        <span class="tag amber">2.4 / 5 / 6 GHz Analyzer</span>
+        <span class="tag amber">WiGLE CSV / KML Export</span>
+        <span class="tag amber">Passive Recon</span>
+        <span class="tag amber">Non-Rooted S23 Ultra</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 08 — PROMETHEUS ═══════ -->
+<section id="s08">
+  <div class="container">
+    <div class="section-num reveal">// 08</div>
     <div class="section-title reveal">PROMETHEUS HOME LAB</div>
     <div class="card cyan-accent reveal">
       <div class="card-header">
@@ -1485,11 +1521,11 @@
         </div>
         <div class="spec-item">
           <div class="spec-item-label">DNS Endpoint</div>
-          <div class="spec-item-value">[redacted].duckdns.org</div>
+          <div class="spec-item-value">prometheus-lab.duckdns.org</div>
         </div>
         <div class="spec-item">
           <div class="spec-item-label">VPN Subnet</div>
-          <div class="spec-item-value">[VPN subnet]</div>
+          <div class="spec-item-value">10.8.0.0/24</div>
         </div>
         <div class="spec-item">
           <div class="spec-item-label">Monitoring Stack</div>
@@ -1500,10 +1536,10 @@
   </div>
 </section>
 
-<!-- ═══════ 08 — LIVE TELEMETRY ═══════ -->
-<section id="s08">
+<!-- ═══════ 09 — LIVE TELEMETRY ═══════ -->
+<section id="s09">
   <div class="container">
-    <div class="section-num reveal">// 08</div>
+    <div class="section-num reveal">// 09</div>
     <div class="section-title reveal">PROMETHEUS // LIVE TELEMETRY</div>
 
     <!--
@@ -1576,9 +1612,9 @@
 </section>
 
 <!-- ═══════ 09 — DOWNLOADS ═══════ -->
-<section id="s09">
+<section id="s10">
   <div class="container">
-    <div class="section-num reveal">// 09</div>
+    <div class="section-num reveal">// 10</div>
     <div class="section-title reveal">DOWNLOADS</div>
     <div class="dl-grid reveal">
 
@@ -1588,8 +1624,8 @@
         <div class="dl-card-desc">
           Install the VIGIL mobile app on any Android device. Requires enabling &ldquo;Install from unknown sources&rdquo; in your phone's settings since this isn't distributed through the Play Store. The app connects to a self-hosted backend over your local WiFi for live data.
         </div>
-        <span class="dl-btn" id="dl-vigil" style="opacity:0.35;cursor:not-allowed;">&#8595;&nbsp; COMING SOON</span>
-        <div class="dl-note">// APK RELEASE PENDING &mdash; WILL BE HOSTED ON GITHUB RELEASES</div>
+        <a class="dl-btn" id="dl-vigil" href="#" onclick="return false;">&#8595;&nbsp; DOWNLOAD APK</a>
+        <div class="dl-note">// LINK PENDING &mdash; APK WILL BE HOSTED ON GITHUB RELEASES</div>
       </div>
 
       <div class="dl-card">
@@ -1602,14 +1638,24 @@
         <div class="dl-note">// ARGUS v1.4.0 &mdash; SANITIZED BUILD &mdash; GITHUB RELEASES</div>
       </div>
 
+      <div class="dl-card">
+        <div class="dl-card-icon" style="color:var(--amber);">&#9662;</div>
+        <div class="dl-card-title" style="color:var(--amber);">ARAWN &mdash; Android APK</div>
+        <div class="dl-card-desc">
+          Passive wireless intelligence sensor for the Samsung Galaxy S23 Ultra. Sideload the APK and grant location + nearby-device permissions &mdash; no root required. For continuous high-speed logging, disable &ldquo;Wi-Fi scan throttling&rdquo; in Developer Options (ARAWN deep-links you there). All captured signals stay on-device unless you export them.
+        </div>
+        <a class="dl-btn" id="dl-arawn" href="#" onclick="return false;" style="color:var(--amber);border-color:rgba(255,184,0,0.3);background:rgba(255,184,0,0.04);">&#8595;&nbsp; DOWNLOAD APK</a>
+        <div class="dl-note">// LINK PENDING &mdash; BUILD IN PROGRESS &mdash; APK WILL BE HOSTED ON GITHUB RELEASES</div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- ═══════ 10 — EVOLUTION ═══════ -->
-<section id="s10">
+<!-- ═══════ 11 — EVOLUTION ═══════ -->
+<section id="s11">
   <div class="container">
-    <div class="section-num reveal">// 10</div>
+    <div class="section-num reveal">// 11</div>
     <div class="section-title reveal">EVOLUTION</div>
 
     <div class="evolution-wrap reveal">
@@ -1705,12 +1751,13 @@
             <div class="evo-phase-title">MOBILE &amp; FULL-STACK</div>
             <div class="evo-status-badge done">COMPLETE</div>
           </div>
-          <div class="evo-phase-desc">Built VIGIL &mdash; a mobile cybersecurity app with a self-hosted Docker backend. React Native frontend, FastAPI backend, real ARP scanning, breach detection, and live connection monitoring. End-to-end working on device.</div>
+          <div class="evo-phase-desc">Built VIGIL &mdash; a mobile cybersecurity app with a self-hosted Docker backend. React Native frontend, FastAPI backend, real ARP scanning, breach detection, and live connection monitoring. End-to-end working on device. Now building ARAWN, a native Kotlin wireless intelligence sensor for a non-rooted S23 Ultra.</div>
           <div class="evo-artifacts">
             <span class="evo-tag">VIGIL mobile app</span>
             <span class="evo-tag">React Native + Expo</span>
             <span class="evo-tag">FastAPI + Docker</span>
             <span class="evo-tag">standalone APK</span>
+            <span class="evo-tag amber">ARAWN &mdash; Kotlin / Compose</span>
             <span class="evo-tag">full-stack delivery</span>
           </div>
         </div>
@@ -1874,10 +1921,10 @@
   sections.forEach(s => navObs.observe(s));
 
   // ── NETDATA TELEMETRY
-  const NETDATA_API_TOKEN = ""; // token redacted in public build
-  const NETDATA_NODE_ID  = ''; // node ID redacted in public build
-  const NETDATA_SPACE_ID = ''; // redacted in public build
-  const NETDATA_ROOM_ID  = ''; // redacted in public build
+  const NETDATA_API_TOKEN = "ndc.k9BfmcbSB9lE6xUa2zojlfABn3n7fouXIaEFFhtdaJN4KkTK5ToiQ7xQ2sjVLmqvz2qbbg72jezI0V2Yi0HIhkwhZo25ygNEeWpVxSljcfNnsRBGaXtyorSXjlEVnOG6";
+  const NETDATA_NODE_ID  = '35a66d51-fb60-49b9-9c6b-2ecd53d7f903';
+  const NETDATA_SPACE_ID = '1bcc83c6-1304-4035-80d9-fed6e33f7e46';
+  const NETDATA_ROOM_ID  = '4ed3b398-8650-4d9e-b333-0e2eedcc8288';
   const NETDATA_BASE     = 'https://app.netdata.cloud/api/v3';
 
   const elOnline       = document.getElementById('state-online');
@@ -2082,7 +2129,7 @@
       { k:'5', n:'CRYPTO',     d:'Hashing, password gen, base64, file verification', f:[{t:'[CRYP]', m:'SHA-256 generated for payload.bin', l:'info'},{t:'[CRYP]', m:'password gen — 20 char, high entropy', l:'info'},{t:'[CRYP]', m:'file verify — hash match confirmed', l:'info'}]},
       { k:'6', n:'CAPTURE',    d:'Packet capture and traffic analysis', f:[{t:'[CAP]', m:'netsh trace started — capture.etl', l:'info'},{t:'[CAP]', m:'live connections — 38 active sockets', l:'info'},{t:'[CAP]', m:'bandwidth — 1.2 MB/s sustained', l:'info'}]},
       { k:'7', n:'WORDLIST',   d:'Custom wordlist generation', f:[{t:'[WL]', m:'keyword mutation — 4,210 candidates', l:'info'},{t:'[WL]', m:'pattern gen — streaming to disk', l:'info'},{t:'[WL]', m:'lists merged — 12,884 unique entries', l:'info'}]},
-      { k:'8', n:'PROMETHEUS', d:'Connect to home server', f:[{t:'[PROM]', m:'ssh [LAN] — connected', l:'info'},{t:'[PROM]', m:'netdata :19999 — online', l:'info'},{t:'[PROM]', m:'uptime 41d — load avg 0.18', l:'info'}]},
+      { k:'8', n:'PROMETHEUS', d:'Connect to home server', f:[{t:'[PROM]', m:'ssh 10.0.0.182 — connected', l:'info'},{t:'[PROM]', m:'netdata :19999 — online', l:'info'},{t:'[PROM]', m:'uptime 41d — load avg 0.18', l:'info'}]},
       { k:'9', n:'NOTES',      d:'Encrypted note storage', f:[{t:'[NOTE]', m:'vault unlocked — PBKDF2 100k iters', l:'info'},{t:'[NOTE]', m:'entry encrypted — HMAC-SHA256', l:'info'},{t:'[NOTE]', m:'3 encrypted notes on disk', l:'info'}]},
       { k:'C', n:'CRACK',      d:'Hash cracking — dictionary, brute force, batch', f:[{t:'[CRACK]', m:'dictionary run — 1.4M hashes/s', l:'info'},{t:'[CRACK]', m:'hash identified — NTLM', l:'info'},{t:'[CRACK]', m:'match found — 2 of 5 cracked', l:'warn'}]},
       { k:'S', n:'SECRETS',    d:'Credential Manager, WiFi passwords, auto-logon', f:[{t:'[SEC]', m:'credential manager — 11 entries', l:'warn'},{t:'[SEC]', m:'wifi passwords — 6 recovered', l:'warn'},{t:'[SEC]', m:'auto-logon — registry exposed', l:'warn'}]},
