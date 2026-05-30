@@ -700,6 +700,56 @@
       animation: pulse-dot 2s ease-in-out infinite;
     }
 
+    /* ── ARAWN PHONE DEMO ── */
+    .arawn-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 3rem;
+      align-items: start;
+    }
+    @media(max-width:800px){
+      .arawn-layout { grid-template-columns: 1fr; }
+      .arawn-demo-wrap { display: flex; justify-content: center; }
+    }
+    .phone-frame.amber-frame {
+      border-color: rgba(255,184,0,0.22);
+      box-shadow: 0 0 40px rgba(255,184,0,0.05), inset 0 0 30px rgba(0,0,0,0.5);
+    }
+    .phone-frame.amber-frame .phone-notch { border-bottom-color: rgba(255,184,0,0.15); }
+    .phone-frame.amber-frame .phone-statusbar { color: rgba(255,184,0,0.4); }
+    .phone-frame.amber-frame .phone-tabs { border-top-color: rgba(255,184,0,0.12); }
+    .phone-frame.amber-frame .phone-tab { color: rgba(255,184,0,0.35); }
+    .phone-frame.amber-frame .phone-tab.active { color: #ffb800; background: rgba(255,184,0,0.1); }
+    .ps-console-lines {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.34rem;
+      line-height: 1.75;
+      overflow: hidden;
+    }
+    .ps-console-lines .cl-gps  { color: rgba(0,229,255,0.6); }
+    .ps-console-lines .cl-wifi { color: rgba(255,184,0,0.8); }
+    .ps-console-lines .cl-ble  { color: rgba(0,255,136,0.7); }
+    .ps-band-tabs { display: flex; gap: 4px; margin-bottom: 8px; }
+    .ps-band-btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.34rem; letter-spacing: 0.08em;
+      padding: 2px 7px;
+      border: 1px solid rgba(255,184,0,0.2);
+      color: rgba(255,184,0,0.4); background: none; cursor: pointer; border-radius: 3px;
+    }
+    .ps-band-btn.active { color: #ffb800; background: rgba(255,184,0,0.08); border-color: rgba(255,184,0,0.45); }
+    .ps-title-amber {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.52rem; font-weight: 700; color: #ffb800;
+      letter-spacing: 0.12em; margin-bottom: 10px;
+      text-shadow: 0 0 10px rgba(255,184,0,0.3);
+    }
+    .ps-map-stat {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.36rem; color: rgba(255,184,0,0.45);
+      letter-spacing: 0.08em; text-align: center; margin-top: 6px;
+    }
+
     /* ── DOWNLOAD SECTION ── */
     .dl-grid {
       display: grid;
@@ -1468,36 +1518,212 @@
   <div class="container">
     <div class="section-num reveal">// 07</div>
     <div class="section-title reveal">ARAWN</div>
-    <div class="card amber-accent reveal">
-      <div class="card-header">
-        <div>
-          <div class="card-title amber">ARAWN</div>
-          <div style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;opacity:0.25;letter-spacing:0.14em;margin-top:0.25rem;">
-            WIRELESS INTEL &middot; SIGNAL INTELLIGENCE &middot; WARDRIVING &middot; BLE TRIANGULATION &middot; SPECTRUM ANALYSIS &middot; PASSIVE RECON
+
+    <div class="arawn-layout reveal">
+      <div class="arawn-info">
+        <div class="card amber-accent flagship">
+          <div class="card-header">
+            <div>
+              <div class="card-title amber">ARAWN</div>
+              <div style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;opacity:0.25;letter-spacing:0.14em;margin-top:0.25rem;">
+                WIRELESS INTEL &middot; SIGNAL INTELLIGENCE &middot; PASSIVE RECON
+              </div>
+            </div>
+            <span class="status-tag active">ACTIVE</span>
+          </div>
+          <div class="card-tagline" style="color:var(--amber);">EVERY SIGNAL. EVERY BAND. LOCAL-FIRST. // v0.4.0</div>
+          <p class="card-desc">
+            A native Kotlin wardriving and wireless intelligence logger for a non-rooted Samsung Galaxy S23 Ultra. ARAWN runs as a persistent foreground service, simultaneously capturing Wi-Fi beacons, BLE advertisements, and GPS fixes &mdash; logging every signal to a local SQLite database. It never injects packets or attempts handshakes. 100% passive receive-only, fully compliant with the Federal Wiretap Act.
+          </p>
+          <p class="card-desc" style="opacity:0.52;">
+            Phase 2 shipped a 15-class device classification engine that scores every detected signal with confidence ratings, a 57,255-entry offline OUI vendor database built from Wireshark&rsquo;s manuf list, live RF spectrum visualization across 2.4&thinsp;/&thinsp;5&thinsp;/&thinsp;6&nbsp;GHz bands, a GPS-track map backed by OpenStreetMap, and dual-format CSV export. Deployed to the S23 Ultra via GitHub Actions CI &mdash; no local Android SDK required.
+          </p>
+          <div class="feature-grid">
+            <div class="feature-item">
+              <div class="feature-item-name">RF Console</div>
+              <div class="feature-item-desc">Live operator terminal. Every Wi-Fi beacon, BLE advertisement, and GPS fix logged in real time with vendor names.</div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-item-name">Spectrum Analyzer</div>
+              <div class="feature-item-desc">2.4 / 5 / 6 GHz band visualization. Channel crowding rendered as live frequency envelope curves on a dBm canvas.</div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-item-name">Device Classifier</div>
+              <div class="feature-item-desc">Rule engine classifies every signal into 15 device types &mdash; smartphone, router, IoT, wearable &mdash; with confidence scoring.</div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-item-name">OUI Lookup</div>
+              <div class="feature-item-desc">57,255-entry Wireshark vendor database embedded in the APK. Identifies chip manufacturers fully offline, zero API keys.</div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-item-name">GPS Track Map</div>
+              <div class="feature-item-desc">OpenStreetMap-backed route visualization. Every detected signal plotted at its capture coordinates.</div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-item-name">CSV Export</div>
+              <div class="feature-item-desc">WiGLE-compatible &plus; enriched export with device class, vendor, and MAC scope. Writes to Documents &mdash; no cloud required.</div>
+            </div>
+          </div>
+          <div class="tags" style="margin-top:0.8rem;">
+            <span class="tag amber">Kotlin</span>
+            <span class="tag amber">Jetpack Compose</span>
+            <span class="tag amber">Room / SQLite</span>
+            <span class="tag amber">Foreground Service</span>
+            <span class="tag amber">Device Classifier</span>
+            <span class="tag amber">OUI Fingerprinting</span>
+            <span class="tag amber">RF Spectrum</span>
+            <span class="tag amber">osmdroid / OSM</span>
+            <span class="tag amber">WiGLE CSV Export</span>
+            <span class="tag amber">GitHub Actions CI</span>
           </div>
         </div>
-        <span class="status-tag building">IN PROGRESS</span>
       </div>
-      <p class="card-desc">
-        A local-first wireless intelligence and environmental awareness app for a non-rooted Samsung Galaxy S23 Ultra &mdash; built entirely within stock Android APIs, no root, no sandbox bypass. ARAWN passively listens to open airspace: Wi-Fi scan results, BLE advertisements, and cell tower descriptors, logging every signal it sees alongside rolling GPS windows. It never injects, captures payloads, or attempts handshakes &mdash; a pure passive receiver, 100% compliant with the Federal Wiretap Act.
-      </p>
-      <p class="card-desc" style="opacity:0.52;">
-        Written in Kotlin with Jetpack Compose and a Room/SQLite store, it runs a persistent foreground service to defeat Android's background freezes and detects Wi-Fi scan throttling so the operator can deep-link to Developer Options for 1&ndash;2 second continuous logging. Core engine: BLE spatial triangulation via centroid math over RSSI/GPS windows, OUI fingerprinting against an embedded IEEE registry, a 2.4 / 5 / 6 GHz spectrum analyzer plotting channel crowding, an automated WiGLE CSV / KML export pipeline, and gamified capture achievements. All logs stay on-device unless manually exported.
-      </p>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:0.62rem;opacity:0.22;margin-bottom:1rem;">com.arawn.scanner &middot; Kotlin / Jetpack Compose / Room</div>
-      <div class="tags">
-        <span class="tag amber">Kotlin</span>
-        <span class="tag amber">Jetpack Compose</span>
-        <span class="tag amber">Room / SQLite</span>
-        <span class="tag amber">Foreground Service</span>
-        <span class="tag amber">BLE Triangulation</span>
-        <span class="tag amber">OUI Fingerprinting</span>
-        <span class="tag amber">2.4 / 5 / 6 GHz Analyzer</span>
-        <span class="tag amber">WiGLE CSV / KML Export</span>
-        <span class="tag amber">Passive Recon</span>
-        <span class="tag amber">Non-Rooted S23 Ultra</span>
+
+      <!-- ARAWN PHONE DEMO -->
+      <div class="arawn-demo-wrap">
+        <div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;color:var(--amber);opacity:0.3;margin-bottom:0.55rem;text-align:center;">// APP PREVIEW &mdash; TAP TABS TO EXPLORE</div>
+          <div class="phone-frame amber-frame" id="arawn-phone">
+            <div class="phone-notch"></div>
+            <div class="phone-statusbar">
+              <span>12:34</span>
+              <span>ARAWN</span>
+              <span>94%</span>
+            </div>
+
+            <!-- CONSOLE screen -->
+            <div class="phone-screen" id="ascreen-console">
+              <div class="ps-title-amber">OPERATOR CONSOLE</div>
+              <div class="ps-auto-badge" style="color:var(--amber);margin-bottom:6px;">
+                <span class="ps-auto-dot" style="background:var(--amber);"></span>SCANNING
+              </div>
+              <div class="ps-stats" style="margin-bottom:8px;">
+                <div class="ps-stat" style="border-color:rgba(255,184,0,0.12);background:rgba(255,184,0,0.03);">
+                  <div class="ps-stat-num" style="color:var(--amber);">47</div>
+                  <div class="ps-stat-label">WI-FI</div>
+                </div>
+                <div class="ps-stat" style="border-color:rgba(0,255,136,0.1);background:rgba(0,255,136,0.03);">
+                  <div class="ps-stat-num" style="color:var(--green);">23</div>
+                  <div class="ps-stat-label">BLE</div>
+                </div>
+                <div class="ps-stat" style="border-color:rgba(0,229,255,0.1);background:rgba(0,229,255,0.03);">
+                  <div class="ps-stat-num" style="color:var(--cyan);">3</div>
+                  <div class="ps-stat-label">GPS FIX</div>
+                </div>
+              </div>
+              <div class="ps-console-lines">
+                <div><span class="cl-gps">[GPS]</span> 33.7490&deg;N 84.3880&deg;W &plusmn;11m</div>
+                <div><span class="cl-wifi">[WIFI]</span> NETGEAR-5G -58dBm Ch.36 NETGEAR</div>
+                <div><span class="cl-ble">[BLE]</span> Galaxy Buds -68dBm Samsung Elec</div>
+                <div><span class="cl-wifi">[WIFI]</span> xfinitywifi -83dBm Ch.6 Comcast</div>
+                <div><span class="cl-ble">[BLE]</span> Tile Tracker -71dBm TILE INC</div>
+                <div><span class="cl-wifi">[WIFI]</span> HomeAP-5G -62dBm Ch.149 TP-Link</div>
+                <div><span class="cl-ble">[BLE]</span> Unknown -79dBm Randomized</div>
+                <div><span class="cl-wifi">[WIFI]</span> ARRIS-3421 -77dBm Ch.11 CommScope</div>
+                <div><span class="cl-gps">[GPS]</span> 33.7491&deg;N 84.3882&deg;W &plusmn;9m</div>
+                <div><span class="cl-ble">[BLE]</span> iPhone BLE -74dBm Randomized</div>
+                <div><span class="cl-wifi">[WIFI]</span> ATT-5678 -69dBm Ch.6 Calix Net</div>
+              </div>
+            </div>
+
+            <!-- SPECTRUM screen -->
+            <div class="phone-screen" id="ascreen-spectrum" hidden>
+              <div class="ps-title-amber">RF SPECTRUM</div>
+              <div class="ps-band-tabs">
+                <button class="ps-band-btn active" type="button">2.4GHz</button>
+                <button class="ps-band-btn" type="button">5GHz</button>
+                <button class="ps-band-btn" type="button">6GHz</button>
+              </div>
+              <svg viewBox="0 0 248 155" style="width:100%;display:block;">
+                <!-- axes -->
+                <line x1="20" y1="10" x2="20" y2="140" stroke="rgba(255,184,0,0.15)" stroke-width="0.5"/>
+                <line x1="20" y1="140" x2="244" y2="140" stroke="rgba(255,184,0,0.15)" stroke-width="0.5"/>
+                <!-- y-axis labels (dBm) -->
+                <text x="17" y="13"  text-anchor="end" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,184,0,0.4)">-30</text>
+                <text x="17" y="53"  text-anchor="end" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,184,0,0.4)">-55</text>
+                <text x="17" y="93"  text-anchor="end" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,184,0,0.4)">-80</text>
+                <text x="17" y="133" text-anchor="end" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,184,0,0.4)">-100</text>
+                <!-- horizontal gridlines -->
+                <line x1="20" y1="53"  x2="244" y2="53"  stroke="rgba(255,184,0,0.06)" stroke-width="0.5" stroke-dasharray="2,3"/>
+                <line x1="20" y1="93"  x2="244" y2="93"  stroke="rgba(255,184,0,0.06)" stroke-width="0.5" stroke-dasharray="2,3"/>
+                <!-- x-axis channel labels -->
+                <text x="55"  y="150" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,184,0,0.4)">Ch.1</text>
+                <text x="112" y="150" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,184,0,0.4)">Ch.6</text>
+                <text x="168" y="150" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,184,0,0.4)">Ch.11</text>
+                <!-- parabola Ch.1: apex x=55 y=48 (~-58 dBm) -->
+                <path d="M 25,140 Q 55,48 85,140" fill="rgba(255,184,0,0.08)" stroke="rgba(255,184,0,0.6)" stroke-width="1.2"/>
+                <!-- parabola Ch.6 strong: apex x=112 y=58 (~-63 dBm) -->
+                <path d="M 82,140 Q 112,58 142,140" fill="rgba(255,184,0,0.07)" stroke="rgba(255,184,0,0.5)" stroke-width="1.2"/>
+                <!-- parabola Ch.6 weaker overlap: apex x=116 y=76 (~-72 dBm) -->
+                <path d="M 88,140 Q 116,76 144,140" fill="rgba(255,120,0,0.04)" stroke="rgba(255,120,0,0.35)" stroke-width="1"/>
+                <!-- parabola Ch.11 strong: apex x=168 y=34 (~-49 dBm) -->
+                <path d="M 138,140 Q 168,34 198,140" fill="rgba(255,184,0,0.1)" stroke="rgba(255,184,0,0.7)" stroke-width="1.2"/>
+                <!-- parabola Ch.11 weaker: apex x=173 y=80 (~-74 dBm) -->
+                <path d="M 145,140 Q 173,80 201,140" fill="rgba(0,229,255,0.04)" stroke="rgba(0,229,255,0.3)" stroke-width="0.8"/>
+              </svg>
+              <div style="font-family:'Share Tech Mono',monospace;font-size:0.34rem;color:rgba(255,184,0,0.35);text-align:center;letter-spacing:0.08em;">5 APs DETECTED &middot; 2400&ndash;2500 MHz</div>
+            </div>
+
+            <!-- MAP screen -->
+            <div class="phone-screen" id="ascreen-map" hidden>
+              <div class="ps-title-amber">GPS TRACK</div>
+              <div class="ps-auto-badge" style="color:var(--cyan);margin-bottom:6px;">
+                <span class="ps-auto-dot" style="background:var(--cyan);"></span>OSM TILES ACTIVE
+              </div>
+              <svg viewBox="0 0 248 172" style="width:100%;display:block;">
+                <rect x="0" y="0" width="248" height="172" fill="rgba(8,12,22,0.9)"/>
+                <!-- simplified street grid -->
+                <line x1="40"  y1="0"   x2="40"  y2="172" stroke="rgba(255,184,0,0.05)" stroke-width="0.5"/>
+                <line x1="90"  y1="0"   x2="90"  y2="172" stroke="rgba(255,184,0,0.05)" stroke-width="0.5"/>
+                <line x1="140" y1="0"   x2="140" y2="172" stroke="rgba(255,184,0,0.05)" stroke-width="0.5"/>
+                <line x1="190" y1="0"   x2="190" y2="172" stroke="rgba(255,184,0,0.05)" stroke-width="0.5"/>
+                <line x1="0"   y1="43"  x2="248" y2="43"  stroke="rgba(255,184,0,0.05)" stroke-width="0.5"/>
+                <line x1="0"   y1="86"  x2="248" y2="86"  stroke="rgba(255,184,0,0.05)" stroke-width="0.5"/>
+                <line x1="0"   y1="129" x2="248" y2="129" stroke="rgba(255,184,0,0.05)" stroke-width="0.5"/>
+                <!-- GPS track path -->
+                <polyline points="28,155 52,143 68,122 66,95 83,76 98,62 123,57 148,65 168,52 193,42 208,27"
+                          fill="none" stroke="rgba(255,184,0,0.45)" stroke-width="1.5" stroke-dasharray="3,2"/>
+                <!-- Wi-Fi dots (amber) -->
+                <circle cx="52"  cy="143" r="3" fill="#ffb800" opacity="0.85"/>
+                <circle cx="68"  cy="122" r="3" fill="#ffb800" opacity="0.85"/>
+                <circle cx="83"  cy="76"  r="3" fill="#ffb800" opacity="0.85"/>
+                <circle cx="123" cy="57"  r="3" fill="#ffb800" opacity="0.85"/>
+                <circle cx="148" cy="65"  r="3" fill="#ffb800" opacity="0.85"/>
+                <circle cx="168" cy="52"  r="3" fill="#ffb800" opacity="0.85"/>
+                <circle cx="193" cy="42"  r="3" fill="#ffb800" opacity="0.85"/>
+                <!-- BLE dots (green) -->
+                <circle cx="66"  cy="95"  r="2.5" fill="#00ff88" opacity="0.75"/>
+                <circle cx="98"  cy="62"  r="2.5" fill="#00ff88" opacity="0.75"/>
+                <circle cx="138" cy="61"  r="2.5" fill="#00ff88" opacity="0.75"/>
+                <circle cx="173" cy="49"  r="2.5" fill="#00ff88" opacity="0.75"/>
+                <circle cx="208" cy="27"  r="2.5" fill="#00ff88" opacity="0.75"/>
+                <!-- current position pulse -->
+                <circle cx="208" cy="27" r="7" fill="none" stroke="#ffb800" stroke-width="1.5" opacity="0.5">
+                  <animate attributeName="r" values="7;12;7" dur="2s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values="0.5;0.1;0.5" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="208" cy="27" r="3" fill="#ffb800"/>
+              </svg>
+              <div class="ps-map-stat">47 WI-FI &nbsp;&middot;&nbsp; 23 BLE &nbsp;&middot;&nbsp; 1.2 KM TRACKED</div>
+              <div style="display:flex;gap:12px;justify-content:center;margin-top:5px;">
+                <span style="font-family:'Share Tech Mono',monospace;font-size:0.32rem;color:rgba(255,184,0,0.5);display:flex;align-items:center;gap:3px;">
+                  <svg width="8" height="8" style="flex-shrink:0;"><circle cx="4" cy="4" r="3" fill="#ffb800"/></svg>WI-FI
+                </span>
+                <span style="font-family:'Share Tech Mono',monospace;font-size:0.32rem;color:rgba(0,255,136,0.5);display:flex;align-items:center;gap:3px;">
+                  <svg width="8" height="8" style="flex-shrink:0;"><circle cx="4" cy="4" r="3" fill="#00ff88"/></svg>BLE
+                </span>
+              </div>
+            </div>
+
+            <div class="phone-tabs" id="arawn-tabs">
+              <button class="phone-tab active" type="button" data-screen="console">CONSOLE</button>
+              <button class="phone-tab" type="button" data-screen="spectrum">SPECTRUM</button>
+              <button class="phone-tab" type="button" data-screen="map">MAP</button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </div><!-- /arawn-layout -->
   </div>
 </section>
 
@@ -1644,8 +1870,8 @@
         <div class="dl-card-desc">
           Passive wireless intelligence sensor for the Samsung Galaxy S23 Ultra. Sideload the APK and grant location + nearby-device permissions &mdash; no root required. For continuous high-speed logging, disable &ldquo;Wi-Fi scan throttling&rdquo; in Developer Options (ARAWN deep-links you there). All captured signals stay on-device unless you export them.
         </div>
-        <a class="dl-btn" id="dl-arawn" href="#" onclick="return false;" style="color:var(--amber);border-color:rgba(255,184,0,0.3);background:rgba(255,184,0,0.04);">&#8595;&nbsp; DOWNLOAD APK</a>
-        <div class="dl-note">// LINK PENDING &mdash; BUILD IN PROGRESS &mdash; APK WILL BE HOSTED ON GITHUB RELEASES</div>
+        <a class="dl-btn" id="dl-arawn" href="https://github.com/jonahmauldin/ARAWN/releases/download/build-10/app-debug.apk" style="color:var(--amber);border-color:rgba(255,184,0,0.3);background:rgba(255,184,0,0.04);">&#8595;&nbsp; DOWNLOAD APK</a>
+        <div class="dl-note">// ARAWN v0.4.0 &mdash; BUILD-10 &mdash; GITHUB RELEASES &mdash; DEBUG APK</div>
       </div>
 
     </div>
@@ -2308,6 +2534,49 @@
 
     // start auto-cycling after 3s delay
     setTimeout(startAutoCycle, 3000);
+  })();
+
+  // ── ARAWN PHONE DEMO (tab switching + auto-cycle)
+  (function () {
+    const arawnTabs = document.querySelectorAll('#arawn-tabs .phone-tab');
+    const arawnScreens = ['console', 'spectrum', 'map'];
+    let currentArawnScreen = 0;
+    let arawnCycleTimer = null;
+    let arawnUserInteracted = false;
+
+    function showArawnScreen(name) {
+      arawnScreens.forEach(function (s) {
+        const el = document.getElementById('ascreen-' + s);
+        if (el) el.hidden = (s !== name);
+      });
+      arawnTabs.forEach(function (t) {
+        t.classList.toggle('active', t.dataset.screen === name);
+      });
+    }
+
+    arawnTabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        arawnUserInteracted = true;
+        clearInterval(arawnCycleTimer);
+        const name = tab.dataset.screen;
+        currentArawnScreen = arawnScreens.indexOf(name);
+        showArawnScreen(name);
+        arawnCycleTimer = setTimeout(function () {
+          arawnUserInteracted = false;
+          startArawnAutoCycle();
+        }, 12000);
+      });
+    });
+
+    function startArawnAutoCycle() {
+      if (arawnUserInteracted) return;
+      arawnCycleTimer = setInterval(function () {
+        currentArawnScreen = (currentArawnScreen + 1) % arawnScreens.length;
+        showArawnScreen(arawnScreens[currentArawnScreen]);
+      }, 4000);
+    }
+
+    setTimeout(startArawnAutoCycle, 5000);
   })();
 </script>
 </body>
