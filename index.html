@@ -931,11 +931,11 @@
   <div class="nav-pip" data-target="header"><div class="nav-pip-dot"></div><div class="nav-pip-label">HEADER</div></div>
   <div class="nav-pip" data-target="s01"><div class="nav-pip-dot"></div><div class="nav-pip-label">01 SPECS</div></div>
   <div class="nav-pip" data-target="s02"><div class="nav-pip-dot"></div><div class="nav-pip-label">02 VIGIL</div></div>
-  <div class="nav-pip" data-target="s03"><div class="nav-pip-dot"></div><div class="nav-pip-label">03 ARGUS</div></div>
-  <div class="nav-pip" data-target="s04"><div class="nav-pip-dot"></div><div class="nav-pip-label">04 PHANTOM</div></div>
-  <div class="nav-pip" data-target="s05"><div class="nav-pip-dot"></div><div class="nav-pip-label">05 SPECTRE</div></div>
+  <div class="nav-pip" data-target="s07"><div class="nav-pip-dot"></div><div class="nav-pip-label">03 ARAWN</div></div>
+  <div class="nav-pip" data-target="s03"><div class="nav-pip-dot"></div><div class="nav-pip-label">04 ARGUS</div></div>
+  <div class="nav-pip" data-target="s04"><div class="nav-pip-dot"></div><div class="nav-pip-label">05 PHANTOM</div></div>
   <div class="nav-pip" data-target="s06"><div class="nav-pip-dot"></div><div class="nav-pip-label">06 NEXUS</div></div>
-  <div class="nav-pip" data-target="s07"><div class="nav-pip-dot"></div><div class="nav-pip-label">07 ARAWN</div></div>
+  <div class="nav-pip" data-target="s05"><div class="nav-pip-dot"></div><div class="nav-pip-label">07 SPECTRE</div></div>
   <div class="nav-pip" data-target="s08"><div class="nav-pip-dot"></div><div class="nav-pip-label">08 PROMETHEUS</div></div>
   <div class="nav-pip" data-target="s09"><div class="nav-pip-dot"></div><div class="nav-pip-label">09 TELEMETRY</div></div>
   <div class="nav-pip" data-target="s10"><div class="nav-pip-dot"></div><div class="nav-pip-label">10 DOWNLOADS</div></div>
@@ -968,7 +968,7 @@
       </a>
     </div>
     <p class="bio reveal">
-      Operations professional and self-taught IT systems builder. Five years managing 15&ndash;20 person production floors &mdash; scheduling, cross-functional coordination, process improvement, and keeping systems running under pressure. Then built a self-administered Ubuntu server, a containerized monitoring stack, a 23-module network diagnostics toolkit, a mobile network monitoring app, and a passive wireless survey sensor &mdash; from scratch, no CS degree, no bootcamp. The operations instinct and the technical capability are the same skill set applied in two directions. VIGIL. ARGUS. NEXUS. ARAWN. Prometheus runs 24/7. Everything here is deployed and functional.
+      Operations professional and self-taught IT systems builder. Two years managing 15&ndash;20 person production floors &mdash; scheduling, cross-functional coordination, process improvement, and keeping systems running under pressure. Then built a self-administered Ubuntu server, a containerized monitoring stack, a 23-module network diagnostics toolkit, a mobile network monitoring app, and a passive wireless survey sensor &mdash; from scratch, no CS degree, no bootcamp. The operations instinct and the technical capability are the same skill set applied in two directions. VIGIL. ARGUS. NEXUS. ARAWN. Prometheus runs 24/7. Everything here is deployed and functional.
     </p>
   </div>
 </section>
@@ -1240,284 +1240,10 @@
   </div>
 </section>
 
-<!-- ═══════ 03 — ARGUS ═══════ -->
-<section id="s03">
-  <div class="container">
-    <div class="section-num reveal">// 03</div>
-    <div class="section-title reveal">ARGUS</div>
-    <div class="card green-accent flagship bracketed reveal">
-      <div class="card-header">
-        <div>
-          <div class="card-title">A.R.G.U.S</div>
-          <div style="font-family:'Share Tech Mono',monospace;font-size:0.58rem;opacity:0.28;letter-spacing:0.18em;margin-top:0.25rem;">
-            ADMIN // RECON // GENERAL // UTILITY // SYSTEM
-          </div>
-        </div>
-        <span class="status-tag active">ACTIVE</span>
-      </div>
-      <div class="card-tagline">ALL EYES. ALL THE TIME. // v1.4.0</div>
-      <p class="card-desc">
-        A portable IT administration and network diagnostics toolkit that runs entirely from a USB drive &mdash; no installation, no setup, and no internet connection required. Plug it into any Windows machine, right-click to run as admin, and you have 23 tools ready to go. Network scanning, system monitoring, Windows Event Log analysis, digital forensics, encrypted notes, and a structured security assessment and reporting engine.
-      </p>
-      <p class="card-desc" style="opacity:0.52;">
-        Built with Python 3.11 standard library only &mdash; zero pip dependencies. Bundles its own portable Python runtime and a copy of Nmap so nothing needs to be installed on the host machine. Every operation is automatically logged to the drive. Designed for IT administrators and systems analysts who need consistent, documented, repeatable diagnostics without relying on a managed workstation.
-      </p>
-      <div class="tags">
-        <span class="tag">Python 3.11</span>
-        <span class="tag">Portable / USB</span>
-        <span class="tag">Nmap Bundled</span>
-        <span class="tag">23 Modules</span>
-        <span class="tag">PHANTOM Engine</span>
-        <span class="tag">Zero Dependencies</span>
-        <span class="tag">stdlib Only</span>
-        <span class="tag">Windows Native</span>
-      </div>
-    </div>
-
-    <!-- ARGUS interactive showcase -->
-    <div class="ac-intro reveal">// LIVE INTERFACE PREVIEW &mdash; SIMULATED OPERATIONS</div>
-    <div class="argus-console reveal" id="argus-console" aria-label="ARGUS interactive demo console">
-      <div class="ac-bar">
-        <div class="ac-dots"><span></span><span></span><span></span></div>
-        <div class="ac-bar-title">argus@operator:~</div>
-        <div class="ac-bar-status"><span class="ac-live-dot"></span>LIVE</div>
-      </div>
-      <div class="ac-tabs" role="tablist" aria-label="ARGUS console view">
-        <button class="ac-tab active" type="button" role="tab" aria-selected="true"  data-view="argus">ARGUS</button>
-        <button class="ac-tab"        type="button" role="tab" aria-selected="false" data-view="phantom">PHANTOM</button>
-      </div>
-      <div class="ac-view" id="ac-view-argus" role="tabpanel" aria-label="ARGUS main menu">
-        <div class="ac-panel ac-menu-panel">
-          <div class="ac-menu-head">
-            <div class="ac-menu-title">A.R.G.U.S &nbsp;//&nbsp; IT ADMIN TOOLKIT</div>
-            <div class="ac-menu-sub">// NETWORK. SYSTEMS. DIAGNOSTICS. //</div>
-          </div>
-          <div class="ac-menu" id="ac-menu" role="listbox" aria-label="ARGUS operations"></div>
-          <div class="ac-menu-foot">ARGUS v1.4.0 &nbsp;//&nbsp; ALL ACTIVITY LOGGED TO DRIVE</div>
-        </div>
-        <div class="ac-panel ac-out-panel">
-          <div class="ac-panel-label">OUTPUT <span id="ac-out-mod">// [1] NETWORK</span></div>
-          <div class="ac-out-desc" id="ac-out-desc">Network recon, WiFi analysis, ARP detection.</div>
-          <div class="ac-log" id="ac-log" aria-live="polite"></div>
-          <div class="ac-prompt">argus&gt;&nbsp;</div>
-        </div>
-        <div class="ac-threat-row">
-          <div class="ac-meter" id="ac-m-exposure">
-            <div class="ac-meter-top"><span class="ac-meter-label">EXPOSURE</span><span class="ac-meter-val">--%</span></div>
-            <div class="ac-meter-track"><div class="ac-meter-fill"></div></div>
-          </div>
-          <div class="ac-meter" id="ac-m-intrusion">
-            <div class="ac-meter-top"><span class="ac-meter-label">INTRUSION</span><span class="ac-meter-val">--%</span></div>
-            <div class="ac-meter-track"><div class="ac-meter-fill"></div></div>
-          </div>
-          <div class="ac-meter" id="ac-m-integrity">
-            <div class="ac-meter-top"><span class="ac-meter-label">INTEGRITY</span><span class="ac-meter-val">--%</span></div>
-            <div class="ac-meter-track"><div class="ac-meter-fill"></div></div>
-          </div>
-        </div>
-      </div>
-      <div class="ac-view" id="ac-view-phantom" role="tabpanel" aria-label="PHANTOM campaign" hidden>
-        <div class="ac-panel">
-          <div class="ac-cmp-head">
-            <span>CAMPAIGN // <b>northgate</b></span>
-            <span>TARGET // 10.0.0.47</span>
-            <span>OPERATOR // argus</span>
-            <span style="margin-left:auto;">STATUS // <span id="ac-cmp-status">RUNNING</span></span>
-          </div>
-          <div class="ac-phases" id="ac-phases">
-            <div class="ac-phase" data-phase="0"><div class="ac-phase-node">1</div><div class="ac-phase-name">PASSIVE<br>RECON</div></div>
-            <div class="ac-phase" data-phase="1"><div class="ac-phase-node">2</div><div class="ac-phase-name">SCANNING</div></div>
-            <div class="ac-phase" data-phase="2"><div class="ac-phase-node">3</div><div class="ac-phase-name">GAINING<br>ACCESS</div></div>
-            <div class="ac-phase" data-phase="3"><div class="ac-phase-node">4</div><div class="ac-phase-name">POST-<br>EXPLOIT</div></div>
-            <div class="ac-phase" data-phase="4"><div class="ac-phase-node">5</div><div class="ac-phase-name">COVERING<br>TRACKS</div></div>
-          </div>
-          <div class="ac-panel-label">PHASE ACTIVITY <span id="ac-ph-name">// 1 &mdash; PASSIVE RECON</span></div>
-          <div class="ac-log" id="ac-ph-log" aria-live="polite"></div>
-        </div>
-        <div class="ac-find-row">
-          <div class="ac-find crit"><div class="ac-find-num" id="ac-f-crit">0</div><div class="ac-find-label">CRITICAL</div></div>
-          <div class="ac-find high"><div class="ac-find-num" id="ac-f-high">0</div><div class="ac-find-label">HIGH</div></div>
-          <div class="ac-find med"><div class="ac-find-num" id="ac-f-med">0</div><div class="ac-find-label">MEDIUM</div></div>
-          <div class="ac-find low"><div class="ac-find-num" id="ac-f-low">0</div><div class="ac-find-label">LOW</div></div>
-          <div class="ac-find"><div class="ac-find-num" id="ac-f-risk">0</div><div class="ac-find-label">RISK SCORE</div></div>
-        </div>
-      </div>
-      <div class="ac-alert" id="ac-alert">
-        <span class="ac-alert-dot"></span>
-        <span id="ac-alert-msg">no active threats &mdash; monitoring</span>
-      </div>
-      <div class="ac-footer">
-        <span class="ac-footer-note">SIMULATED ENVIRONMENT // ILLUSTRATIVE OUTPUT</span>
-        <button class="ac-dl" id="ac-dl" type="button">DOWNLOAD SAMPLE REPORT</button>
-      </div>
-    </div>
-
-    <!-- MODULE STACK -->
-    <div style="margin-top:2.5rem;">
-      <div style="font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;color:var(--green);opacity:0.3;margin-bottom:0.55rem;">// 23 OPERATIONAL MODULES</div>
-      <div class="module-grid reveal">
-        <div class="module-card"><div class="module-name" style="color:var(--amber);">argus.py</div><div class="module-desc">Main menu engine &amp; importlib module loader</div></div>
-        <div class="module-card"><div class="module-name" style="color:var(--amber);">display.py</div><div class="module-desc">Shared UI layer &mdash; boot sequence, colors, prompts</div></div>
-        <div class="module-card"><div class="module-name">[1] network.py</div><div class="module-desc">Network sweep, ARP detection, traceroute, MAC lookup</div></div>
-        <div class="module-card"><div class="module-name">[2] scanner.py</div><div class="module-desc">Port scan, device fingerprint, vuln lookup, CVE scan</div></div>
-        <div class="module-card"><div class="module-name">[3] forensics.py</div><div class="module-desc">USB history, browser artifacts, keylogger detection</div></div>
-        <div class="module-card"><div class="module-name">[4] osint.py</div><div class="module-desc">DNS, IP intel, whois, email header routing analysis</div></div>
-        <div class="module-card"><div class="module-name">[5] crypto.py</div><div class="module-desc">Hashing, password gen, base64, caesar cipher, file verify</div></div>
-        <div class="module-card"><div class="module-name">[6] capture.py</div><div class="module-desc">Packet capture (netsh), live connections, bandwidth</div></div>
-        <div class="module-card"><div class="module-name">[7] wordlist.py</div><div class="module-desc">Keyword mutation, pattern gen, list builder</div></div>
-        <div class="module-card"><div class="module-name">[8] prometheus.py</div><div class="module-desc">Home server SSH management &amp; remote tools</div></div>
-        <div class="module-card"><div class="module-name">[9] notes.py</div><div class="module-desc">PBKDF2+HMAC-SHA256 encrypted note storage</div></div>
-        <div class="module-card"><div class="module-name">[C] crack.py</div><div class="module-desc">Hash cracking &mdash; dictionary, brute force, batch, identifier</div></div>
-        <div class="module-card"><div class="module-name">[S] winsecrets.py</div><div class="module-desc">Credential Manager, WiFi passwords, auto-logon harvest</div></div>
-        <div class="module-card"><div class="module-name">[W] wifi.py</div><div class="module-desc">Deep wireless scan, evil twin detection, security audit</div></div>
-        <div class="module-card"><div class="module-name">[E] evade.py</div><div class="module-desc">IP exposure, DNS leak, EXIF scrub, secure wipe, browser wipe</div></div>
-        <div class="module-card"><div class="module-name">[H] loghunter.py</div><div class="module-desc">Windows Event Log threat hunting &mdash; 4625, 7045, 1102, 4688</div></div>
-        <div class="module-card"><div class="module-name">[M] monitor.py</div><div class="module-desc">System baseline, drift detection, live process watch</div></div>
-        <div class="module-card"><div class="module-name">[N] enumeration.py</div><div class="module-desc">SMB, NetBIOS, null session, subdomain, DNS enum + AXFR</div></div>
-        <div class="module-card"><div class="module-name">[V] pivot.py</div><div class="module-desc">SSH -L/-R/-D, netsh portproxy, double-hop command builder</div></div>
-        <div class="module-card"><div class="module-name">[G] payload.py</div><div class="module-desc">Shell handler, TCP listener, and payload encoding utility</div></div>
-        <div class="module-card"><div class="module-name">[I] intel.py</div><div class="module-desc">DNSBL reputation checks, IP/domain intel, IOC list manager</div></div>
-        <div class="module-card"><div class="module-name">[B] web.py</div><div class="module-desc">Header fingerprint, robots harvest, dir brute force, HTTP methods</div></div>
-        <div class="module-card"><div class="module-name">[K] privesc.py</div><div class="module-desc">Windows privilege configuration audit &mdash; token privs, service paths, install policies</div></div>
-        <div class="module-card"><div class="module-name">[A] addomain.py</div><div class="module-desc">AD enum &mdash; users, groups, SPNs, trust relationships, GPOs</div></div>
-        <div class="module-card"><div class="module-name">[F] fileanalyze.py</div><div class="module-desc">PE header parse, Shannon entropy, string extract, IOC hash check</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════ 04 — PHANTOM ═══════ -->
-<section id="s04">
-  <div class="container">
-    <div class="section-num reveal">// 04</div>
-    <div class="section-title reveal">PHANTOM ASSESSMENT PLATFORM</div>
-    <div class="card amber-accent reveal">
-      <div class="card-header">
-        <div class="card-title amber">PHANTOM</div>
-        <span class="status-tag active">COMPLETE</span>
-      </div>
-      <p class="card-desc">
-        A structured security assessment and documentation platform built into ARGUS. PHANTOM guides you through a 5-phase engagement &mdash; from passive reconnaissance through remediation and cleanup &mdash; tracking every finding along the way. When you&rsquo;re done, it generates a professional HTML report with severity ratings, risk scores, and an executive summary ready for delivery. A framework that turns scattered security reviews into documented, repeatable, auditable processes.
-      </p>
-      <div class="phase-list">
-        <span class="phase-item">PASSIVE RECON</span><span class="phase-arrow">&#8594;</span>
-        <span class="phase-item">SCANNING</span><span class="phase-arrow">&#8594;</span>
-        <span class="phase-item">ACCESS</span><span class="phase-arrow">&#8594;</span>
-        <span class="phase-item">POST-EXPLOITATION</span><span class="phase-arrow">&#8594;</span>
-        <span class="phase-item">CLEANUP</span>
-      </div>
-      <div class="phantom-grid">
-        <div class="phantom-module">phantom.py</div>
-        <div class="phantom-module">campaign.py</div>
-        <div class="phantom-module">ph_recon.py</div>
-        <div class="phantom-module">ph_scan.py</div>
-        <div class="phantom-module">ph_access.py</div>
-        <div class="phantom-module">ph_postex.py</div>
-        <div class="phantom-module">ph_tracks.py</div>
-        <div class="phantom-module">ph_report.py</div>
-      </div>
-      <div class="tags" style="margin-top:1.2rem;">
-        <span class="tag amber">5-Phase Pipeline</span>
-        <span class="tag amber">JSON Campaigns</span>
-        <span class="tag amber">HTML Report Gen</span>
-        <span class="tag amber">CVE Reference DB</span>
-        <span class="tag amber">Executive Summary</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════ 05 — SPECTRE ═══════ -->
-<section id="s05">
-  <div class="container">
-    <div class="section-num reveal">// 05</div>
-    <div class="section-title reveal">SPECTRE</div>
-    <div class="card red-accent reveal">
-      <div class="card-header">
-        <div>
-          <div class="card-title red">SPECTRE</div>
-          <div style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;opacity:0.25;letter-spacing:0.14em;margin-top:0.25rem;">
-            SYSTEMS &middot; PROCESS &middot; ENUMERATION &middot; COLLECTION &middot; TERMINAL &middot; RECON &middot; ENVIRONMENT
-          </div>
-        </div>
-        <span class="status-tag active">ACTIVE</span>
-      </div>
-      <p class="card-desc">
-        A quick-access command center that launches automatically every time you open a terminal. SPECTRE gives you single-hotkey access to network scanning, cryptographic utilities, and instant connections to remote servers &mdash; no menus to navigate, no tools to hunt for. Always running, always ready. If ARGUS is the full toolkit on a USB drive, SPECTRE is the shortcut panel that's always on your screen.
-      </p>
-      <p class="card-desc" style="opacity:0.52;">
-        Written in pure Bash, it hooks into the Git Bash startup on Windows. Features include Nmap scan shortcuts, hash generation across multiple algorithms (MD5, SHA-1, SHA-256, SHA-512), timestamped logging of all operations, and a one-key bridge to SSH into the Prometheus home server.
-      </p>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:0.62rem;opacity:0.22;margin-bottom:1rem;">~/spectre/spectre.sh</div>
-      <div class="tags">
-        <span class="tag red">Bash</span>
-        <span class="tag red">Auto-Launch</span>
-        <span class="tag red">Nmap Integration</span>
-        <span class="tag red">MD5 / SHA1 / SHA256 / SHA512</span>
-        <span class="tag red">Timestamped Logs</span>
-        <span class="tag red">Prometheus Bridge</span>
-        <span class="tag red">Single-Hotkey Interface</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════ 06 — NEXUS ═══════ -->
-<section id="s06">
-  <div class="container">
-    <div class="section-num reveal">// 06</div>
-    <div class="section-title reveal">NEXUS</div>
-    <div class="card red-accent reveal">
-      <div class="card-header">
-        <div>
-          <div class="card-title red">NEXUS</div>
-          <div style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;opacity:0.25;letter-spacing:0.14em;margin-top:0.25rem;">
-            NEXT GENERATION OPERATIONS PLATFORM
-          </div>
-        </div>
-        <span class="status-tag active">COMPLETE</span>
-      </div>
-      <div class="card-tagline">WHERE ALL PATHS CONVERGE // v1.0.0</div>
-      <p class="card-desc">
-        The next-generation portable toolkit that inherits everything ARGUS built and expands into new territory. NEXUS carries forward all 23 ARGUS modules and the PHANTOM assessment engine, then adds eight new specialized platforms covering digital forensics, threat intelligence, network mapping, cryptography, anomaly detection, and more. Same plug-and-run philosophy, broader capability.
-      </p>
-      <p class="card-desc" style="opacity:0.52;">
-        If ARGUS is a network administration and diagnostics toolkit, NEXUS is the full IT operations workstation. It inherits the same portable Python architecture, zero-dependency design, and terminal interface &mdash; but goes further with platforms built for advanced, specialized systems work. All eight new platforms are fully implemented: WRAITH, SPECTER-X, GHOST, ATLAS, CIPHER, DAEMON, NEXUS INTEL, and PHANTOM NERVE. Feature-complete.
-      </p>
-
-      <div style="font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;color:var(--red);opacity:0.45;margin:1.2rem 0 0.2rem;">// 8 NEW PLATFORMS</div>
-      <div class="nexus-progress-row">
-        <span style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--green);letter-spacing:0.1em;white-space:nowrap;"><span style="font-size:0.9rem;font-weight:700;">8</span>&nbsp;/&nbsp;8&nbsp;LIVE</span>
-        <span style="font-family:'Share Tech Mono',monospace;font-size:0.58rem;color:var(--green);opacity:0.65;letter-spacing:0.1em;white-space:nowrap;">FEATURE&nbsp;COMPLETE</span>
-        <div class="nexus-progress-track"><div class="nexus-progress-fill"></div></div>
-      </div>
-      <div class="nexus-grid reveal">
-        <div class="nexus-module live">WRAITH<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Advanced network enumeration &amp; analysis</div></div>
-        <div class="nexus-module live">SPECTER-X<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Digital forensics &amp; incident response</div></div>
-        <div class="nexus-module live">GHOST<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">OPSEC &amp; exposure reduction toolkit</div></div>
-        <div class="nexus-module live">ATLAS<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Network mapping &amp; topology visualization</div></div>
-        <div class="nexus-module live">CIPHER<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Cryptography &amp; data integrity workbench</div></div>
-        <div class="nexus-module live">DAEMON<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Service monitoring &amp; process management</div></div>
-        <div class="nexus-module live">NEXUS INTEL<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Threat intelligence aggregator</div></div>
-        <div class="nexus-module live">PHANTOM NERVE<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Honeypot &amp; intrusion detection</div></div>
-      </div>
-
-      <div class="tags" style="margin-top:1.2rem;">
-        <span class="tag red">Inherits 23 ARGUS Modules</span>
-        <span class="tag red">PHANTOM Engine</span>
-        <span class="tag red">8 New Platforms</span>
-        <span class="tag red">Portable USB</span>
-        <span class="tag red">Zero Dependencies</span>
-        <span class="tag red">Field Cheat Sheets</span>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ═══════ 07 — ARAWN ═══════ -->
 <section id="s07">
   <div class="container">
-    <div class="section-num reveal">// 07</div>
+    <div class="section-num reveal">// 03</div>
     <div class="section-title reveal">ARAWN</div>
 
     <div class="arawn-layout reveal">
@@ -1725,6 +1451,280 @@
         </div>
       </div>
     </div><!-- /arawn-layout -->
+  </div>
+</section>
+
+<!-- ═══════ 03 — ARGUS ═══════ -->
+<section id="s03">
+  <div class="container">
+    <div class="section-num reveal">// 04</div>
+    <div class="section-title reveal">ARGUS</div>
+    <div class="card green-accent flagship bracketed reveal">
+      <div class="card-header">
+        <div>
+          <div class="card-title">A.R.G.U.S</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:0.58rem;opacity:0.28;letter-spacing:0.18em;margin-top:0.25rem;">
+            ADMIN // RECON // GENERAL // UTILITY // SYSTEM
+          </div>
+        </div>
+        <span class="status-tag active">ACTIVE</span>
+      </div>
+      <div class="card-tagline">ALL EYES. ALL THE TIME. // v1.4.0</div>
+      <p class="card-desc">
+        A portable IT administration and network diagnostics toolkit that runs entirely from a USB drive &mdash; no installation, no setup, and no internet connection required. Plug it into any Windows machine, right-click to run as admin, and you have 23 tools ready to go. Network scanning, system monitoring, Windows Event Log analysis, digital forensics, encrypted notes, and a structured security assessment and reporting engine.
+      </p>
+      <p class="card-desc" style="opacity:0.52;">
+        Built with Python 3.11 standard library only &mdash; zero pip dependencies. Bundles its own portable Python runtime and a copy of Nmap so nothing needs to be installed on the host machine. Every operation is automatically logged to the drive. Designed for IT administrators and systems analysts who need consistent, documented, repeatable diagnostics without relying on a managed workstation. ARGUS was the foundation &mdash; NEXUS is where it went next.
+      </p>
+      <div class="tags">
+        <span class="tag">Python 3.11</span>
+        <span class="tag">Portable / USB</span>
+        <span class="tag">Nmap Bundled</span>
+        <span class="tag">23 Modules</span>
+        <span class="tag">PHANTOM Engine</span>
+        <span class="tag">Zero Dependencies</span>
+        <span class="tag">stdlib Only</span>
+        <span class="tag">Windows Native</span>
+      </div>
+    </div>
+
+    <!-- ARGUS interactive showcase -->
+    <div class="ac-intro reveal">// LIVE INTERFACE PREVIEW &mdash; SIMULATED OPERATIONS</div>
+    <div class="argus-console reveal" id="argus-console" aria-label="ARGUS interactive demo console">
+      <div class="ac-bar">
+        <div class="ac-dots"><span></span><span></span><span></span></div>
+        <div class="ac-bar-title">argus@operator:~</div>
+        <div class="ac-bar-status"><span class="ac-live-dot"></span>LIVE</div>
+      </div>
+      <div class="ac-tabs" role="tablist" aria-label="ARGUS console view">
+        <button class="ac-tab active" type="button" role="tab" aria-selected="true"  data-view="argus">ARGUS</button>
+        <button class="ac-tab"        type="button" role="tab" aria-selected="false" data-view="phantom">PHANTOM</button>
+      </div>
+      <div class="ac-view" id="ac-view-argus" role="tabpanel" aria-label="ARGUS main menu">
+        <div class="ac-panel ac-menu-panel">
+          <div class="ac-menu-head">
+            <div class="ac-menu-title">A.R.G.U.S &nbsp;//&nbsp; IT ADMIN TOOLKIT</div>
+            <div class="ac-menu-sub">// NETWORK. SYSTEMS. DIAGNOSTICS. //</div>
+          </div>
+          <div class="ac-menu" id="ac-menu" role="listbox" aria-label="ARGUS operations"></div>
+          <div class="ac-menu-foot">ARGUS v1.4.0 &nbsp;//&nbsp; ALL ACTIVITY LOGGED TO DRIVE</div>
+        </div>
+        <div class="ac-panel ac-out-panel">
+          <div class="ac-panel-label">OUTPUT <span id="ac-out-mod">// [1] NETWORK</span></div>
+          <div class="ac-out-desc" id="ac-out-desc">Network recon, WiFi analysis, ARP detection.</div>
+          <div class="ac-log" id="ac-log" aria-live="polite"></div>
+          <div class="ac-prompt">argus&gt;&nbsp;</div>
+        </div>
+        <div class="ac-threat-row">
+          <div class="ac-meter" id="ac-m-exposure">
+            <div class="ac-meter-top"><span class="ac-meter-label">EXPOSURE</span><span class="ac-meter-val">--%</span></div>
+            <div class="ac-meter-track"><div class="ac-meter-fill"></div></div>
+          </div>
+          <div class="ac-meter" id="ac-m-intrusion">
+            <div class="ac-meter-top"><span class="ac-meter-label">INTRUSION</span><span class="ac-meter-val">--%</span></div>
+            <div class="ac-meter-track"><div class="ac-meter-fill"></div></div>
+          </div>
+          <div class="ac-meter" id="ac-m-integrity">
+            <div class="ac-meter-top"><span class="ac-meter-label">INTEGRITY</span><span class="ac-meter-val">--%</span></div>
+            <div class="ac-meter-track"><div class="ac-meter-fill"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="ac-view" id="ac-view-phantom" role="tabpanel" aria-label="PHANTOM campaign" hidden>
+        <div class="ac-panel">
+          <div class="ac-cmp-head">
+            <span>CAMPAIGN // <b>northgate</b></span>
+            <span>TARGET // 10.0.0.47</span>
+            <span>OPERATOR // argus</span>
+            <span style="margin-left:auto;">STATUS // <span id="ac-cmp-status">RUNNING</span></span>
+          </div>
+          <div class="ac-phases" id="ac-phases">
+            <div class="ac-phase" data-phase="0"><div class="ac-phase-node">1</div><div class="ac-phase-name">PASSIVE<br>RECON</div></div>
+            <div class="ac-phase" data-phase="1"><div class="ac-phase-node">2</div><div class="ac-phase-name">SCANNING</div></div>
+            <div class="ac-phase" data-phase="2"><div class="ac-phase-node">3</div><div class="ac-phase-name">GAINING<br>ACCESS</div></div>
+            <div class="ac-phase" data-phase="3"><div class="ac-phase-node">4</div><div class="ac-phase-name">POST-<br>EXPLOIT</div></div>
+            <div class="ac-phase" data-phase="4"><div class="ac-phase-node">5</div><div class="ac-phase-name">COVERING<br>TRACKS</div></div>
+          </div>
+          <div class="ac-panel-label">PHASE ACTIVITY <span id="ac-ph-name">// 1 &mdash; PASSIVE RECON</span></div>
+          <div class="ac-log" id="ac-ph-log" aria-live="polite"></div>
+        </div>
+        <div class="ac-find-row">
+          <div class="ac-find crit"><div class="ac-find-num" id="ac-f-crit">0</div><div class="ac-find-label">CRITICAL</div></div>
+          <div class="ac-find high"><div class="ac-find-num" id="ac-f-high">0</div><div class="ac-find-label">HIGH</div></div>
+          <div class="ac-find med"><div class="ac-find-num" id="ac-f-med">0</div><div class="ac-find-label">MEDIUM</div></div>
+          <div class="ac-find low"><div class="ac-find-num" id="ac-f-low">0</div><div class="ac-find-label">LOW</div></div>
+          <div class="ac-find"><div class="ac-find-num" id="ac-f-risk">0</div><div class="ac-find-label">RISK SCORE</div></div>
+        </div>
+      </div>
+      <div class="ac-alert" id="ac-alert">
+        <span class="ac-alert-dot"></span>
+        <span id="ac-alert-msg">no active threats &mdash; monitoring</span>
+      </div>
+      <div class="ac-footer">
+        <span class="ac-footer-note">SIMULATED ENVIRONMENT // ILLUSTRATIVE OUTPUT</span>
+        <button class="ac-dl" id="ac-dl" type="button">DOWNLOAD SAMPLE REPORT</button>
+      </div>
+    </div>
+
+    <!-- MODULE STACK -->
+    <div style="margin-top:2.5rem;">
+      <div style="font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;color:var(--green);opacity:0.3;margin-bottom:0.55rem;">// 23 OPERATIONAL MODULES</div>
+      <div class="module-grid reveal">
+        <div class="module-card"><div class="module-name" style="color:var(--amber);">argus.py</div><div class="module-desc">Main menu engine &amp; importlib module loader</div></div>
+        <div class="module-card"><div class="module-name" style="color:var(--amber);">display.py</div><div class="module-desc">Shared UI layer &mdash; boot sequence, colors, prompts</div></div>
+        <div class="module-card"><div class="module-name">[1] network.py</div><div class="module-desc">Network sweep, ARP detection, traceroute, MAC lookup</div></div>
+        <div class="module-card"><div class="module-name">[2] scanner.py</div><div class="module-desc">Port scan, device fingerprint, vuln lookup, CVE scan</div></div>
+        <div class="module-card"><div class="module-name">[3] forensics.py</div><div class="module-desc">USB history, browser artifacts, keylogger detection</div></div>
+        <div class="module-card"><div class="module-name">[4] osint.py</div><div class="module-desc">DNS, IP intel, whois, email header routing analysis</div></div>
+        <div class="module-card"><div class="module-name">[5] crypto.py</div><div class="module-desc">Hashing, password gen, base64, caesar cipher, file verify</div></div>
+        <div class="module-card"><div class="module-name">[6] capture.py</div><div class="module-desc">Packet capture (netsh), live connections, bandwidth</div></div>
+        <div class="module-card"><div class="module-name">[7] wordlist.py</div><div class="module-desc">Keyword mutation, pattern gen, list builder</div></div>
+        <div class="module-card"><div class="module-name">[8] prometheus.py</div><div class="module-desc">Home server SSH management &amp; remote tools</div></div>
+        <div class="module-card"><div class="module-name">[9] notes.py</div><div class="module-desc">PBKDF2+HMAC-SHA256 encrypted note storage</div></div>
+        <div class="module-card"><div class="module-name">[C] crack.py</div><div class="module-desc">Hash cracking &mdash; dictionary, brute force, batch, identifier</div></div>
+        <div class="module-card"><div class="module-name">[S] winsecrets.py</div><div class="module-desc">Credential Manager, WiFi passwords, auto-logon harvest</div></div>
+        <div class="module-card"><div class="module-name">[W] wifi.py</div><div class="module-desc">Deep wireless scan, evil twin detection, security audit</div></div>
+        <div class="module-card"><div class="module-name">[E] evade.py</div><div class="module-desc">IP exposure, DNS leak, EXIF scrub, secure wipe, browser wipe</div></div>
+        <div class="module-card"><div class="module-name">[H] loghunter.py</div><div class="module-desc">Windows Event Log threat hunting &mdash; 4625, 7045, 1102, 4688</div></div>
+        <div class="module-card"><div class="module-name">[M] monitor.py</div><div class="module-desc">System baseline, drift detection, live process watch</div></div>
+        <div class="module-card"><div class="module-name">[N] enumeration.py</div><div class="module-desc">SMB, NetBIOS, null session, subdomain, DNS enum + AXFR</div></div>
+        <div class="module-card"><div class="module-name">[V] pivot.py</div><div class="module-desc">SSH -L/-R/-D, netsh portproxy, double-hop command builder</div></div>
+        <div class="module-card"><div class="module-name">[G] payload.py</div><div class="module-desc">Shell handler, TCP listener, and payload encoding utility</div></div>
+        <div class="module-card"><div class="module-name">[I] intel.py</div><div class="module-desc">DNSBL reputation checks, IP/domain intel, IOC list manager</div></div>
+        <div class="module-card"><div class="module-name">[B] web.py</div><div class="module-desc">Header fingerprint, robots harvest, dir brute force, HTTP methods</div></div>
+        <div class="module-card"><div class="module-name">[K] privesc.py</div><div class="module-desc">Windows privilege configuration audit &mdash; token privs, service paths, install policies</div></div>
+        <div class="module-card"><div class="module-name">[A] addomain.py</div><div class="module-desc">AD enum &mdash; users, groups, SPNs, trust relationships, GPOs</div></div>
+        <div class="module-card"><div class="module-name">[F] fileanalyze.py</div><div class="module-desc">PE header parse, Shannon entropy, string extract, IOC hash check</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 04 — PHANTOM ═══════ -->
+<section id="s04">
+  <div class="container">
+    <div class="section-num reveal">// 05</div>
+    <div class="section-title reveal">PHANTOM ASSESSMENT PLATFORM</div>
+    <div class="card amber-accent reveal">
+      <div class="card-header">
+        <div class="card-title amber">PHANTOM</div>
+        <span class="status-tag active">COMPLETE</span>
+      </div>
+      <p class="card-desc">
+        A structured security assessment and documentation platform built into ARGUS. PHANTOM guides you through a 5-phase engagement &mdash; from passive reconnaissance through remediation and cleanup &mdash; tracking every finding along the way. When you&rsquo;re done, it generates a professional HTML report with severity ratings, risk scores, and an executive summary ready for delivery. A framework that turns scattered security reviews into documented, repeatable, auditable processes.
+      </p>
+      <div class="phase-list">
+        <span class="phase-item">PASSIVE RECON</span><span class="phase-arrow">&#8594;</span>
+        <span class="phase-item">SCANNING</span><span class="phase-arrow">&#8594;</span>
+        <span class="phase-item">ACCESS</span><span class="phase-arrow">&#8594;</span>
+        <span class="phase-item">POST-EXPLOITATION</span><span class="phase-arrow">&#8594;</span>
+        <span class="phase-item">CLEANUP</span>
+      </div>
+      <div class="phantom-grid">
+        <div class="phantom-module">phantom.py</div>
+        <div class="phantom-module">campaign.py</div>
+        <div class="phantom-module">ph_recon.py</div>
+        <div class="phantom-module">ph_scan.py</div>
+        <div class="phantom-module">ph_access.py</div>
+        <div class="phantom-module">ph_postex.py</div>
+        <div class="phantom-module">ph_tracks.py</div>
+        <div class="phantom-module">ph_report.py</div>
+      </div>
+      <div class="tags" style="margin-top:1.2rem;">
+        <span class="tag amber">5-Phase Pipeline</span>
+        <span class="tag amber">JSON Campaigns</span>
+        <span class="tag amber">HTML Report Gen</span>
+        <span class="tag amber">CVE Reference DB</span>
+        <span class="tag amber">Executive Summary</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 06 — NEXUS ═══════ -->
+<section id="s06">
+  <div class="container">
+    <div class="section-num reveal">// 06</div>
+    <div class="section-title reveal">NEXUS</div>
+    <div class="card red-accent reveal">
+      <div class="card-header">
+        <div>
+          <div class="card-title red">NEXUS</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;opacity:0.25;letter-spacing:0.14em;margin-top:0.25rem;">
+            ARGUS EVOLVED &middot; NEXT GENERATION OPERATIONS PLATFORM
+          </div>
+        </div>
+        <span class="status-tag active">COMPLETE</span>
+      </div>
+      <div class="card-tagline">ARGUS, TAKEN FURTHER // v1.0.0</div>
+      <p class="card-desc">
+        NEXUS is what ARGUS grew into. It carries all 23 ARGUS modules and the PHANTOM assessment engine forward, then expands with eight new specialized platforms &mdash; digital forensics, threat intelligence, network mapping, cryptography, anomaly detection, and more. Same portable USB architecture, zero-dependency design, same plug-and-run philosophy. More capability, more depth.
+      </p>
+      <p class="card-desc" style="opacity:0.52;">
+        The architecture is identical &mdash; portable Python, zero-dependency, runs from USB &mdash; but the scope is larger. Eight new platforms cover capabilities that outgrew ARGUS&rsquo;s original module structure. All eight are fully implemented: WRAITH, SPECTER-X, GHOST, ATLAS, CIPHER, DAEMON, NEXUS INTEL, and PHANTOM NERVE. Feature-complete.
+      </p>
+
+      <div style="font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;color:var(--red);opacity:0.45;margin:1.2rem 0 0.2rem;">// 8 NEW PLATFORMS</div>
+      <div class="nexus-progress-row">
+        <span style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--green);letter-spacing:0.1em;white-space:nowrap;"><span style="font-size:0.9rem;font-weight:700;">8</span>&nbsp;/&nbsp;8&nbsp;LIVE</span>
+        <span style="font-family:'Share Tech Mono',monospace;font-size:0.58rem;color:var(--green);opacity:0.65;letter-spacing:0.1em;white-space:nowrap;">FEATURE&nbsp;COMPLETE</span>
+        <div class="nexus-progress-track"><div class="nexus-progress-fill"></div></div>
+      </div>
+      <div class="nexus-grid reveal">
+        <div class="nexus-module live">WRAITH<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Advanced network enumeration &amp; analysis</div></div>
+        <div class="nexus-module live">SPECTER-X<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Digital forensics &amp; incident response</div></div>
+        <div class="nexus-module live">GHOST<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">OPSEC &amp; exposure reduction toolkit</div></div>
+        <div class="nexus-module live">ATLAS<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Network mapping &amp; topology visualization</div></div>
+        <div class="nexus-module live">CIPHER<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Cryptography &amp; data integrity workbench</div></div>
+        <div class="nexus-module live">DAEMON<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Service monitoring &amp; process management</div></div>
+        <div class="nexus-module live">NEXUS INTEL<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Threat intelligence aggregator</div></div>
+        <div class="nexus-module live">PHANTOM NERVE<span class="nexus-module-status">LIVE</span><div class="nexus-module-desc">Honeypot &amp; intrusion detection</div></div>
+      </div>
+
+      <div class="tags" style="margin-top:1.2rem;">
+        <span class="tag red">Inherits 23 ARGUS Modules</span>
+        <span class="tag red">PHANTOM Engine</span>
+        <span class="tag red">8 New Platforms</span>
+        <span class="tag red">Portable USB</span>
+        <span class="tag red">Zero Dependencies</span>
+        <span class="tag red">Field Cheat Sheets</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 05 — SPECTRE ═══════ -->
+<section id="s05">
+  <div class="container">
+    <div class="section-num reveal">// 07</div>
+    <div class="section-title reveal">SPECTRE</div>
+    <div class="card red-accent reveal">
+      <div class="card-header">
+        <div>
+          <div class="card-title red">SPECTRE</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;opacity:0.25;letter-spacing:0.14em;margin-top:0.25rem;">
+            SYSTEMS &middot; PROCESS &middot; ENUMERATION &middot; COLLECTION &middot; TERMINAL &middot; RECON &middot; ENVIRONMENT
+          </div>
+        </div>
+        <span class="status-tag active">ACTIVE</span>
+      </div>
+      <p class="card-desc">
+        A quick-access command center that launches automatically every time you open a terminal. SPECTRE gives you single-hotkey access to network scanning, cryptographic utilities, and instant connections to remote servers &mdash; no menus to navigate, no tools to hunt for. Always running, always ready. If ARGUS is the full toolkit on a USB drive, SPECTRE is the shortcut panel that's always on your screen.
+      </p>
+      <p class="card-desc" style="opacity:0.52;">
+        Written in pure Bash, it hooks into the Git Bash startup on Windows. Features include Nmap scan shortcuts, hash generation across multiple algorithms (MD5, SHA-1, SHA-256, SHA-512), timestamped logging of all operations, and a one-key bridge to SSH into the Prometheus home server.
+      </p>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:0.62rem;opacity:0.22;margin-bottom:1rem;">~/spectre/spectre.sh</div>
+      <div class="tags">
+        <span class="tag red">Bash</span>
+        <span class="tag red">Auto-Launch</span>
+        <span class="tag red">Nmap Integration</span>
+        <span class="tag red">MD5 / SHA1 / SHA256 / SHA512</span>
+        <span class="tag red">Timestamped Logs</span>
+        <span class="tag red">Prometheus Bridge</span>
+        <span class="tag red">Single-Hotkey Interface</span>
+      </div>
+    </div>
   </div>
 </section>
 
