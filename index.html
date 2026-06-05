@@ -1253,42 +1253,42 @@
             <div>
               <div class="card-title amber">ARAWN</div>
               <div style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;opacity:0.25;letter-spacing:0.14em;margin-top:0.25rem;">
-                WIRELESS INTEL &middot; SIGNAL INTELLIGENCE &middot; PASSIVE RECON
+                FIELD OPS PLATFORM &middot; OFFLINE-FIRST &middot; SIGNAL INTELLIGENCE
               </div>
             </div>
             <span class="status-tag active">ACTIVE</span>
           </div>
-          <div class="card-tagline" style="color:var(--amber);">EVERY SIGNAL. EVERY BAND. LOCAL-FIRST. // v0.4.0</div>
+          <div class="card-tagline" style="color:var(--amber);">COLLECT. CLASSIFY. MAP. OPERATE. // v0.4.0</div>
           <p class="card-desc">
-            A native Kotlin wardriving and wireless intelligence logger for a non-rooted Samsung Galaxy S23 Ultra. ARAWN runs as a persistent foreground service, simultaneously capturing Wi-Fi beacons, BLE advertisements, and GPS fixes &mdash; logging every signal to a local SQLite database. It never injects packets or attempts handshakes. 100% passive receive-only, fully compliant with the Federal Wiretap Act.
+            ARAWN started as a wardriving scanner and evolved into a full field operations platform for disconnected environments. Running on a non-rooted Samsung Galaxy S23 Ultra, it functions as a passive RF intelligence tool &mdash; simultaneously capturing Wi-Fi beacons, BLE advertisements, and GPS coordinates, persisting every signal to a structured SQLite database in real time. Think ATAK-lite for wireless environment awareness. No injection, no handshakes, 100% receive-only, Wiretap Act compliant.
           </p>
           <p class="card-desc" style="opacity:0.52;">
-            Phase 2 shipped a 15-class device classification engine that scores every detected signal with confidence ratings, a 57,255-entry offline OUI vendor database built from Wireshark&rsquo;s manuf list, live RF spectrum visualization across 2.4&thinsp;/&thinsp;5&thinsp;/&thinsp;6&nbsp;GHz bands, a GPS-track map backed by OpenStreetMap, and dual-format CSV export. Deployed to the S23 Ultra via GitHub Actions CI &mdash; no local Android SDK required.
+            Phase 2 expanded it significantly: a 15-class rule-based device classifier scores every detected signal &mdash; smartphone, router, IoT, wearable, tracker &mdash; with confidence ratings; a 57,255-entry offline OUI vendor database identifies chip manufacturers without any network access; live RF spectrum visualization renders channel interference across 2.4&thinsp;/&thinsp;5&thinsp;/&thinsp;6&nbsp;GHz; and a GPS-track field map via OpenStreetMap plots every signal at its capture coordinates. WiGLE-compatible and enriched CSV export for post-mission analysis.
           </p>
           <div class="feature-grid">
             <div class="feature-item">
-              <div class="feature-item-name">RF Console</div>
-              <div class="feature-item-desc">Live operator terminal. Every Wi-Fi beacon, BLE advertisement, and GPS fix logged in real time with vendor names.</div>
+              <div class="feature-item-name">Signal Capture</div>
+              <div class="feature-item-desc">Persistent foreground service logs Wi-Fi, BLE, and GPS simultaneously. Defeats Android background freezes. Continuous during movement.</div>
             </div>
             <div class="feature-item">
-              <div class="feature-item-name">Spectrum Analyzer</div>
-              <div class="feature-item-desc">2.4 / 5 / 6 GHz band visualization. Channel crowding rendered as live frequency envelope curves on a dBm canvas.</div>
+              <div class="feature-item-name">Device Intelligence</div>
+              <div class="feature-item-desc">15-class rule engine identifies smartphones, routers, IoT, wearables, and trackers with per-signal confidence scores. 57k vendor lookups, fully offline.</div>
             </div>
             <div class="feature-item">
-              <div class="feature-item-name">Device Classifier</div>
-              <div class="feature-item-desc">Rule engine classifies every signal into 15 device types &mdash; smartphone, router, IoT, wearable &mdash; with confidence scoring.</div>
+              <div class="feature-item-name">RF Spectrum</div>
+              <div class="feature-item-desc">2.4 / 5 / 6 GHz band visualization. Channel crowding, signal overlap, and interference rendered live on a dBm canvas.</div>
             </div>
             <div class="feature-item">
-              <div class="feature-item-name">OUI Lookup</div>
-              <div class="feature-item-desc">57,255-entry Wireshark vendor database embedded in the APK. Identifies chip manufacturers fully offline, zero API keys.</div>
+              <div class="feature-item-name">Field Map</div>
+              <div class="feature-item-desc">OpenStreetMap situational map with every captured signal plotted at its GPS coordinate along your route. Offline-capable.</div>
             </div>
             <div class="feature-item">
-              <div class="feature-item-name">GPS Track Map</div>
-              <div class="feature-item-desc">OpenStreetMap-backed route visualization. Every detected signal plotted at its capture coordinates.</div>
+              <div class="feature-item-name">Offline-First</div>
+              <div class="feature-item-desc">No cloud, no API keys, no network required. SQLite stores all session data locally. Built for environments where connectivity can&rsquo;t be assumed.</div>
             </div>
             <div class="feature-item">
-              <div class="feature-item-name">CSV Export</div>
-              <div class="feature-item-desc">WiGLE-compatible &plus; enriched export with device class, vendor, and MAC scope. Writes to Documents &mdash; no cloud required.</div>
+              <div class="feature-item-name">Mission Export</div>
+              <div class="feature-item-desc">WiGLE-compatible &plus; enriched CSV with device class, vendor, and MAC scope. All data stays on-device until manually exported.</div>
             </div>
           </div>
           <div class="tags" style="margin-top:0.8rem;">
@@ -1299,8 +1299,8 @@
             <span class="tag amber">Device Classifier</span>
             <span class="tag amber">OUI Fingerprinting</span>
             <span class="tag amber">RF Spectrum</span>
+            <span class="tag amber">Offline-First</span>
             <span class="tag amber">osmdroid / OSM</span>
-            <span class="tag amber">WiGLE CSV Export</span>
             <span class="tag amber">GitHub Actions CI</span>
           </div>
         </div>
@@ -1320,9 +1320,9 @@
 
             <!-- CONSOLE screen -->
             <div class="phone-screen" id="ascreen-console">
-              <div class="ps-title-amber">OPERATOR CONSOLE</div>
+              <div class="ps-title-amber">SESSION LOG</div>
               <div class="ps-auto-badge" style="color:var(--amber);margin-bottom:6px;">
-                <span class="ps-auto-dot" style="background:var(--amber);"></span>SCANNING
+                <span class="ps-auto-dot" style="background:var(--amber);"></span>COLLECTING
               </div>
               <div class="ps-stats" style="margin-bottom:8px;">
                 <div class="ps-stat" style="border-color:rgba(255,184,0,0.12);background:rgba(255,184,0,0.03);">
@@ -1340,16 +1340,16 @@
               </div>
               <div class="ps-console-lines">
                 <div><span class="cl-gps">[GPS]</span> 33.7490&deg;N 84.3880&deg;W &plusmn;11m</div>
-                <div><span class="cl-wifi">[WIFI]</span> NETGEAR-5G -58dBm Ch.36 NETGEAR</div>
-                <div><span class="cl-ble">[BLE]</span> Galaxy Buds -68dBm Samsung Elec</div>
-                <div><span class="cl-wifi">[WIFI]</span> xfinitywifi -83dBm Ch.6 Comcast</div>
-                <div><span class="cl-ble">[BLE]</span> Tile Tracker -71dBm TILE INC</div>
-                <div><span class="cl-wifi">[WIFI]</span> HomeAP-5G -62dBm Ch.149 TP-Link</div>
-                <div><span class="cl-ble">[BLE]</span> Unknown -79dBm Randomized</div>
-                <div><span class="cl-wifi">[WIFI]</span> ARRIS-3421 -77dBm Ch.11 CommScope</div>
+                <div><span class="cl-wifi">[WIFI]</span> NETGEAR-5G NETGEAR <span style="color:rgba(0,255,136,0.55);">ROUTER 94%</span></div>
+                <div><span class="cl-ble">[BLE]</span> Galaxy Buds Samsung <span style="color:rgba(0,255,136,0.55);">AUDIO 88%</span></div>
+                <div><span class="cl-wifi">[WIFI]</span> xfinitywifi Comcast <span style="color:rgba(0,255,136,0.55);">INFRA 71%</span></div>
+                <div><span class="cl-ble">[BLE]</span> Tile Tracker TILE INC <span style="color:rgba(0,255,136,0.55);">TRACKER 96%</span></div>
+                <div><span class="cl-wifi">[WIFI]</span> HomeAP-5G TP-Link <span style="color:rgba(0,255,136,0.55);">ROUTER 89%</span></div>
+                <div><span class="cl-ble">[BLE]</span> Unknown Randomized <span style="color:rgba(255,184,0,0.4);">UNKNOWN</span></div>
+                <div><span class="cl-wifi">[WIFI]</span> ARRIS-3421 CommScope <span style="color:rgba(0,255,136,0.55);">ROUTER 77%</span></div>
                 <div><span class="cl-gps">[GPS]</span> 33.7491&deg;N 84.3882&deg;W &plusmn;9m</div>
-                <div><span class="cl-ble">[BLE]</span> iPhone BLE -74dBm Randomized</div>
-                <div><span class="cl-wifi">[WIFI]</span> ATT-5678 -69dBm Ch.6 Calix Net</div>
+                <div><span class="cl-ble">[BLE]</span> iPhone BLE Randomized <span style="color:rgba(0,255,136,0.55);">MOBILE 82%</span></div>
+                <div><span class="cl-wifi">[WIFI]</span> ATT-5678 Calix Net <span style="color:rgba(0,255,136,0.55);">ROUTER 85%</span></div>
               </div>
             </div>
 
@@ -1391,54 +1391,69 @@
               <div style="font-family:'Share Tech Mono',monospace;font-size:0.34rem;color:rgba(255,184,0,0.35);text-align:center;letter-spacing:0.08em;">5 APs DETECTED &middot; 2400&ndash;2500 MHz</div>
             </div>
 
-            <!-- MAP screen -->
+            <!-- MAP / FIELD MAP screen -->
             <div class="phone-screen" id="ascreen-map" hidden>
-              <div class="ps-title-amber">GPS TRACK</div>
-              <div class="ps-auto-badge" style="color:var(--cyan);margin-bottom:6px;">
-                <span class="ps-auto-dot" style="background:var(--cyan);"></span>OSM TILES ACTIVE
+              <div class="ps-title-amber">FIELD MAP</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                <div class="ps-auto-badge" style="color:var(--cyan);margin-bottom:0;">
+                  <span class="ps-auto-dot" style="background:var(--cyan);"></span>OSM LIVE
+                </div>
+                <div style="font-family:'Share Tech Mono',monospace;font-size:0.3rem;color:rgba(0,229,255,0.5);">33.7490&deg;N&nbsp;84.3880&deg;W</div>
               </div>
-              <svg viewBox="0 0 248 172" style="width:100%;display:block;">
-                <rect x="0" y="0" width="248" height="172" fill="rgba(8,12,22,0.9)"/>
-                <!-- simplified street grid -->
-                <line x1="40"  y1="0"   x2="40"  y2="172" stroke="rgba(255,184,0,0.05)" stroke-width="0.5"/>
-                <line x1="90"  y1="0"   x2="90"  y2="172" stroke="rgba(255,184,0,0.05)" stroke-width="0.5"/>
-                <line x1="140" y1="0"   x2="140" y2="172" stroke="rgba(255,184,0,0.05)" stroke-width="0.5"/>
-                <line x1="190" y1="0"   x2="190" y2="172" stroke="rgba(255,184,0,0.05)" stroke-width="0.5"/>
-                <line x1="0"   y1="43"  x2="248" y2="43"  stroke="rgba(255,184,0,0.05)" stroke-width="0.5"/>
-                <line x1="0"   y1="86"  x2="248" y2="86"  stroke="rgba(255,184,0,0.05)" stroke-width="0.5"/>
-                <line x1="0"   y1="129" x2="248" y2="129" stroke="rgba(255,184,0,0.05)" stroke-width="0.5"/>
+              <svg viewBox="0 0 248 148" style="width:100%;display:block;border:1px solid rgba(255,184,0,0.08);">
+                <rect x="0" y="0" width="248" height="148" fill="rgba(6,10,20,0.95)"/>
+                <!-- tactical grid -->
+                <line x1="40"  y1="0"   x2="40"  y2="148" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                <line x1="80"  y1="0"   x2="80"  y2="148" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                <line x1="120" y1="0"   x2="120" y2="148" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                <line x1="160" y1="0"   x2="160" y2="148" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                <line x1="200" y1="0"   x2="200" y2="148" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                <line x1="0"   y1="37"  x2="248" y2="37"  stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                <line x1="0"   y1="74"  x2="248" y2="74"  stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                <line x1="0"   y1="111" x2="248" y2="111" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
                 <!-- GPS track path -->
-                <polyline points="28,155 52,143 68,122 66,95 83,76 98,62 123,57 148,65 168,52 193,42 208,27"
-                          fill="none" stroke="rgba(255,184,0,0.45)" stroke-width="1.5" stroke-dasharray="3,2"/>
+                <polyline points="28,130 52,118 68,100 66,76 83,60 98,48 123,43 148,50 168,40 193,30 208,18"
+                          fill="none" stroke="rgba(255,184,0,0.4)" stroke-width="1.5" stroke-dasharray="3,2"/>
                 <!-- Wi-Fi dots (amber) -->
-                <circle cx="52"  cy="143" r="3" fill="#ffb800" opacity="0.85"/>
-                <circle cx="68"  cy="122" r="3" fill="#ffb800" opacity="0.85"/>
-                <circle cx="83"  cy="76"  r="3" fill="#ffb800" opacity="0.85"/>
-                <circle cx="123" cy="57"  r="3" fill="#ffb800" opacity="0.85"/>
-                <circle cx="148" cy="65"  r="3" fill="#ffb800" opacity="0.85"/>
-                <circle cx="168" cy="52"  r="3" fill="#ffb800" opacity="0.85"/>
-                <circle cx="193" cy="42"  r="3" fill="#ffb800" opacity="0.85"/>
+                <circle cx="52"  cy="118" r="2.5" fill="#ffb800" opacity="0.85"/>
+                <circle cx="68"  cy="100" r="2.5" fill="#ffb800" opacity="0.85"/>
+                <circle cx="83"  cy="60"  r="2.5" fill="#ffb800" opacity="0.85"/>
+                <circle cx="123" cy="43"  r="2.5" fill="#ffb800" opacity="0.85"/>
+                <circle cx="148" cy="50"  r="2.5" fill="#ffb800" opacity="0.85"/>
+                <circle cx="168" cy="40"  r="2.5" fill="#ffb800" opacity="0.85"/>
+                <circle cx="193" cy="30"  r="2.5" fill="#ffb800" opacity="0.85"/>
                 <!-- BLE dots (green) -->
-                <circle cx="66"  cy="95"  r="2.5" fill="#00ff88" opacity="0.75"/>
-                <circle cx="98"  cy="62"  r="2.5" fill="#00ff88" opacity="0.75"/>
-                <circle cx="138" cy="61"  r="2.5" fill="#00ff88" opacity="0.75"/>
-                <circle cx="173" cy="49"  r="2.5" fill="#00ff88" opacity="0.75"/>
-                <circle cx="208" cy="27"  r="2.5" fill="#00ff88" opacity="0.75"/>
+                <circle cx="66"  cy="76"  r="2" fill="#00ff88" opacity="0.75"/>
+                <circle cx="98"  cy="48"  r="2" fill="#00ff88" opacity="0.75"/>
+                <circle cx="138" cy="46"  r="2" fill="#00ff88" opacity="0.75"/>
+                <circle cx="173" cy="37"  r="2" fill="#00ff88" opacity="0.75"/>
+                <circle cx="208" cy="18"  r="2" fill="#00ff88" opacity="0.75"/>
                 <!-- current position pulse -->
-                <circle cx="208" cy="27" r="7" fill="none" stroke="#ffb800" stroke-width="1.5" opacity="0.5">
-                  <animate attributeName="r" values="7;12;7" dur="2s" repeatCount="indefinite"/>
-                  <animate attributeName="opacity" values="0.5;0.1;0.5" dur="2s" repeatCount="indefinite"/>
+                <circle cx="208" cy="18" r="6" fill="none" stroke="#ffb800" stroke-width="1.5" opacity="0.4">
+                  <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values="0.4;0.1;0.4" dur="2s" repeatCount="indefinite"/>
                 </circle>
-                <circle cx="208" cy="27" r="3" fill="#ffb800"/>
+                <circle cx="208" cy="18" r="2.5" fill="#ffb800"/>
+                <!-- tactical crosshair -->
+                <line x1="202" y1="18" x2="196" y2="18" stroke="rgba(255,184,0,0.6)" stroke-width="0.5"/>
+                <line x1="214" y1="18" x2="220" y2="18" stroke="rgba(255,184,0,0.6)" stroke-width="0.5"/>
+                <line x1="208" y1="12" x2="208" y2="6"  stroke="rgba(255,184,0,0.6)" stroke-width="0.5"/>
+                <line x1="208" y1="24" x2="208" y2="30" stroke="rgba(255,184,0,0.6)" stroke-width="0.5"/>
               </svg>
-              <div class="ps-map-stat">47 WI-FI &nbsp;&middot;&nbsp; 23 BLE &nbsp;&middot;&nbsp; 1.2 KM TRACKED</div>
-              <div style="display:flex;gap:12px;justify-content:center;margin-top:5px;">
-                <span style="font-family:'Share Tech Mono',monospace;font-size:0.32rem;color:rgba(255,184,0,0.5);display:flex;align-items:center;gap:3px;">
-                  <svg width="8" height="8" style="flex-shrink:0;"><circle cx="4" cy="4" r="3" fill="#ffb800"/></svg>WI-FI
-                </span>
-                <span style="font-family:'Share Tech Mono',monospace;font-size:0.32rem;color:rgba(0,255,136,0.5);display:flex;align-items:center;gap:3px;">
-                  <svg width="8" height="8" style="flex-shrink:0;"><circle cx="4" cy="4" r="3" fill="#00ff88"/></svg>BLE
-                </span>
+              <!-- ATAK-style mission stats panel -->
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-top:4px;">
+                <div style="text-align:center;padding:3px 0;border:1px solid rgba(255,184,0,0.12);background:rgba(255,184,0,0.02);">
+                  <div style="font-family:'Orbitron',monospace;font-size:0.52rem;font-weight:700;color:#ffb800;">47</div>
+                  <div style="font-family:'Share Tech Mono',monospace;font-size:0.27rem;color:rgba(255,184,0,0.4);letter-spacing:0.06em;">WI-FI</div>
+                </div>
+                <div style="text-align:center;padding:3px 0;border:1px solid rgba(0,255,136,0.12);background:rgba(0,255,136,0.02);">
+                  <div style="font-family:'Orbitron',monospace;font-size:0.52rem;font-weight:700;color:#00ff88;">23</div>
+                  <div style="font-family:'Share Tech Mono',monospace;font-size:0.27rem;color:rgba(0,255,136,0.4);letter-spacing:0.06em;">BLE</div>
+                </div>
+                <div style="text-align:center;padding:3px 0;border:1px solid rgba(0,229,255,0.12);background:rgba(0,229,255,0.02);">
+                  <div style="font-family:'Orbitron',monospace;font-size:0.52rem;font-weight:700;color:#00e5ff;">1.2</div>
+                  <div style="font-family:'Share Tech Mono',monospace;font-size:0.27rem;color:rgba(0,229,255,0.4);letter-spacing:0.06em;">KM</div>
+                </div>
               </div>
             </div>
 
@@ -2061,40 +2076,50 @@
 
     <div class="card green-accent reveal">
       <div class="card-header">
-        <div class="card-title">OPERATIONS &times; TECHNOLOGY INTERSECTION</div>
+        <div class="card-title">PRODUCTION &times; OPERATIONS MANAGEMENT</div>
         <span class="status-tag active">OPEN // ACTIVE SEARCH</span>
       </div>
 
-      <div style="font-family:'Share Tech Mono',monospace;font-size:0.72rem;line-height:2;color:var(--green);opacity:0.6;margin:1.1rem 0 0.4rem;">
-        <div>&gt; IT Administrator &mdash; managing systems, endpoints, networks, and user access</div>
-        <div>&gt; IT Operations Coordinator &mdash; bridging technical teams and operational workflows</div>
-        <div>&gt; Systems / Network Administrator &mdash; Linux, Windows, Docker, monitoring stack experience</div>
-        <div>&gt; IT Support Lead or Help Desk Lead &mdash; ops management background transitions directly</div>
-        <div>&gt; Remote or hybrid with relocation flexibility &#47;&#47; Canton, GA base</div>
+      <p class="card-desc" style="opacity:0.55;margin-bottom:0.6rem;">
+        Operations leader and hands-on technologist. Built a career from fabricator to production manager through performance and execution. Simultaneously developed a technical portfolio &mdash; server infrastructure, network tooling, mobile field ops platforms &mdash; applying the same mindset: analyze the system, identify inefficiencies, build practical solutions, and continuously improve.
+      </p>
+
+      <div style="font-family:'Share Tech Mono',monospace;font-size:0.72rem;line-height:2;color:var(--green);opacity:0.6;margin:0.8rem 0 0.4rem;">
+        <div>&gt; Production Management &mdash; scheduling, floor operations, cross-functional coordination</div>
+        <div>&gt; Operations Management &mdash; process improvement, bottleneck elimination, execution leadership</div>
+        <div>&gt; Manufacturing Analysis &mdash; data-driven performance tracking and workflow optimization</div>
+        <div>&gt; Process Improvement &mdash; systematic identification and elimination of operational inefficiency</div>
+        <div>&gt; Project Coordination &mdash; managing cross-functional deliverables, timelines, and communication</div>
       </div>
 
       <div style="font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:0.12em;color:var(--amber);opacity:0.7;margin:1.2rem 0 1.3rem;">
-        OPEN TO: Full-time &middot; Atlanta Metro &middot; Canton GA &middot; Remote / Hybrid &middot; Open to relocation
+        OPEN TO: Full-time &middot; Canton GA &middot; Atlanta Metro &middot; Open to relocation
       </div>
 
       <div style="display:flex;flex-wrap:wrap;gap:0.8rem;">
+        <a href="tel:6785173289"
+           style="font-family:'Share Tech Mono',monospace;font-size:0.68rem;letter-spacing:0.14em;color:var(--green);opacity:0.45;text-decoration:none;border:1px solid rgba(0,255,136,0.2);padding:0.4rem 0.9rem;transition:opacity 0.2s,border-color 0.2s;"
+           onmouseover="this.style.opacity='0.9';this.style.borderColor='rgba(0,255,136,0.5)'"
+           onmouseout="this.style.opacity='0.45';this.style.borderColor='rgba(0,255,136,0.2)'">
+          &#47;&#47; PHONE: 678-517-3289
+        </a>
         <a href="mailto:mauldin.jonah1998@gmail.com"
            style="font-family:'Share Tech Mono',monospace;font-size:0.68rem;letter-spacing:0.14em;color:var(--green);opacity:0.45;text-decoration:none;border:1px solid rgba(0,255,136,0.2);padding:0.4rem 0.9rem;transition:opacity 0.2s,border-color 0.2s;"
            onmouseover="this.style.opacity='0.9';this.style.borderColor='rgba(0,255,136,0.5)'"
            onmouseout="this.style.opacity='0.45';this.style.borderColor='rgba(0,255,136,0.2)'">
           &#47;&#47; EMAIL: mauldin.jonah1998@gmail.com
         </a>
-        <a href="https://github.com/jonahmauldin" target="_blank" rel="noopener"
-           style="font-family:'Share Tech Mono',monospace;font-size:0.68rem;letter-spacing:0.14em;color:var(--green);opacity:0.45;text-decoration:none;border:1px solid rgba(0,255,136,0.2);padding:0.4rem 0.9rem;transition:opacity 0.2s,border-color 0.2s;"
-           onmouseover="this.style.opacity='0.9';this.style.borderColor='rgba(0,255,136,0.5)'"
-           onmouseout="this.style.opacity='0.45';this.style.borderColor='rgba(0,255,136,0.2)'">
-          &#47;&#47; GITHUB: github.com/jonahmauldin
-        </a>
         <a href="https://linkedin.com/in/jonahmauldin" target="_blank" rel="noopener"
            style="font-family:'Share Tech Mono',monospace;font-size:0.68rem;letter-spacing:0.14em;color:var(--green);opacity:0.45;text-decoration:none;border:1px solid rgba(0,255,136,0.2);padding:0.4rem 0.9rem;transition:opacity 0.2s,border-color 0.2s;"
            onmouseover="this.style.opacity='0.9';this.style.borderColor='rgba(0,255,136,0.5)'"
            onmouseout="this.style.opacity='0.45';this.style.borderColor='rgba(0,255,136,0.2)'">
           &#47;&#47; LINKEDIN: linkedin.com/in/jonahmauldin
+        </a>
+        <a href="https://github.com/jonahmauldin" target="_blank" rel="noopener"
+           style="font-family:'Share Tech Mono',monospace;font-size:0.68rem;letter-spacing:0.14em;color:var(--green);opacity:0.45;text-decoration:none;border:1px solid rgba(0,255,136,0.2);padding:0.4rem 0.9rem;transition:opacity 0.2s,border-color 0.2s;"
+           onmouseover="this.style.opacity='0.9';this.style.borderColor='rgba(0,255,136,0.5)'"
+           onmouseout="this.style.opacity='0.45';this.style.borderColor='rgba(0,255,136,0.2)'">
+          &#47;&#47; GITHUB: github.com/jonahmauldin
         </a>
       </div>
     </div>
@@ -2106,7 +2131,7 @@
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <div class="footer-l">JONAH MAULDIN // IT &amp; OPERATIONS // ATL, GA</div>
+      <div class="footer-l">JONAH MAULDIN // OPERATIONS &amp; BUILDER // CANTON, GA</div>
       <div style="display:flex;align-items:center;gap:1.5rem;">
         <a href="https://github.com/jonahmauldin" target="_blank" rel="noopener"
            style="font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:0.14em;color:var(--green);opacity:0.4;text-decoration:none;transition:opacity 0.2s;"
@@ -2145,8 +2170,8 @@
   // ── TYPEWRITER (subtitle)
   const subtitleEl = document.getElementById('subtitle-text');
   const subtitlePhrases = [
-    'IT SYSTEMS BUILDER // OPERATIONS PROFESSIONAL',
-    'INFRASTRUCTURE // NETWORK ADMIN // OPERATIONS COORDINATION'
+    'OPERATIONS LEADER // SYSTEMS BUILDER',
+    'PRODUCTION MANAGEMENT // PROCESS IMPROVEMENT // EXECUTION'
   ];
   let phraseIdx = 0, charIdx = 0, deleting = false;
   function typeWriter() {
