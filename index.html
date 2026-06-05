@@ -750,6 +750,17 @@
       letter-spacing: 0.08em; text-align: center; margin-top: 6px;
     }
 
+
+    /* ── ARAWN FULL-SCREEN SYSTEM ── */
+    .arawn-screen{position:absolute;top:28px;left:0;right:0;bottom:52px;padding:7px 9px;overflow:hidden;display:none;flex-direction:column;}
+    .arawn-screen.arawn-screen-active{display:flex;}
+    #arawn-nav{position:absolute;bottom:0;left:0;right:0;height:52px;display:flex;align-items:stretch;background:rgba(10,10,10,0.98);border-top:1px solid rgba(255,184,0,0.1);}
+    .arawn-nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;background:none;border:none;cursor:pointer;color:rgba(90,90,90,0.8);font-family:'Share Tech Mono',monospace;font-size:0.26rem;letter-spacing:0.05em;padding:2px 0;transition:color 0.15s,background 0.15s;}
+    .arawn-nav-btn.arawn-nav-active{color:#ffb800;background:rgba(255,184,0,0.07);}
+    .arawn-nav-icon{font-size:0.68rem;line-height:1.1;}
+    .arawn-sv-btn{flex:1;font-family:'Share Tech Mono',monospace;font-size:0.27rem;padding:3px 1px;background:none;border:1px solid rgba(255,184,0,0.12);color:rgba(255,184,0,0.35);cursor:pointer;border-radius:2px;transition:color 0.15s,background 0.15s,border-color 0.15s;}
+    .arawn-sv-btn.arawn-sv-active{background:rgba(255,184,0,0.1);border-color:rgba(255,184,0,0.45);color:#ffb800;}
+
     /* ── DOWNLOAD SECTION ── */
     .dl-grid {
       display: grid;
@@ -1313,158 +1324,288 @@
           <div class="phone-frame amber-frame" id="arawn-phone">
             <div class="phone-notch"></div>
             <div class="phone-statusbar">
-              <span>12:34</span>
-              <span>ARAWN</span>
-              <span>94%</span>
+              <span>12:34</span><span>ARAWN</span><span>94%</span>
             </div>
 
-            <!-- CONSOLE screen -->
-            <div class="phone-screen" id="ascreen-console">
-              <div class="ps-title-amber">SESSION LOG</div>
-              <div class="ps-auto-badge" style="color:var(--amber);margin-bottom:6px;">
-                <span class="ps-auto-dot" style="background:var(--amber);"></span>COLLECTING
+            <!-- ══ RECON ══ -->
+            <div class="arawn-screen arawn-screen-active" id="ascreen-recon">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;flex-shrink:0;">
+                <span style="font-family:'Share Tech Mono',monospace;font-size:0.48rem;color:#ffb800;letter-spacing:0.08em;">ARAWN // RF SURVEY</span>
+                <span style="font-family:'Share Tech Mono',monospace;font-size:0.38rem;color:rgba(0,255,136,0.75);">&#9679; LIVE</span>
               </div>
-              <div class="ps-stats" style="margin-bottom:8px;">
-                <div class="ps-stat" style="border-color:rgba(255,184,0,0.12);background:rgba(255,184,0,0.03);">
-                  <div class="ps-stat-num" style="color:var(--amber);">47</div>
-                  <div class="ps-stat-label">WI-FI</div>
+              <div style="display:flex;gap:2px;margin-bottom:5px;flex-shrink:0;">
+                <button class="arawn-sv-btn arawn-sv-active" type="button" data-sv="console">&#9636; CONSOLE</button>
+                <button class="arawn-sv-btn" type="button" data-sv="spec">&#8767; SPEC</button>
+                <button class="arawn-sv-btn" type="button" data-sv="map">&#8982; MAP</button>
+                <button class="arawn-sv-btn" type="button" data-sv="heat">&#8853; HEAT</button>
+              </div>
+              <!-- sub-view wrapper -->
+              <div style="flex:1;overflow:hidden;position:relative;margin-bottom:5px;">
+                <!-- CONSOLE -->
+                <div id="arawn-sv-console" style="position:absolute;inset:0;background:rgba(10,10,10,0.9);border-radius:4px;padding:6px;overflow:hidden;">
+                  <div class="ps-console-lines">
+                    <div><span class="cl-gps">[GPS]</span> 33.7490&deg;N 84.3880&deg;W &plusmn;11m</div>
+                    <div><span class="cl-wifi">[WIFI]</span> NETGEAR-5G NETGEAR <span style="color:rgba(0,255,136,0.55);">ROUTER 94%</span></div>
+                    <div><span class="cl-ble">[BLE]</span> Galaxy Buds Samsung <span style="color:rgba(0,255,136,0.55);">AUDIO 88%</span></div>
+                    <div><span class="cl-wifi">[WIFI]</span> xfinitywifi Comcast <span style="color:rgba(0,255,136,0.55);">INFRA 71%</span></div>
+                    <div><span class="cl-ble">[BLE]</span> Tile Tracker TILE INC <span style="color:rgba(0,255,136,0.55);">TRACKER 96%</span></div>
+                    <div><span class="cl-wifi">[WIFI]</span> HomeAP-5G TP-Link <span style="color:rgba(0,255,136,0.55);">ROUTER 89%</span></div>
+                    <div><span class="cl-ble">[BLE]</span> Unknown Randomized <span style="color:rgba(255,184,0,0.4);">UNKNOWN</span></div>
+                    <div><span class="cl-wifi">[WIFI]</span> ARRIS-3421 CommScope <span style="color:rgba(0,255,136,0.55);">ROUTER 77%</span></div>
+                    <div><span class="cl-gps">[GPS]</span> 33.7491&deg;N 84.3882&deg;W &plusmn;9m</div>
+                    <div><span class="cl-ble">[BLE]</span> iPhone BLE Randomized <span style="color:rgba(0,255,136,0.55);">MOBILE 82%</span></div>
+                    <div><span class="cl-wifi">[WIFI]</span> ATT-5678 Calix Net <span style="color:rgba(0,255,136,0.55);">ROUTER 85%</span></div>
+                  </div>
                 </div>
-                <div class="ps-stat" style="border-color:rgba(0,255,136,0.1);background:rgba(0,255,136,0.03);">
-                  <div class="ps-stat-num" style="color:var(--green);">23</div>
-                  <div class="ps-stat-label">BLE</div>
+                <!-- SPEC -->
+                <div id="arawn-sv-spec" style="position:absolute;inset:0;display:none;flex-direction:column;padding:2px;">
+                  <svg viewBox="0 0 248 148" style="width:100%;flex:1;display:block;">
+                    <line x1="20" y1="8" x2="20" y2="135" stroke="rgba(255,184,0,0.15)" stroke-width="0.5"/>
+                    <line x1="20" y1="135" x2="244" y2="135" stroke="rgba(255,184,0,0.15)" stroke-width="0.5"/>
+                    <text x="17" y="11" text-anchor="end" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,184,0,0.4)">-30</text>
+                    <text x="17" y="51" text-anchor="end" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,184,0,0.4)">-55</text>
+                    <text x="17" y="91" text-anchor="end" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,184,0,0.4)">-80</text>
+                    <text x="17" y="131" text-anchor="end" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,184,0,0.4)">-100</text>
+                    <line x1="20" y1="51" x2="244" y2="51" stroke="rgba(255,184,0,0.06)" stroke-width="0.5" stroke-dasharray="2,3"/>
+                    <line x1="20" y1="91" x2="244" y2="91" stroke="rgba(255,184,0,0.06)" stroke-width="0.5" stroke-dasharray="2,3"/>
+                    <text x="55"  y="143" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,184,0,0.4)">Ch.1</text>
+                    <text x="112" y="143" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,184,0,0.4)">Ch.6</text>
+                    <text x="168" y="143" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,184,0,0.4)">Ch.11</text>
+                    <path d="M 25,135 Q 55,43 85,135" fill="rgba(255,184,0,0.08)" stroke="rgba(255,184,0,0.6)" stroke-width="1.2"/>
+                    <path d="M 82,135 Q 112,53 142,135" fill="rgba(255,184,0,0.07)" stroke="rgba(255,184,0,0.5)" stroke-width="1.2"/>
+                    <path d="M 88,135 Q 116,71 144,135" fill="rgba(255,120,0,0.04)" stroke="rgba(255,120,0,0.35)" stroke-width="1"/>
+                    <path d="M 138,135 Q 168,29 198,135" fill="rgba(255,184,0,0.1)" stroke="rgba(255,184,0,0.7)" stroke-width="1.2"/>
+                    <path d="M 145,135 Q 173,75 201,135" fill="rgba(0,229,255,0.04)" stroke="rgba(0,229,255,0.3)" stroke-width="0.8"/>
+                  </svg>
+                  <div style="font-family:'Share Tech Mono',monospace;font-size:0.29rem;color:rgba(255,184,0,0.35);text-align:center;letter-spacing:0.06em;flex-shrink:0;">5 APs &middot; 2400&ndash;2500 MHz</div>
                 </div>
-                <div class="ps-stat" style="border-color:rgba(0,229,255,0.1);background:rgba(0,229,255,0.03);">
-                  <div class="ps-stat-num" style="color:var(--cyan);">3</div>
-                  <div class="ps-stat-label">GPS FIX</div>
+                <!-- MAP -->
+                <div id="arawn-sv-map" style="position:absolute;inset:0;display:none;flex-direction:column;padding:2px;">
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;flex-shrink:0;">
+                    <span style="font-family:'Share Tech Mono',monospace;font-size:0.27rem;color:rgba(0,229,255,0.6);display:flex;align-items:center;gap:3px;"><span style="width:4px;height:4px;border-radius:50%;background:#00e5ff;display:inline-block;"></span>OSM LIVE</span>
+                    <span style="font-family:'Share Tech Mono',monospace;font-size:0.26rem;color:rgba(0,229,255,0.45);">33.7490&deg;N 84.388&deg;W</span>
+                  </div>
+                  <svg viewBox="0 0 248 118" style="width:100%;flex:1;display:block;border:1px solid rgba(255,184,0,0.08);">
+                    <rect x="0" y="0" width="248" height="118" fill="rgba(6,10,20,0.95)"/>
+                    <line x1="40" y1="0" x2="40" y2="118" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                    <line x1="80" y1="0" x2="80" y2="118" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                    <line x1="120" y1="0" x2="120" y2="118" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                    <line x1="160" y1="0" x2="160" y2="118" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                    <line x1="200" y1="0" x2="200" y2="118" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                    <line x1="0" y1="30" x2="248" y2="30" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                    <line x1="0" y1="60" x2="248" y2="60" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                    <line x1="0" y1="90" x2="248" y2="90" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                    <polyline points="28,105 52,93 68,78 66,57 83,44 98,33 123,28 148,35 168,25 193,17 208,10" fill="none" stroke="rgba(255,184,0,0.4)" stroke-width="1.5" stroke-dasharray="3,2"/>
+                    <circle cx="52" cy="93" r="2.5" fill="#ffb800" opacity="0.85"/>
+                    <circle cx="83" cy="44" r="2.5" fill="#ffb800" opacity="0.85"/>
+                    <circle cx="123" cy="28" r="2.5" fill="#ffb800" opacity="0.85"/>
+                    <circle cx="168" cy="25" r="2.5" fill="#ffb800" opacity="0.85"/>
+                    <circle cx="66" cy="57" r="2" fill="#00ff88" opacity="0.75"/>
+                    <circle cx="98" cy="33" r="2" fill="#00ff88" opacity="0.75"/>
+                    <circle cx="148" cy="35" r="2" fill="#00ff88" opacity="0.75"/>
+                    <circle cx="208" cy="10" r="5" fill="none" stroke="#ffb800" stroke-width="1.2" opacity="0.4"><animate attributeName="r" values="5;9;5" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0.1;0.4" dur="2s" repeatCount="indefinite"/></circle>
+                    <circle cx="208" cy="10" r="2.5" fill="#ffb800"/>
+                    <line x1="202" y1="10" x2="196" y2="10" stroke="rgba(255,184,0,0.6)" stroke-width="0.5"/>
+                    <line x1="214" y1="10" x2="220" y2="10" stroke="rgba(255,184,0,0.6)" stroke-width="0.5"/>
+                    <line x1="208" y1="4"  x2="208" y2="1"  stroke="rgba(255,184,0,0.6)" stroke-width="0.5"/>
+                    <line x1="208" y1="16" x2="208" y2="20" stroke="rgba(255,184,0,0.6)" stroke-width="0.5"/>
+                  </svg>
+                  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-top:3px;flex-shrink:0;">
+                    <div style="text-align:center;padding:2px 0;border:1px solid rgba(255,184,0,0.12);background:rgba(255,184,0,0.02);"><div style="font-family:'Orbitron',monospace;font-size:0.45rem;font-weight:700;color:#ffb800;">47</div><div style="font-family:'Share Tech Mono',monospace;font-size:0.24rem;color:rgba(255,184,0,0.4);">WI-FI</div></div>
+                    <div style="text-align:center;padding:2px 0;border:1px solid rgba(0,255,136,0.12);background:rgba(0,255,136,0.02);"><div style="font-family:'Orbitron',monospace;font-size:0.45rem;font-weight:700;color:#00ff88;">23</div><div style="font-family:'Share Tech Mono',monospace;font-size:0.24rem;color:rgba(0,255,136,0.4);">BLE</div></div>
+                    <div style="text-align:center;padding:2px 0;border:1px solid rgba(0,229,255,0.12);background:rgba(0,229,255,0.02);"><div style="font-family:'Orbitron',monospace;font-size:0.45rem;font-weight:700;color:#00e5ff;">1.2</div><div style="font-family:'Share Tech Mono',monospace;font-size:0.24rem;color:rgba(0,229,255,0.4);">KM</div></div>
+                  </div>
+                </div>
+                <!-- HEAT -->
+                <div id="arawn-sv-heat" style="position:absolute;inset:0;display:none;flex-direction:column;padding:2px;">
+                  <div style="font-family:'Share Tech Mono',monospace;font-size:0.27rem;color:rgba(255,184,0,0.45);margin-bottom:3px;flex-shrink:0;">RF SIGNAL INTENSITY &middot; 47 APs</div>
+                  <svg viewBox="0 0 248 148" style="width:100%;flex:1;display:block;">
+                    <defs>
+                      <radialGradient id="hh"><stop offset="0%" stop-color="#ff3355" stop-opacity="0.55"/><stop offset="100%" stop-color="#ff3355" stop-opacity="0"/></radialGradient>
+                      <radialGradient id="hw"><stop offset="0%" stop-color="#ffb800" stop-opacity="0.45"/><stop offset="100%" stop-color="#ffb800" stop-opacity="0"/></radialGradient>
+                      <radialGradient id="hc"><stop offset="0%" stop-color="#00ff88" stop-opacity="0.3"/><stop offset="100%" stop-color="#00ff88" stop-opacity="0"/></radialGradient>
+                    </defs>
+                    <rect x="0" y="0" width="248" height="148" fill="rgba(6,10,20,0.95)"/>
+                    <line x1="40"  y1="0" x2="40"  y2="148" stroke="rgba(255,184,0,0.03)" stroke-width="0.5"/>
+                    <line x1="80"  y1="0" x2="80"  y2="148" stroke="rgba(255,184,0,0.03)" stroke-width="0.5"/>
+                    <line x1="120" y1="0" x2="120" y2="148" stroke="rgba(255,184,0,0.03)" stroke-width="0.5"/>
+                    <line x1="160" y1="0" x2="160" y2="148" stroke="rgba(255,184,0,0.03)" stroke-width="0.5"/>
+                    <line x1="200" y1="0" x2="200" y2="148" stroke="rgba(255,184,0,0.03)" stroke-width="0.5"/>
+                    <line x1="0" y1="37"  x2="248" y2="37"  stroke="rgba(255,184,0,0.03)" stroke-width="0.5"/>
+                    <line x1="0" y1="74"  x2="248" y2="74"  stroke="rgba(255,184,0,0.03)" stroke-width="0.5"/>
+                    <line x1="0" y1="111" x2="248" y2="111" stroke="rgba(255,184,0,0.03)" stroke-width="0.5"/>
+                    <ellipse cx="90"  cy="55"  rx="44" ry="34" fill="url(#hh)"/>
+                    <ellipse cx="170" cy="38"  rx="38" ry="28" fill="url(#hh)"/>
+                    <ellipse cx="60"  cy="105" rx="32" ry="26" fill="url(#hw)"/>
+                    <ellipse cx="145" cy="90"  rx="40" ry="30" fill="url(#hw)"/>
+                    <ellipse cx="210" cy="115" rx="28" ry="22" fill="url(#hc)"/>
+                    <ellipse cx="200" cy="65"  rx="26" ry="20" fill="url(#hc)"/>
+                    <text x="8"  y="144" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,51,85,0.6)">&#9632;</text>
+                    <text x="16" y="144" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,184,0,0.6)">&#9632;</text>
+                    <text x="24" y="144" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(0,255,136,0.6)">&#9632;</text>
+                    <text x="32" y="144" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,255,255,0.28)">STRONG &#8594; WEAK</text>
+                  </svg>
                 </div>
               </div>
-              <div class="ps-console-lines">
-                <div><span class="cl-gps">[GPS]</span> 33.7490&deg;N 84.3880&deg;W &plusmn;11m</div>
-                <div><span class="cl-wifi">[WIFI]</span> NETGEAR-5G NETGEAR <span style="color:rgba(0,255,136,0.55);">ROUTER 94%</span></div>
-                <div><span class="cl-ble">[BLE]</span> Galaxy Buds Samsung <span style="color:rgba(0,255,136,0.55);">AUDIO 88%</span></div>
-                <div><span class="cl-wifi">[WIFI]</span> xfinitywifi Comcast <span style="color:rgba(0,255,136,0.55);">INFRA 71%</span></div>
-                <div><span class="cl-ble">[BLE]</span> Tile Tracker TILE INC <span style="color:rgba(0,255,136,0.55);">TRACKER 96%</span></div>
-                <div><span class="cl-wifi">[WIFI]</span> HomeAP-5G TP-Link <span style="color:rgba(0,255,136,0.55);">ROUTER 89%</span></div>
-                <div><span class="cl-ble">[BLE]</span> Unknown Randomized <span style="color:rgba(255,184,0,0.4);">UNKNOWN</span></div>
-                <div><span class="cl-wifi">[WIFI]</span> ARRIS-3421 CommScope <span style="color:rgba(0,255,136,0.55);">ROUTER 77%</span></div>
-                <div><span class="cl-gps">[GPS]</span> 33.7491&deg;N 84.3882&deg;W &plusmn;9m</div>
-                <div><span class="cl-ble">[BLE]</span> iPhone BLE Randomized <span style="color:rgba(0,255,136,0.55);">MOBILE 82%</span></div>
-                <div><span class="cl-wifi">[WIFI]</span> ATT-5678 Calix Net <span style="color:rgba(0,255,136,0.55);">ROUTER 85%</span></div>
+              <!-- Controls -->
+              <div style="display:flex;gap:3px;margin-bottom:3px;flex-shrink:0;">
+                <button style="flex:2;font-family:'Share Tech Mono',monospace;font-size:0.28rem;padding:5px 2px;background:rgba(53,208,127,0.1);border:1px solid rgba(53,208,127,0.3);color:#35D07F;cursor:pointer;border-radius:3px;">START TRACKING</button>
+                <button style="flex:1;font-family:'Share Tech Mono',monospace;font-size:0.28rem;padding:5px 2px;background:rgba(204,59,59,0.08);border:1px solid rgba(204,59,59,0.22);color:rgba(204,59,59,0.6);cursor:pointer;border-radius:3px;">STOP</button>
+                <button style="width:26px;font-family:'Share Tech Mono',monospace;font-size:0.25rem;padding:3px 1px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);color:rgba(255,255,255,0.22);cursor:pointer;border-radius:3px;">CLR</button>
+              </div>
+              <div style="display:flex;gap:3px;flex-shrink:0;">
+                <button style="flex:1;font-family:'Share Tech Mono',monospace;font-size:0.26rem;padding:4px 2px;background:rgba(10,10,10,0.9);border:1px solid rgba(255,184,0,0.16);color:#ffb800;cursor:pointer;border-radius:3px;">&#8595; EXPORT CSV</button>
+                <button style="flex:1;font-family:'Share Tech Mono',monospace;font-size:0.26rem;padding:4px 2px;background:rgba(10,10,10,0.9);border:1px solid rgba(255,184,0,0.16);color:#ffb800;cursor:pointer;border-radius:3px;">&#10063; HTML REPORT</button>
               </div>
             </div>
 
-            <!-- SPECTRUM screen -->
-            <div class="phone-screen" id="ascreen-spectrum" hidden>
-              <div class="ps-title-amber">RF SPECTRUM</div>
-              <div class="ps-band-tabs">
-                <button class="ps-band-btn active" type="button">2.4GHz</button>
-                <button class="ps-band-btn" type="button">5GHz</button>
-                <button class="ps-band-btn" type="button">6GHz</button>
+            <!-- ══ OPS ══ -->
+            <div class="arawn-screen" id="ascreen-ops">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;flex-shrink:0;">
+                <span style="font-family:'Share Tech Mono',monospace;font-size:0.46rem;color:#ffb800;letter-spacing:0.08em;">ARAWN // OPS CENTER</span>
+                <span style="font-family:'Share Tech Mono',monospace;font-size:0.38rem;color:rgba(0,255,136,0.75);">&#9679; LIVE</span>
               </div>
-              <svg viewBox="0 0 248 155" style="width:100%;display:block;">
-                <!-- axes -->
-                <line x1="20" y1="10" x2="20" y2="140" stroke="rgba(255,184,0,0.15)" stroke-width="0.5"/>
-                <line x1="20" y1="140" x2="244" y2="140" stroke="rgba(255,184,0,0.15)" stroke-width="0.5"/>
-                <!-- y-axis labels (dBm) -->
-                <text x="17" y="13"  text-anchor="end" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,184,0,0.4)">-30</text>
-                <text x="17" y="53"  text-anchor="end" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,184,0,0.4)">-55</text>
-                <text x="17" y="93"  text-anchor="end" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,184,0,0.4)">-80</text>
-                <text x="17" y="133" text-anchor="end" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,184,0,0.4)">-100</text>
-                <!-- horizontal gridlines -->
-                <line x1="20" y1="53"  x2="244" y2="53"  stroke="rgba(255,184,0,0.06)" stroke-width="0.5" stroke-dasharray="2,3"/>
-                <line x1="20" y1="93"  x2="244" y2="93"  stroke="rgba(255,184,0,0.06)" stroke-width="0.5" stroke-dasharray="2,3"/>
-                <!-- x-axis channel labels -->
-                <text x="55"  y="150" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,184,0,0.4)">Ch.1</text>
-                <text x="112" y="150" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,184,0,0.4)">Ch.6</text>
-                <text x="168" y="150" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="5" fill="rgba(255,184,0,0.4)">Ch.11</text>
-                <!-- parabola Ch.1: apex x=55 y=48 (~-58 dBm) -->
-                <path d="M 25,140 Q 55,48 85,140" fill="rgba(255,184,0,0.08)" stroke="rgba(255,184,0,0.6)" stroke-width="1.2"/>
-                <!-- parabola Ch.6 strong: apex x=112 y=58 (~-63 dBm) -->
-                <path d="M 82,140 Q 112,58 142,140" fill="rgba(255,184,0,0.07)" stroke="rgba(255,184,0,0.5)" stroke-width="1.2"/>
-                <!-- parabola Ch.6 weaker overlap: apex x=116 y=76 (~-72 dBm) -->
-                <path d="M 88,140 Q 116,76 144,140" fill="rgba(255,120,0,0.04)" stroke="rgba(255,120,0,0.35)" stroke-width="1"/>
-                <!-- parabola Ch.11 strong: apex x=168 y=34 (~-49 dBm) -->
-                <path d="M 138,140 Q 168,34 198,140" fill="rgba(255,184,0,0.1)" stroke="rgba(255,184,0,0.7)" stroke-width="1.2"/>
-                <!-- parabola Ch.11 weaker: apex x=173 y=80 (~-74 dBm) -->
-                <path d="M 145,140 Q 173,80 201,140" fill="rgba(0,229,255,0.04)" stroke="rgba(0,229,255,0.3)" stroke-width="0.8"/>
+              <div style="display:flex;gap:2px;margin-bottom:5px;flex-shrink:0;">
+                <button style="flex:1;font-family:'Share Tech Mono',monospace;font-size:0.28rem;padding:3px;background:rgba(255,184,0,0.1);border:1px solid rgba(255,184,0,0.4);color:#ffb800;cursor:pointer;border-radius:2px;">MAP</button>
+                <button style="flex:1;font-family:'Share Tech Mono',monospace;font-size:0.28rem;padding:3px;background:none;border:1px solid rgba(255,184,0,0.14);color:rgba(255,184,0,0.38);cursor:pointer;border-radius:2px;">PLAN</button>
+                <button style="flex:1;font-family:'Share Tech Mono',monospace;font-size:0.28rem;padding:3px;background:none;border:1px solid rgba(255,184,0,0.14);color:rgba(255,184,0,0.38);cursor:pointer;border-radius:2px;">PACKS</button>
+              </div>
+              <svg viewBox="0 0 248 340" style="width:100%;flex:1;display:block;border:1px solid rgba(255,184,0,0.08);">
+                <rect x="0" y="0" width="248" height="340" fill="rgba(6,10,20,0.95)"/>
+                <line x1="40"  y1="0" x2="40"  y2="340" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                <line x1="80"  y1="0" x2="80"  y2="340" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                <line x1="120" y1="0" x2="120" y2="340" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                <line x1="160" y1="0" x2="160" y2="340" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                <line x1="200" y1="0" x2="200" y2="340" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                <line x1="0" y1="68"  x2="248" y2="68"  stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                <line x1="0" y1="136" x2="248" y2="136" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                <line x1="0" y1="204" x2="248" y2="204" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                <line x1="0" y1="272" x2="248" y2="272" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
+                <!-- Session 1 track -->
+                <polyline points="28,305 52,278 68,253 66,218 83,198 98,178 123,170 148,178 168,163 193,152 208,138" fill="none" stroke="rgba(255,184,0,0.35)" stroke-width="1" stroke-dasharray="3,2"/>
+                <!-- Session 2 track -->
+                <polyline points="40,330 70,295 95,272 120,260 145,245 170,228 195,212 220,198" fill="none" stroke="rgba(0,229,255,0.22)" stroke-width="1" stroke-dasharray="3,2"/>
+                <!-- Waypoint WP-01 -->
+                <line x1="83" y1="194" x2="83" y2="180" stroke="#ffb800" stroke-width="1"/>
+                <circle cx="83" cy="179" r="3.5" fill="rgba(255,184,0,0.25)" stroke="#ffb800" stroke-width="1"/>
+                <text x="89" y="180" font-family="Share Tech Mono,monospace" font-size="6" fill="rgba(255,184,0,0.75)">WP-01</text>
+                <!-- Waypoint WP-02 -->
+                <line x1="148" y1="174" x2="148" y2="160" stroke="#ffb800" stroke-width="1"/>
+                <circle cx="148" cy="159" r="3.5" fill="rgba(255,184,0,0.25)" stroke="#ffb800" stroke-width="1"/>
+                <text x="154" y="160" font-family="Share Tech Mono,monospace" font-size="6" fill="rgba(255,184,0,0.75)">WP-02</text>
+                <!-- Wi-Fi signal dots -->
+                <circle cx="52"  cy="278" r="2" fill="#ffb800" opacity="0.6"/>
+                <circle cx="123" cy="170" r="2" fill="#ffb800" opacity="0.6"/>
+                <circle cx="193" cy="152" r="2" fill="#ffb800" opacity="0.6"/>
+                <circle cx="145" cy="245" r="2" fill="#00e5ff" opacity="0.45"/>
+                <!-- Live position -->
+                <circle cx="208" cy="138" r="6" fill="none" stroke="#ffb800" stroke-width="1.2" opacity="0.35"><animate attributeName="r" values="6;11;6" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.35;0.08;0.35" dur="2s" repeatCount="indefinite"/></circle>
+                <circle cx="208" cy="138" r="2.5" fill="#ffb800"/>
+                <line x1="202" y1="138" x2="196" y2="138" stroke="rgba(255,184,0,0.6)" stroke-width="0.5"/>
+                <line x1="214" y1="138" x2="220" y2="138" stroke="rgba(255,184,0,0.6)" stroke-width="0.5"/>
+                <line x1="208" y1="132" x2="208" y2="126" stroke="rgba(255,184,0,0.6)" stroke-width="0.5"/>
+                <line x1="208" y1="144" x2="208" y2="150" stroke="rgba(255,184,0,0.6)" stroke-width="0.5"/>
+                <!-- Legend -->
+                <text x="8" y="330" font-family="Share Tech Mono,monospace" font-size="6" fill="rgba(255,184,0,0.5)">&#8212; SESSION 1</text>
+                <text x="8" y="339" font-family="Share Tech Mono,monospace" font-size="6" fill="rgba(0,229,255,0.4)">&#8212; SESSION 2</text>
+                <text x="110" y="330" font-family="Share Tech Mono,monospace" font-size="6" fill="rgba(255,184,0,0.65)">&#9711; WAYPOINT</text>
+                <text x="110" y="339" font-family="Share Tech Mono,monospace" font-size="6" fill="rgba(255,184,0,0.75)">&#8853; LIVE POS</text>
               </svg>
-              <div style="font-family:'Share Tech Mono',monospace;font-size:0.34rem;color:rgba(255,184,0,0.35);text-align:center;letter-spacing:0.08em;">5 APs DETECTED &middot; 2400&ndash;2500 MHz</div>
             </div>
 
-            <!-- MAP / FIELD MAP screen -->
-            <div class="phone-screen" id="ascreen-map" hidden>
-              <div class="ps-title-amber">FIELD MAP</div>
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-                <div class="ps-auto-badge" style="color:var(--cyan);margin-bottom:0;">
-                  <span class="ps-auto-dot" style="background:var(--cyan);"></span>OSM LIVE
-                </div>
-                <div style="font-family:'Share Tech Mono',monospace;font-size:0.3rem;color:rgba(0,229,255,0.5);">33.7490&deg;N&nbsp;84.3880&deg;W</div>
-              </div>
-              <svg viewBox="0 0 248 148" style="width:100%;display:block;border:1px solid rgba(255,184,0,0.08);">
-                <rect x="0" y="0" width="248" height="148" fill="rgba(6,10,20,0.95)"/>
-                <!-- tactical grid -->
-                <line x1="40"  y1="0"   x2="40"  y2="148" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
-                <line x1="80"  y1="0"   x2="80"  y2="148" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
-                <line x1="120" y1="0"   x2="120" y2="148" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
-                <line x1="160" y1="0"   x2="160" y2="148" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
-                <line x1="200" y1="0"   x2="200" y2="148" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
-                <line x1="0"   y1="37"  x2="248" y2="37"  stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
-                <line x1="0"   y1="74"  x2="248" y2="74"  stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
-                <line x1="0"   y1="111" x2="248" y2="111" stroke="rgba(255,184,0,0.04)" stroke-width="0.5"/>
-                <!-- GPS track path -->
-                <polyline points="28,130 52,118 68,100 66,76 83,60 98,48 123,43 148,50 168,40 193,30 208,18"
-                          fill="none" stroke="rgba(255,184,0,0.4)" stroke-width="1.5" stroke-dasharray="3,2"/>
-                <!-- Wi-Fi dots (amber) -->
-                <circle cx="52"  cy="118" r="2.5" fill="#ffb800" opacity="0.85"/>
-                <circle cx="68"  cy="100" r="2.5" fill="#ffb800" opacity="0.85"/>
-                <circle cx="83"  cy="60"  r="2.5" fill="#ffb800" opacity="0.85"/>
-                <circle cx="123" cy="43"  r="2.5" fill="#ffb800" opacity="0.85"/>
-                <circle cx="148" cy="50"  r="2.5" fill="#ffb800" opacity="0.85"/>
-                <circle cx="168" cy="40"  r="2.5" fill="#ffb800" opacity="0.85"/>
-                <circle cx="193" cy="30"  r="2.5" fill="#ffb800" opacity="0.85"/>
-                <!-- BLE dots (green) -->
-                <circle cx="66"  cy="76"  r="2" fill="#00ff88" opacity="0.75"/>
-                <circle cx="98"  cy="48"  r="2" fill="#00ff88" opacity="0.75"/>
-                <circle cx="138" cy="46"  r="2" fill="#00ff88" opacity="0.75"/>
-                <circle cx="173" cy="37"  r="2" fill="#00ff88" opacity="0.75"/>
-                <circle cx="208" cy="18"  r="2" fill="#00ff88" opacity="0.75"/>
-                <!-- current position pulse -->
-                <circle cx="208" cy="18" r="6" fill="none" stroke="#ffb800" stroke-width="1.5" opacity="0.4">
-                  <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite"/>
-                  <animate attributeName="opacity" values="0.4;0.1;0.4" dur="2s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="208" cy="18" r="2.5" fill="#ffb800"/>
-                <!-- tactical crosshair -->
-                <line x1="202" y1="18" x2="196" y2="18" stroke="rgba(255,184,0,0.6)" stroke-width="0.5"/>
-                <line x1="214" y1="18" x2="220" y2="18" stroke="rgba(255,184,0,0.6)" stroke-width="0.5"/>
-                <line x1="208" y1="12" x2="208" y2="6"  stroke="rgba(255,184,0,0.6)" stroke-width="0.5"/>
-                <line x1="208" y1="24" x2="208" y2="30" stroke="rgba(255,184,0,0.6)" stroke-width="0.5"/>
-              </svg>
-              <!-- ATAK-style mission stats panel -->
-              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-top:4px;">
-                <div style="text-align:center;padding:3px 0;border:1px solid rgba(255,184,0,0.12);background:rgba(255,184,0,0.02);">
-                  <div style="font-family:'Orbitron',monospace;font-size:0.52rem;font-weight:700;color:#ffb800;">47</div>
-                  <div style="font-family:'Share Tech Mono',monospace;font-size:0.27rem;color:rgba(255,184,0,0.4);letter-spacing:0.06em;">WI-FI</div>
-                </div>
-                <div style="text-align:center;padding:3px 0;border:1px solid rgba(0,255,136,0.12);background:rgba(0,255,136,0.02);">
-                  <div style="font-family:'Orbitron',monospace;font-size:0.52rem;font-weight:700;color:#00ff88;">23</div>
-                  <div style="font-family:'Share Tech Mono',monospace;font-size:0.27rem;color:rgba(0,255,136,0.4);letter-spacing:0.06em;">BLE</div>
-                </div>
-                <div style="text-align:center;padding:3px 0;border:1px solid rgba(0,229,255,0.12);background:rgba(0,229,255,0.02);">
-                  <div style="font-family:'Orbitron',monospace;font-size:0.52rem;font-weight:700;color:#00e5ff;">1.2</div>
-                  <div style="font-family:'Share Tech Mono',monospace;font-size:0.27rem;color:rgba(0,229,255,0.4);letter-spacing:0.06em;">KM</div>
-                </div>
+            <!-- ══ VAULT ══ -->
+            <div class="arawn-screen" id="ascreen-vault" style="align-items:center;justify-content:center;">
+              <div style="font-family:'Share Tech Mono',monospace;font-size:0.46rem;color:#ffb800;letter-spacing:0.08em;margin-bottom:16px;align-self:flex-start;flex-shrink:0;">ARAWN // VAULT</div>
+              <div style="font-size:2.2rem;color:rgba(255,184,0,0.2);margin-bottom:10px;line-height:1;">&#8855;</div>
+              <div style="font-family:'Share Tech Mono',monospace;font-size:0.42rem;color:rgba(255,184,0,0.65);letter-spacing:0.1em;margin-bottom:5px;">ENCRYPTED STORAGE</div>
+              <div style="font-family:'Rajdhani',sans-serif;font-size:0.72rem;color:rgba(255,255,255,0.28);text-align:center;margin-bottom:18px;line-height:1.5;">Authenticate to access<br>encrypted field files</div>
+              <button style="font-family:'Share Tech Mono',monospace;font-size:0.36rem;letter-spacing:0.12em;padding:9px 22px;background:rgba(255,184,0,0.05);border:1px solid rgba(255,184,0,0.28);color:#ffb800;cursor:pointer;border-radius:4px;margin-bottom:18px;flex-shrink:0;">AUTHENTICATE</button>
+              <div style="align-self:stretch;flex-shrink:0;">
+                <div style="font-family:'Share Tech Mono',monospace;font-size:0.28rem;color:rgba(255,255,255,0.14);letter-spacing:0.06em;border-top:1px solid rgba(255,184,0,0.08);padding-top:8px;margin-bottom:5px;">&#8250; LOCKED FILES</div>
+                <div style="font-family:'Share Tech Mono',monospace;font-size:0.28rem;color:rgba(255,255,255,0.08);padding:4px 6px;border:1px solid rgba(255,255,255,0.05);border-radius:2px;margin-bottom:3px;">&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;</div>
+                <div style="font-family:'Share Tech Mono',monospace;font-size:0.28rem;color:rgba(255,255,255,0.08);padding:4px 6px;border:1px solid rgba(255,255,255,0.05);border-radius:2px;margin-bottom:3px;">&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;</div>
+                <div style="font-family:'Share Tech Mono',monospace;font-size:0.28rem;color:rgba(255,255,255,0.08);padding:4px 6px;border:1px solid rgba(255,255,255,0.05);border-radius:2px;">&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;&#9632;</div>
               </div>
             </div>
 
-            <div class="phone-tabs" id="arawn-tabs">
-              <button class="phone-tab active" type="button" data-screen="console">CONSOLE</button>
-              <button class="phone-tab" type="button" data-screen="spectrum">SPECTRUM</button>
-              <button class="phone-tab" type="button" data-screen="map">MAP</button>
+            <!-- ══ MISSIONS ══ -->
+            <div class="arawn-screen" id="ascreen-missions">
+              <div style="font-family:'Share Tech Mono',monospace;font-size:0.46rem;color:#ffb800;letter-spacing:0.08em;margin-bottom:10px;flex-shrink:0;">ARAWN // MISSIONS</div>
+              <div style="border:1px solid rgba(255,184,0,0.18);border-radius:4px;padding:8px;margin-bottom:6px;background:rgba(255,184,0,0.02);flex-shrink:0;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:3px;">
+                  <span style="font-family:'Share Tech Mono',monospace;font-size:0.36rem;color:#ffb800;">Mission Alpha</span>
+                  <span style="font-family:'Share Tech Mono',monospace;font-size:0.3rem;color:rgba(0,255,136,0.65);">ACTIVE</span>
+                </div>
+                <div style="font-family:'Share Tech Mono',monospace;font-size:0.28rem;color:rgba(255,255,255,0.32);">4 waypoints &middot; 2 sessions linked</div>
+              </div>
+              <div style="border:1px solid rgba(255,184,0,0.1);border-radius:4px;padding:8px;margin-bottom:6px;background:rgba(255,184,0,0.01);flex-shrink:0;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:3px;">
+                  <span style="font-family:'Share Tech Mono',monospace;font-size:0.36rem;color:rgba(255,184,0,0.65);">Recon Route B</span>
+                  <span style="font-family:'Share Tech Mono',monospace;font-size:0.3rem;color:rgba(255,184,0,0.38);">PLANNED</span>
+                </div>
+                <div style="font-family:'Share Tech Mono',monospace;font-size:0.28rem;color:rgba(255,255,255,0.22);">7 waypoints &middot; 0 sessions linked</div>
+              </div>
+              <div style="border:1px solid rgba(255,184,0,0.07);border-radius:4px;padding:8px;background:rgba(0,0,0,0.2);flex-shrink:0;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:3px;">
+                  <span style="font-family:'Share Tech Mono',monospace;font-size:0.36rem;color:rgba(255,184,0,0.45);">Site Survey 01</span>
+                  <span style="font-family:'Share Tech Mono',monospace;font-size:0.3rem;color:rgba(255,255,255,0.18);">COMPLETE</span>
+                </div>
+                <div style="font-family:'Share Tech Mono',monospace;font-size:0.28rem;color:rgba(255,255,255,0.18);">2 waypoints &middot; 1 session linked</div>
+              </div>
+            </div>
+
+            <!-- ══ REPORTS ══ -->
+            <div class="arawn-screen" id="ascreen-reports">
+              <div style="font-family:'Share Tech Mono',monospace;font-size:0.46rem;color:#ffb800;letter-spacing:0.08em;margin-bottom:10px;flex-shrink:0;">ARAWN // REPORTS</div>
+              <div style="border:1px solid rgba(255,184,0,0.15);border-radius:4px;padding:8px;margin-bottom:6px;flex-shrink:0;">
+                <div style="font-family:'Share Tech Mono',monospace;font-size:0.34rem;color:#ffb800;margin-bottom:3px;">Session 3 &mdash; 2026-06-04</div>
+                <div style="font-family:'Share Tech Mono',monospace;font-size:0.27rem;color:rgba(255,255,255,0.3);">47 Wi-Fi &middot; 23 BLE &middot; 1.2 km</div>
+                <div style="display:flex;gap:4px;margin-top:6px;">
+                  <button style="font-family:'Share Tech Mono',monospace;font-size:0.26rem;padding:3px 6px;background:rgba(255,184,0,0.07);border:1px solid rgba(255,184,0,0.2);color:rgba(255,184,0,0.7);cursor:pointer;border-radius:2px;">CSV</button>
+                  <button style="font-family:'Share Tech Mono',monospace;font-size:0.26rem;padding:3px 6px;background:rgba(255,184,0,0.07);border:1px solid rgba(255,184,0,0.2);color:rgba(255,184,0,0.7);cursor:pointer;border-radius:2px;">HTML</button>
+                </div>
+              </div>
+              <div style="border:1px solid rgba(255,184,0,0.08);border-radius:4px;padding:8px;margin-bottom:6px;flex-shrink:0;">
+                <div style="font-family:'Share Tech Mono',monospace;font-size:0.34rem;color:rgba(255,184,0,0.6);margin-bottom:3px;">Session 2 &mdash; 2026-06-01</div>
+                <div style="font-family:'Share Tech Mono',monospace;font-size:0.27rem;color:rgba(255,255,255,0.22);">31 Wi-Fi &middot; 14 BLE &middot; 0.8 km</div>
+              </div>
+              <div style="border:1px solid rgba(255,184,0,0.05);border-radius:4px;padding:8px;flex-shrink:0;">
+                <div style="font-family:'Share Tech Mono',monospace;font-size:0.34rem;color:rgba(255,184,0,0.4);margin-bottom:3px;">Session 1 &mdash; 2026-05-29</div>
+                <div style="font-family:'Share Tech Mono',monospace;font-size:0.27rem;color:rgba(255,255,255,0.16);">18 Wi-Fi &middot; 9 BLE &middot; 0.4 km</div>
+              </div>
+            </div>
+
+            <!-- ══ DOCS ══ -->
+            <div class="arawn-screen" id="ascreen-docs">
+              <div style="font-family:'Share Tech Mono',monospace;font-size:0.46rem;color:#ffb800;letter-spacing:0.08em;margin-bottom:10px;flex-shrink:0;">ARAWN // DOCS</div>
+              <div style="font-family:'Share Tech Mono',monospace;font-size:0.28rem;color:rgba(255,184,0,0.35);margin-bottom:8px;flex-shrink:0;">// FIELD KNOWLEDGE BASE</div>
+              <div style="border-left:2px solid rgba(255,184,0,0.3);padding:6px 8px;margin-bottom:6px;background:rgba(255,184,0,0.02);flex-shrink:0;">
+                <div style="font-family:'Share Tech Mono',monospace;font-size:0.32rem;color:#ffb800;margin-bottom:2px;">Wi-Fi Channel Reference</div>
+                <div style="font-family:'Rajdhani',sans-serif;font-size:0.72rem;color:rgba(255,255,255,0.28);">2.4 / 5 / 6 GHz band channel maps</div>
+              </div>
+              <div style="border-left:2px solid rgba(255,184,0,0.2);padding:6px 8px;margin-bottom:6px;background:rgba(255,184,0,0.01);flex-shrink:0;">
+                <div style="font-family:'Share Tech Mono',monospace;font-size:0.32rem;color:rgba(255,184,0,0.7);margin-bottom:2px;">MAC Address Scopes</div>
+                <div style="font-family:'Rajdhani',sans-serif;font-size:0.72rem;color:rgba(255,255,255,0.22);">Global, randomized, multicast explained</div>
+              </div>
+              <div style="border-left:2px solid rgba(255,184,0,0.12);padding:6px 8px;background:rgba(0,0,0,0.15);flex-shrink:0;">
+                <div style="font-family:'Share Tech Mono',monospace;font-size:0.32rem;color:rgba(255,184,0,0.5);margin-bottom:2px;">WiGLE Export Format</div>
+                <div style="font-family:'Rajdhani',sans-serif;font-size:0.72rem;color:rgba(255,255,255,0.18);">CSV field definitions &amp; import guide</div>
+              </div>
+            </div>
+
+            <!-- ══ 6-tab bottom nav ══ -->
+            <div id="arawn-nav">
+              <button class="arawn-nav-btn" type="button" data-screen="ops"><span class="arawn-nav-icon">&#8962;</span><span>OPS</span></button>
+              <button class="arawn-nav-btn arawn-nav-active" type="button" data-screen="recon"><span class="arawn-nav-icon">&#8767;</span><span>RECON</span></button>
+              <button class="arawn-nav-btn" type="button" data-screen="missions"><span class="arawn-nav-icon">&#9678;</span><span>MIS</span></button>
+              <button class="arawn-nav-btn" type="button" data-screen="reports"><span class="arawn-nav-icon">&#9636;</span><span>REP</span></button>
+              <button class="arawn-nav-btn" type="button" data-screen="vault"><span class="arawn-nav-icon">&#8855;</span><span>VAULT</span></button>
+              <button class="arawn-nav-btn" type="button" data-screen="docs"><span class="arawn-nav-icon">&#9776;</span><span>DOCS</span></button>
             </div>
           </div>
         </div>
       </div>
+
     </div><!-- /arawn-layout -->
   </div>
 </section>
@@ -2627,48 +2768,79 @@
     setTimeout(startAutoCycle, 3000);
   })();
 
-  // ── ARAWN PHONE DEMO (tab switching + auto-cycle)
+  // ── ARAWN PHONE DEMO (6-tab nav + 4 sub-views)
   (function () {
-    const arawnTabs = document.querySelectorAll('#arawn-tabs .phone-tab');
-    const arawnScreens = ['console', 'spectrum', 'map'];
-    let currentArawnScreen = 0;
-    let arawnCycleTimer = null;
-    let arawnUserInteracted = false;
+    var mainScreens = ['recon','ops','missions','reports','vault','docs'];
+    var subViews    = ['console','spec','map','heat'];
+    var currentMain = 'recon';
+    var currentSV   = 'console';
+    var cycleTimer  = null;
+    var userActed   = false;
 
-    function showArawnScreen(name) {
-      arawnScreens.forEach(function (s) {
-        const el = document.getElementById('ascreen-' + s);
-        if (el) el.hidden = (s !== name);
+    function showScreen(name) {
+      mainScreens.forEach(function(s){
+        var el = document.getElementById('ascreen-' + s);
+        if (el) el.classList.toggle('arawn-screen-active', s === name);
       });
-      arawnTabs.forEach(function (t) {
-        t.classList.toggle('active', t.dataset.screen === name);
+      document.querySelectorAll('.arawn-nav-btn').forEach(function(b){
+        b.classList.toggle('arawn-nav-active', b.dataset.screen === name);
       });
+      currentMain = name;
     }
 
-    arawnTabs.forEach(function (tab) {
-      tab.addEventListener('click', function () {
-        arawnUserInteracted = true;
-        clearInterval(arawnCycleTimer);
-        const name = tab.dataset.screen;
-        currentArawnScreen = arawnScreens.indexOf(name);
-        showArawnScreen(name);
-        arawnCycleTimer = setTimeout(function () {
-          arawnUserInteracted = false;
-          startArawnAutoCycle();
-        }, 12000);
+    function showSV(name) {
+      subViews.forEach(function(sv){
+        var el = document.getElementById('arawn-sv-' + sv);
+        if (!el) return;
+        el.style.display = (sv === name) ? 'flex' : 'none';
+      });
+      document.querySelectorAll('.arawn-sv-btn').forEach(function(b){
+        b.classList.toggle('arawn-sv-active', b.dataset.sv === name);
+      });
+      currentSV = name;
+    }
+
+    document.querySelectorAll('.arawn-nav-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        userActed = true;
+        clearInterval(cycleTimer);
+        showScreen(btn.dataset.screen);
+        cycleTimer = setTimeout(function(){ userActed = false; startCycle(); }, 14000);
       });
     });
 
-    function startArawnAutoCycle() {
-      if (arawnUserInteracted) return;
-      arawnCycleTimer = setInterval(function () {
-        currentArawnScreen = (currentArawnScreen + 1) % arawnScreens.length;
-        showArawnScreen(arawnScreens[currentArawnScreen]);
-      }, 4000);
+    document.querySelectorAll('.arawn-sv-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        userActed = true;
+        clearInterval(cycleTimer);
+        if (currentMain !== 'recon') showScreen('recon');
+        showSV(btn.dataset.sv);
+        cycleTimer = setTimeout(function(){ userActed = false; startCycle(); }, 14000);
+      });
+    });
+
+    var seq = [
+      {s:'recon', sv:'console'},
+      {s:'recon', sv:'spec'},
+      {s:'recon', sv:'heat'},
+      {s:'recon', sv:'map'},
+      {s:'ops',      sv:null},
+      {s:'vault',    sv:null},
+      {s:'missions', sv:null},
+    ];
+    var seqIdx = 0;
+
+    function startCycle() {
+      if (userActed) return;
+      cycleTimer = setInterval(function(){
+        if (userActed) return;
+        seqIdx = (seqIdx + 1) % seq.length;
+        var step = seq[seqIdx];
+        showScreen(step.s);
+        if (step.sv) showSV(step.sv);
+      }, 3800);
     }
 
-    setTimeout(startArawnAutoCycle, 5000);
+    setTimeout(startCycle, 5000);
   })();
 </script>
-</body>
-</html>
