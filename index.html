@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JONAH MAULDIN // IT &amp; OPERATIONS</title>
-  <meta name="description" content="Jonah Mauldin — IT systems builder and operations professional. Self-hosted Ubuntu server, containerized monitoring stack, network diagnostics toolkit, mobile network monitoring app, and live infrastructure telemetry. 5 years operations management. No CS degree. Just built it.">
+  <meta name="description" content="Jonah Mauldin — IT systems builder and operations professional. Self-hosted Ubuntu server, containerized monitoring stack, network diagnostics toolkit, mobile network monitoring app, Windows OPSEC awareness dashboard, and live infrastructure telemetry. 5 years operations management. No CS degree. Just built it.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://jonahmauldin.github.io/">
 
@@ -12,7 +12,7 @@
   <meta property="og:type"        content="website">
   <meta property="og:url"         content="https://jonahmauldin.github.io/">
   <meta property="og:title"       content="JONAH MAULDIN // IT &amp; OPERATIONS">
-  <meta property="og:description" content="Self-hosted server infrastructure. Live telemetry. Network diagnostics toolkit. Mobile network monitoring app. AI-assisted engineering. Operations background. Built from scratch, no CS degree.">
+  <meta property="og:description" content="Self-hosted server infrastructure. Live telemetry. Network diagnostics toolkit. Mobile network monitoring app. Windows OPSEC awareness dashboard. AI-assisted engineering. Operations background. Built from scratch, no CS degree.">
   <meta property="og:image"       content="https://jonahmauldin.github.io/og-card.png">
 
   <!-- Twitter Card -->
@@ -946,12 +946,13 @@
   <div class="nav-pip" data-target="s03"><div class="nav-pip-dot"></div><div class="nav-pip-label">04 ARGUS</div></div>
   <div class="nav-pip" data-target="s04"><div class="nav-pip-dot"></div><div class="nav-pip-label">05 PHANTOM</div></div>
   <div class="nav-pip" data-target="s06"><div class="nav-pip-dot"></div><div class="nav-pip-label">06 NEXUS</div></div>
-  <div class="nav-pip" data-target="s05"><div class="nav-pip-dot"></div><div class="nav-pip-label">07 SPECTRE</div></div>
-  <div class="nav-pip" data-target="s08"><div class="nav-pip-dot"></div><div class="nav-pip-label">08 PROMETHEUS</div></div>
-  <div class="nav-pip" data-target="s09"><div class="nav-pip-dot"></div><div class="nav-pip-label">09 TELEMETRY</div></div>
-  <div class="nav-pip" data-target="s10"><div class="nav-pip-dot"></div><div class="nav-pip-label">10 DOWNLOADS</div></div>
-  <div class="nav-pip" data-target="s11"><div class="nav-pip-dot"></div><div class="nav-pip-label">11 EVOLUTION</div></div>
-  <div class="nav-pip" data-target="s12"><div class="nav-pip-dot"></div><div class="nav-pip-label">12 TARGETING</div></div>
+  <div class="nav-pip" data-target="s13"><div class="nav-pip-dot"></div><div class="nav-pip-label">07 PWYLL</div></div>
+  <div class="nav-pip" data-target="s05"><div class="nav-pip-dot"></div><div class="nav-pip-label">08 SPECTRE</div></div>
+  <div class="nav-pip" data-target="s08"><div class="nav-pip-dot"></div><div class="nav-pip-label">09 PROMETHEUS</div></div>
+  <div class="nav-pip" data-target="s09"><div class="nav-pip-dot"></div><div class="nav-pip-label">10 TELEMETRY</div></div>
+  <div class="nav-pip" data-target="s10"><div class="nav-pip-dot"></div><div class="nav-pip-label">11 DOWNLOADS</div></div>
+  <div class="nav-pip" data-target="s11"><div class="nav-pip-dot"></div><div class="nav-pip-label">12 EVOLUTION</div></div>
+  <div class="nav-pip" data-target="s12"><div class="nav-pip-dot"></div><div class="nav-pip-label">13 TARGETING</div></div>
 </nav>
 
 <!-- ═══════ HEADER ═══════ -->
@@ -1849,10 +1850,64 @@
   </div>
 </section>
 
+<!-- ═══════ 13 — PWYLL ═══════ -->
+<section id="s13">
+  <div class="container">
+    <div class="section-num reveal">// 07</div>
+    <div class="section-title reveal">PWYLL</div>
+    <div class="card green-accent flagship bracketed reveal">
+      <div class="card-header">
+        <div>
+          <div class="card-title">PWYLL</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;opacity:0.25;letter-spacing:0.14em;margin-top:0.25rem;">
+            OPSEC AWARENESS DASHBOARD &middot; WINDOWS 11 &middot; REPORT-ONLY
+          </div>
+        </div>
+        <span class="status-tag active">RELEASED</span>
+      </div>
+      <div class="card-tagline">KNOW WHAT YOUR MACHINE IS GIVING AWAY // v0.9.0</div>
+      <p class="card-desc">
+        PWYLL is a free, open-source operational-security awareness dashboard for Windows 11. It gives an operator an at-a-glance read on their network, privacy, VPN, system and security posture inside a retro cyber-terminal interface &mdash; and it is strictly <strong>report-only</strong>. It never modifies a single system setting: it reads state and surfaces the OPSEC mistakes most people never notice.
+      </p>
+      <p class="card-desc" style="opacity:0.52;">
+        Local-first by design &mdash; no paid APIs, no subscriptions, no cloud, no telemetry, no accounts, no admin rights. The only outbound traffic is the ICMP pings you configure plus an optional public-IP echo that ships <em>off by default</em>, so with stock settings nothing about your machine ever leaves it. Config and logs live in <span style="font-family:'Share Tech Mono',monospace;">%LOCALAPPDATA%\PWYLL</span>, with privacy mode, log redaction, and a panic-hide hotkey built in.
+      </p>
+
+      <div style="font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;color:var(--green);opacity:0.45;margin:1.2rem 0 0.2rem;">// 8 MONITORING DOMAINS</div>
+      <div class="module-grid reveal">
+        <div class="module-card"><div class="module-name">IDENTITY</div><div class="module-desc">Host, user, OS build &amp; uptime</div></div>
+        <div class="module-card"><div class="module-name">NETWORK</div><div class="module-desc">Local/public IP, gateway, DNS, MAC</div></div>
+        <div class="module-card"><div class="module-name">VPN</div><div class="module-desc">WireGuard / OpenVPN / Tailscale / Mullvad &hellip;</div></div>
+        <div class="module-card"><div class="module-name">CONNECTIVITY</div><div class="module-desc">Latency, packet loss, link quality</div></div>
+        <div class="module-card"><div class="module-name">SYSTEM</div><div class="module-desc">CPU, RAM, disk, throughput, GPU</div></div>
+        <div class="module-card"><div class="module-name">SECURITY</div><div class="module-desc">Firewall, Defender, RDP, SMB, privilege</div></div>
+        <div class="module-card"><div class="module-name">EVENT CONSOLE</div><div class="module-desc">Colour-coded log of state changes</div></div>
+        <div class="module-card"><div class="module-name">OPSEC SCORE</div><div class="module-desc">0&ndash;100 health, GREEN / YELLOW / RED</div></div>
+      </div>
+
+      <div style="margin-top:1.5rem;display:flex;gap:0.7rem;flex-wrap:wrap;">
+        <a class="dl-btn" href="https://github.com/jonahmauldin/pwyll" target="_blank" rel="noopener">&#47;&#47;&nbsp; VIEW ON GITHUB</a>
+        <a class="dl-btn" href="https://github.com/jonahmauldin/pwyll/releases/download/v0.9.0/PWYLL.exe">&#8595;&nbsp; DOWNLOAD .EXE</a>
+      </div>
+
+      <div class="tags" style="margin-top:1.2rem;">
+        <span class="tag">Python 3.11</span>
+        <span class="tag">PySide6 / Qt6</span>
+        <span class="tag">Report-Only</span>
+        <span class="tag">Local-First</span>
+        <span class="tag">No Telemetry</span>
+        <span class="tag">Privacy Mode</span>
+        <span class="tag">MIT License</span>
+        <span class="tag">Open Source</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════ 05 — SPECTRE ═══════ -->
 <section id="s05">
   <div class="container">
-    <div class="section-num reveal">// 07</div>
+    <div class="section-num reveal">// 08</div>
     <div class="section-title reveal">SPECTRE</div>
     <div class="card red-accent reveal">
       <div class="card-header">
@@ -1887,7 +1942,7 @@
 <!-- ═══════ 08 — PROMETHEUS ═══════ -->
 <section id="s08">
   <div class="container">
-    <div class="section-num reveal">// 08</div>
+    <div class="section-num reveal">// 09</div>
     <div class="section-title reveal">PROMETHEUS HOME LAB</div>
     <div class="card cyan-accent reveal">
       <div class="card-header">
@@ -1922,7 +1977,7 @@
 <!-- ═══════ 09 — LIVE TELEMETRY ═══════ -->
 <section id="s09">
   <div class="container">
-    <div class="section-num reveal">// 09</div>
+    <div class="section-num reveal">// 10</div>
     <div class="section-title reveal">PROMETHEUS // LIVE TELEMETRY</div>
 
     <!--
@@ -1997,7 +2052,7 @@
 <!-- ═══════ 09 — DOWNLOADS ═══════ -->
 <section id="s10">
   <div class="container">
-    <div class="section-num reveal">// 10</div>
+    <div class="section-num reveal">// 11</div>
     <div class="section-title reveal">DOWNLOADS</div>
     <div class="dl-grid reveal">
 
@@ -2031,6 +2086,16 @@
         <div class="dl-note">// ARAWN v0.4.0 &mdash; BUILD-10 &mdash; GITHUB RELEASES &mdash; DEBUG APK</div>
       </div>
 
+      <div class="dl-card">
+        <div class="dl-card-icon" style="color:var(--green);">&#9662;</div>
+        <div class="dl-card-title" style="color:var(--green);">PWYLL &mdash; Windows .EXE</div>
+        <div class="dl-card-desc">
+          Standalone OPSEC awareness dashboard for Windows 11 &mdash; no install, no admin rights. Download the single .exe and run it; config and logs are created under %LOCALAPPDATA%\PWYLL, never beside the binary. Report-only by design: it reads your system state and never changes a setting. Source, SHA-256 checksum, and full network-egress docs are on GitHub.
+        </div>
+        <a class="dl-btn" id="dl-pwyll" href="https://github.com/jonahmauldin/pwyll/releases/download/v0.9.0/PWYLL.exe">&#8595;&nbsp; DOWNLOAD .EXE</a>
+        <div class="dl-note">// PWYLL v0.9.0 &mdash; PRIVACY-HARDENING PREVIEW &mdash; GITHUB RELEASES</div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -2038,7 +2103,7 @@
 <!-- ═══════ 11 — EVOLUTION ═══════ -->
 <section id="s11">
   <div class="container">
-    <div class="section-num reveal">// 11</div>
+    <div class="section-num reveal">// 12</div>
     <div class="section-title reveal">EVOLUTION</div>
 
     <div class="evolution-wrap reveal">
@@ -2212,7 +2277,7 @@
 <!-- ═══════ CURRENTLY TARGETING ═══════ -->
 <section id="s12">
   <div class="container">
-    <div class="section-num reveal">// 12</div>
+    <div class="section-num reveal">// 13</div>
     <div class="section-title reveal">CURRENTLY TARGETING</div>
 
     <div class="card green-accent reveal">
